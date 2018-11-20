@@ -12,9 +12,9 @@ class Cell{
 
    public:
    const char getType();
-   void setType();
+   void setType( char type );
    bool getStatus();
-   void setStatus();
+   void setStatus( bool status );
    const int getX();
    const int getY();
 };
