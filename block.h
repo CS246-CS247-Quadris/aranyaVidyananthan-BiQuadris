@@ -6,8 +6,8 @@ using namespace std;
 
 class Block{
 
-   vector<Cell* >shape;
-   vector<Cell* >temp;
+   vector< Cell* >shape;
+   vector< Cell* >temp;
    char type;
    int orientation;
    Board *g;
