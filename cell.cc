@@ -1,4 +1,4 @@
-
+#include cell.h
 
 Cell::Cell( int x, int y ): isempty{false}, x{x}, y{y}, t{a}{}
 
