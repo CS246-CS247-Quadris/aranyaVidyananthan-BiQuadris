@@ -11,6 +11,8 @@ class Cell{
    int y;
 
    public:
+   Cell( int x, int y );
+   ~Cell();
    const char getType();
    void setType( char type );
    bool getStatus();
