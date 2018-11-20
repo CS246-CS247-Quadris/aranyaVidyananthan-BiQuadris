@@ -5,12 +5,13 @@ using namespace std;
 
 class Cell{
 
+private:
    bool isempty;
    char t;
    int x;
    int y;
 
-   public:
+public:
    Cell( int x, int y );
    ~Cell();
    const char getType();
@@ -19,6 +20,7 @@ class Cell{
    void setStatus( bool status );
    const int getX();
    const int getY();
+   
 };
 
 #endif
