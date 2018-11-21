@@ -14,7 +14,7 @@ class Block{
    int removed;
  
    public:
-   virtual Block();
+   virtual Block( char type );
    virtual ~Block();
    virtual bool move(int direction)=0;
    virtual bool rotate(int direction)=0;
