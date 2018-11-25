@@ -1,6 +1,7 @@
 #ifndef _BLOCK_H
 #define _BLOCK_H
 #include <vector>
+#include "board.h"
 
 using namespace std;
 
@@ -16,11 +17,11 @@ class Block{
    public:
    virtual Block( char type );
    virtual ~Block();
+   virtual bool set()=0;
    virtual bool move(int direction)=0;
    virtual bool rotate(int direction)=0;
    virtual const char getType()=0;
-   virtual void attachCell(Cell* c)=0;
-   virtual void detachCell(Cell* c)=0;
+
 };
 
 #endif
