@@ -1,52 +1,94 @@
 #include "block.h"
 #include "lblock.h"
+#include "board.h"
+#include "cell.h"
 
 
-LBlock::LBlock( char type, Board * g ) : shape{}, temp{}, type{type}, orientation{1}, g{g}, removed{0}{}
-   
+LBlock::LBlock( Board * g ) : shape{},
+ temp{}, type{'l'}, orientation{1}, g{g}, removed{0}{}
 
-LBlock::~LBlock() { 
-    for ( auto n:shape ) { delete shape[n]; }
-    for ( auto m:temp ) { delete shape[m]; }
+
+LBlock::~LBlock() {
+    shape.clear();
+    shape.shrink_to_fit();
+    temp.clear();
+    temp.shrink_to_fit();
 }
 
 
 bool LBlock::set () {
-    if( g.cells[0][3] == isempty ) { 
-        temp[0] = g.cells[0][3];
+    // check if the four cells needed for block are empty
+    if( (g.cells[0][3]).getStatus()  == true ) {
+        temp.emplaceback( g.cells[0][3] );
     }
-    if( g.cells[1][3] == isempty ) { 
-        temp[1] = g.cells[1][3];
+    else { temp.clear(); return false; }
+    if( (g.cells[1][3]).getStatus()  == true ) {
+        temp.emplaceback( g.cells[1][3] );
     }
-    if( g.cells[2][3] == isempty ) { 
-      
+    else { temp.clear(); return false; }
+    if( (g.cells[2][3]).getStatus() == true ) {
+        temp.emplaceback( g.cells[2][3] );
     }
-    if( g.cells[2][2] == isempty ) { 
-      
+    else { temp.clear(); return false; }
+    if( (g.cells[2][2]).getStatus() == true ) {
+        temp.emplaceback( g.cells[2][2] );
     }
+    else { temp.clear(); return false; }
+    for ( n:shape) {
+        shape[n] = temp[n];
+        shape[n].setType( 'l' );
+        shape[n].setStatus( false );
+    }
+    temp.clear();
+    return true;
 }
 
 
-bool move( int direction ) override {
+bool LBlock::move( int direction ) override {
+    for ( auto n:shape ) { (shape[n]).setStatus( true ); }
+
+        // check if the shape cells can move, add cells to temp vector
+    for ( auto i:shape ) {
+        // set the new x and y cells based on direction moving
+        if ( direction == 2 ) { // right
+            int a = shape[i].getX() + 1;
+            int b = shape[i].getY();
+        }
+        if ( direction == 3 ) { // down
+            int a = shape[i].getX();
+            int b = shape[i].getY() + 1;
+        }
+        if ( direction == 4 ) { // left
+            int a = shape[i].getX() - 1;
+            int b = shape[i].getY();
+        }
+
+        if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g.cells[a][b].getStatus() == true ) { temp.emplaceback( g.cells[a][b] ); }
+        else {
+            for ( auto k:shape ) { shape[n].setStatus( false ); }
+            temp.clear();
+            return false;
+        }
+   }
+
+    // set new shape to the temp cells
+    for ( auto n:shape ) {
+        shape[n].setStatus( true ); // set old shape cells to empty
+        shape[n] = temp[n];
+        shape[n].setType( 'l' );
+        shape[n].setStatus( false ); // set new cells to full
+    }
+    return true;
+}
+
+
+const char LBlock::getType() override {
+    return type;
+}
+
+
+bool LBlock::rotate( int direction ) override {
 
 }
 
 
-const char getType() override {
-  
-}
-
-
-bool rotate( int direction ) override {
-  
-}
-
-  
-void attachCell( Cell* c ) override {
-  
-}
-
-  
-void detachCell( Cell* c ) override {
-  
-}
