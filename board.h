@@ -1,5 +1,8 @@
 #ifndef _BOARD_H
 #define _BOARD_H
+#include "block.h"
+#include "cell.h"
+#include "level.h"
 
 using namespace std;
 
