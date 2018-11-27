@@ -1,5 +1,5 @@
-#ifndef _BOARD_H
-#define _BOARD_H
+#ifndef _LEVEL_H
+#define _LEVEL_H
 
 using namespace std;
 
