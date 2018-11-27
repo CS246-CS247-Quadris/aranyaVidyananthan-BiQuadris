@@ -14,7 +14,8 @@ class Board{
    Level *level;
    vector<Block*> blocks;
    int player;
-
+   int levelnum;
+   
    public:
    Board(int player);
    ~Board();
