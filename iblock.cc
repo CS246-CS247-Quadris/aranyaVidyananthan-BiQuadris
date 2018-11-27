@@ -4,8 +4,7 @@
 #include "cell.h"
 
 
-IBlock::IBlock( Board * g ) : shape{},
- temp{}, type{'i'}, orientation{1}, g{g}, removed{0}{}
+IBlock::IBlock( char type, Board * g ) : Board{type, g}{}
 
 
 IBlock::~IBlock() {
