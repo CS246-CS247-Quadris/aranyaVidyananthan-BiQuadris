@@ -1,7 +1,6 @@
 #ifndef _BLOCK_H
 #define _BLOCK_H
 #include <vector>
-#include "board.h"
 
 using namespace std;
 
@@ -15,8 +14,8 @@ class Block{
    int removed;
  
 public:
-   virtual Block( char type );
-   virtual ~Block();
+   Block( char type );
+   ~Block();
    virtual bool set()=0;
    virtual bool move(int direction)=0;
    virtual bool rotate(int direction)=0;
