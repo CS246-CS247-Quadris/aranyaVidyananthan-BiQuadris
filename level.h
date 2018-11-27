@@ -4,14 +4,14 @@
 using namespace std;
 
 class Level{
+protected:
+    int levelNumber;
 
-   int levelNumber;
-
-   public:
-   virtual Level();
-   virtual ~Level();
-   virtual Block* nextBlock()=0;
-   virtual const int getLevel()=0;
+public:
+    Level();
+    ~Level();
+    virtual Block* nextBlock()=0;
+    virtual const int getLevel()=0;
 
 };
 
