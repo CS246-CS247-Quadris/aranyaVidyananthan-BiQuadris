@@ -14,7 +14,7 @@ class Block{
    int removed;
  
 public:
-   Block( char type );
+   Block( char type, Board *g );
    ~Block();
    virtual bool set()=0;
    virtual bool move(int direction)=0;
