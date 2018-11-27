@@ -7,7 +7,7 @@ using namespace std;
 class IBlock : public Block{
 
 public:
-    IBlock( Board * g );
+    IBlock( char type, Board * g );
     ~IBlock();
 
     // sets the block in its first pos, true if successful
