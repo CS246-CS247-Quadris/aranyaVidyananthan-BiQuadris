@@ -4,8 +4,7 @@
 #include "cell.h"
 
 
-ZBlock::ZBlock( Board * g ) : shape{},
- temp{}, type{'z'}, orientation{1}, g{g}, removed{0}{}
+ZBlock::ZBlock( Board * g ) : Block{'z', g}{}
 
 
 ZBlock::~ZBlock() {

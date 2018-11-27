@@ -4,7 +4,7 @@
 #include "cell.h"
 
 
-IBlock::IBlock( char type, Board * g ) : Block{type, g}{}
+IBlock::IBlock( Board * g ) : Block{'i', g}{}
 
 
 IBlock::~IBlock() {

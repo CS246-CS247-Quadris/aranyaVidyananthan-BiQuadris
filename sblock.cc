@@ -4,9 +4,7 @@
 #include "cell.h"
 
 
-SBlock::SBlock( Board * g ) : shape{},
- temp{}, type{'s'}, orientation{1}, g{g}, removed{0}{}
-
+SBlock::SBlock( Board * g ) : Block{'s', g}{}
 
 SBlock::~SBlock() {
     shape.clear();

@@ -4,6 +4,9 @@
 
 using namespace std;
 
+class Cell;
+class Board;
+
 class Block{
 protected:
    std::vector< Cell* >shape;

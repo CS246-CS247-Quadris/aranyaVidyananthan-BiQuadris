@@ -4,7 +4,7 @@
 #include "cell.h"
 
 
-JBlock::JBlock( char type, Board * g ) : Block{type, g}{}
+JBlock::JBlock( Board * g ) : Block{'j', g}{}
 
 JBlock::~JBlock() {
     shape.clear();

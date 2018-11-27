@@ -1,15 +1,17 @@
 #ifndef _BOARD_H
 #define _BOARD_H
-#include "block.h"
+#include "board.h"
 #include "cell.h"
-#include "level.h"
+
+class Block;
+class Level;
 
 using namespace std;
 
 class Board{
 
    vector<vector<Cell>> cells;
-   Level level;
+   Level *level;
    vector<Block*> blocks;
    int player;
 

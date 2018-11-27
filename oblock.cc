@@ -4,9 +4,7 @@
 #include "cell.h"
 
 
-OBlock::OBlock( Board * g ) : shape{},
- temp{}, type{'o'}, orientation{1}, g{g}, removed{0}{}
-
+OBlock::OBlock( Board * g ) : Block{'o', g}{}
 
 OBlock::~OBlock() {
     shape.clear();

@@ -7,10 +7,10 @@ using namespace std;
 
 Board::Board(int player):player{player}{}
 
-Board::~Board{}
+Board::~Board(){}
 
 Block* Board::createBlock(){
-   return level.nextBlock();
+   return level->nextBlock();
   
 }
 
@@ -41,7 +41,7 @@ void Board::clearBoard(){
 }
 
 int Board::getLevel(){
-   return level.getLevel();
+   return level->getLevel();
 }
 
 void Board::detach(Block* b){

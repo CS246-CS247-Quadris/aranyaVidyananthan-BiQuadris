@@ -4,8 +4,7 @@
 #include "cell.h"
 
 
-TBlock::TBlock( Board * g ) : shape{},
- temp{}, type{'t'}, orientation{1}, g{g}, removed{0}{}
+TBlock::TBlock( Board * g ) : Block{'t', g}{}
 
 
 TBlock::~TBlock() {
