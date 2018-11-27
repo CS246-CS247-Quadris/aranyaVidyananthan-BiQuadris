@@ -6,7 +6,7 @@
 using namespace std;
 
 class Block{
-
+   protected:
    vector< Cell* >shape;
    vector< Cell* >temp;
    char type;
@@ -14,7 +14,7 @@ class Block{
    Board *g;
    int removed;
  
-   public:
+public:
    virtual Block( char type );
    virtual ~Block();
    virtual bool set()=0;
