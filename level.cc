@@ -1,4 +1,5 @@
 #include "level.h"
+#include "block.h"
 
 Level::Level() {}
 
