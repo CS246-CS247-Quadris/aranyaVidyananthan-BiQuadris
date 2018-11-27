@@ -4,9 +4,7 @@
 #include "cell.h"
 
 
-JBlock::JBlock( Board * g ) : shape{},
- temp{}, type{'j'}, orientation{1}, g{g}, removed{0}{}
-
+JBlock::JBlock( char type, Board * g ) : Block{type, g}{}
 
 JBlock::~JBlock() {
     shape.clear();

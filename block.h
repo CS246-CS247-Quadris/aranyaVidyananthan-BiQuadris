@@ -5,9 +5,9 @@
 using namespace std;
 
 class Block{
-   protected:
-   vector< Cell* >shape;
-   vector< Cell* >temp;
+protected:
+   std::vector< Cell* >shape;
+   std::vector< Cell* >temp;
    char type;
    int orientation;
    Board *g;

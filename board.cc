@@ -9,7 +9,7 @@ Board::Board(int player):player{player}{}
 
 Board::~Board{}
 
-Block* BOard::createBlock(){
+Block* Board::createBlock(){
    return level.nextBlock();
   
 }

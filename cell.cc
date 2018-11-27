@@ -25,12 +25,12 @@ void Cell::setStatus( bool status ) {
 }
 
 
-const int getX() {
+const int Cell::getX() {
     return x;
 }
 
 
-const int getY() {
+const int Cell::getY() {
     return y;
 }
 
