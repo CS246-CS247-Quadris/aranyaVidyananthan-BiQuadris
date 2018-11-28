@@ -1,6 +1,6 @@
 #include "cell.h"
 
-Cell::Cell( int x, int y ): isempty{false}, x{x}, y{y}, t{}{}
+Cell::Cell( int x, int y ): isempty{true}, x{x}, y{y}, t{}{}
 
 
 Cell::~Cell() {}
