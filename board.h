@@ -1,5 +1,6 @@
 #ifndef _BOARD_H
 #define _BOARD_H
+#include <ostream>
 #include <vector>
 #include "board.h"
 #include "cell.h"
@@ -17,6 +18,8 @@ protected:
     vector<Block*> blocks;
     int player;
     int levelnum;
+    Block* nextBlock = nullptr;
+    int score = 0;
    
 public:
     Board(int player);
@@ -24,12 +27,14 @@ public:
     ~Board();
     Block* createBlock();
     bool rotateBlock(Block* b, int direction);
-    int clearLines();
+    int clearLines(int i);
     void setLevel(int l);
     void clearBoard();
     int getLevel();
+    int getScore();
     void detach(Block* b);
 
 };
 
+//ostream & Board::operator<<( ostream &out, const Board &b)
 #endif

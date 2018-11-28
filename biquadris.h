@@ -1,8 +1,9 @@
 #ifndef _BIQUADRIS_H
 #define _BIQUADRIS_H
-#include "board.h"
+#include <cstdlib>
+class Board;
 
-using namespace std;
+//using namespace std;
 
 class Biquadris{
 

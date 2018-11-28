@@ -1,5 +1,7 @@
+#include <ostream>
 #include "biquadris.h"
 #include "board.h"
+
 
 //ctor
 Biquadris::Biquadris(){

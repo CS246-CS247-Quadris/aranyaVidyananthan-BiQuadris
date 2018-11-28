@@ -36,8 +36,12 @@ bool Board::rotateBlock(Block* b, int direction){
 }
 
 
-int Board::clearLines(){
+int Board::clearLines(int i){
     return 0;
+}
+
+int Board::getScore(){
+    return score;
 }
 
 Cell* Board::getCell(int i, int j){
@@ -63,7 +67,16 @@ void Board::setLevel(int l){
 
 
 void Board::clearBoard(){
-    
+   for (int i = 17; i >= 0; i --){
+      bool row = true;
+      for(int n = 0; n < 11; n ++){
+         if(cells[n][i]->getStatus() == true){
+            row = false;
+            break;
+         }
+      }
+      if(row){this->clearLines(i);}
+   }     
 }
 
 
@@ -75,3 +88,18 @@ int Board::getLevel(){
 void Board::detach(Block* b){
 
 }
+/*
+ostream & operator<< (ostream &out, const Board &b) {
+   cout << "Level:   " << b.getLevel() << endl;
+   cout << "Score:   " << b.getScore() << endl;
+   cout << "-----------" << endl;
+   for(int n = 0; n < 11; n ++){
+      for(int i = 0; i < 18; i++){
+         cout << b.getCell()->getType();
+      }
+      cout << endl;
+   }
+   cout << endl;
+   //cout << *newblock << endl;
+   return out;
+}*/
