@@ -11,27 +11,16 @@
 
 using namespace std;
 
-<<<<<<< HEAD
+
 Board::Board(int player):player{player}, level{new LevelZero()}, currblock{}{
     levelnum = 0;
     cells.resize(11); // 11 columns
     for(int i = 0; i < 11; ++i){
-        cells.resize(24); // 18 rows
-        for(int j = 0; j < 24; ++j){
+        cells.resize(18); // 18 rows
+        for(int j = 0; j < 18; ++j){
            cells[i].emplace_back(Cell(i,j));// create empty cells
         }
     }
-=======
-Board::Board(int player):player{player}{
-   levelnum = 0;
-   cells.resize(11); // 11 columns
-   for(int i = 0; i < 11; ++i){
-       cells.resize(18); // 18 rows
-      for(int j = 0; j < 18; ++j){
-         cells[i].emplace_back(new Cell(i,j));// create empty cells
-      }
-   }
->>>>>>> c469de1aa24eaa17dd8d2e9ca2775dfcfa56bd8f
 }
 
 
@@ -116,4 +105,5 @@ ostream & operator<< ( ostream &out, const Board & b ) {
     std::endl;
     }
     std::endl;
+    std::cout << *newblock << std::endl;
 }
