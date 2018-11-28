@@ -15,6 +15,7 @@ IBlock::~IBlock() {
 }
 
 
+
 bool IBlock::set () {
     // check if the four cells needed for block are empty
     if( (g->getCell(0,3))->getStatus()  == true ) {

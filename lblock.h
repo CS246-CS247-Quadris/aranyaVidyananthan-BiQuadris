@@ -9,7 +9,7 @@ class LBlock : public Block{
 public:
     LBlock( Board * g );
     ~LBlock();
-
+ 
     // sets the block in its first pos, true if successful
     bool set() override;
     // moves the block one point to the left, right or down, return true if successful

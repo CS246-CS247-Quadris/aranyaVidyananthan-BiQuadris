@@ -23,10 +23,12 @@ protected:
    
 public:
     Board(int player);
-    Cell* getCell(int i, int j);
     ~Board();
-    Block* createBlock();
-    bool rotateBlock(Block* b, int direction);
+
+    Block * getNextBlock();
+    Block * getCurrBlock();
+    Cell* getCell(int i, int j);
+    void createBlock();
     int clearLines(int i);
     void setLevel(int l);
     void clearBoard();

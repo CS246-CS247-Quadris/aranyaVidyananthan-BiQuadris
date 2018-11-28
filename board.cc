@@ -10,9 +10,9 @@
 #include "level.h"
 
 
-Board::Board(int player){
+
+Board::Board(int player): levelnum{0}, player{player}, level{new LevelZero}{
     levelnum = 0;
-    nextBlock = nullptr;
     player = player;
     cells.resize(11); // 11 columns
     for(int i = 0; i < 11; ++i){
@@ -21,7 +21,9 @@ Board::Board(int player){
            cells[i].emplace_back(new Cell(i,j));// create empty cells
         }
     }
-    level = new LevelZero();
+    Block * b = level->nextBlock( this );
+    blocks.emplace_back( b ); // adds the currblock
+    createBlock(); // creates the next block
 }
 
 
@@ -31,34 +33,42 @@ Board::~Board(){
     cells.shrink_to_fit();
     //delete level;
 }
+ 
+
+// returns the current block
+Block * Board::getCurrBlock() {
+    return blocks.back();
+}
 
 
-Block* Board::createBlock(){
+//returns the next block
+Block * Board::getNextBlock() {
+    return nextBlock;
+}
+
+
+// creates a new block based on the level of the player
+void Board::createBlock(){
     Block * b = level->nextBlock( this ); // creates a new block
-    blocks.emplace_back( b );
-    return b;
+    nextBlock = b;
 }
-
-
-bool Board::rotateBlock(Block* b, int direction){
-    b->rotate( direction );
-    return false;
-}
-
 
 
 int Board::clearLines(int i){
     return 0;
 }
 
+
 int Board::getScore(){
     return score;
 }
+
 
 Cell* Board::getCell(int i, int j){
    return cells[i][j];
 
 }
+
 
 void Board::setLevel(int l){
     levelnum = l;
