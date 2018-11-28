@@ -9,31 +9,42 @@
 #include "levelfour.h"
 #include "level.h"
 
-using namespace std;
 
-Board::Board(int player):player{player}{
-   levelnum = 0;
-   cells.resize(11); // 11 columns
-   for(int i = 0; i < 11; ++i){
-       cells.resize(18); // 18 rows
-      for(int j = 0; j < 18; ++j){
-         cells[i].emplace_back(new Cell(i,j));// create empty cells
-      }
-   }
+Board::Board(int player){
+    levelnum = 0;
+    nextBlock = nullptr;
+    player = player;
+    cells.resize(11); // 11 columns
+    for(int i = 0; i < 11; ++i){
+        cells.resize(18); // 18 rows
+        for(int j = 0; j < 18; ++j){
+           cells[i].emplace_back(new Cell(i,j));// create empty cells
+        }
+    }
+    level = new LevelZero();
 }
 
 
-Board::~Board(){}
+Board::~Board(){
+    for ( int n = 0; n < 11; ++n ) { cells[n].clear(); }
+    cells.clear();
+    cells.shrink_to_fit();
+    //delete level;
+}
 
 
 Block* Board::createBlock(){
-    return level->nextBlock( this ); 
+    Block * b = level->nextBlock( this ); // creates a new block
+    blocks.emplace_back( b );
+    return b;
 }
 
 
 bool Board::rotateBlock(Block* b, int direction){
-    return true;
+    b->rotate( direction );
+    return false;
 }
+
 
 
 int Board::clearLines(int i){
@@ -62,11 +73,11 @@ void Board::setLevel(int l){
     }else if(l == 4){
       level = new LevelFour();
     }
-
 }
 
 
 void Board::clearBoard(){
+
    for (int i = 17; i >= 0; i --){
       bool row = true;
       for(int n = 0; n < 11; n ++){
@@ -77,6 +88,7 @@ void Board::clearBoard(){
       }
       if(row){this->clearLines(i);}
    }     
+
 }
 
 
@@ -86,8 +98,11 @@ int Board::getLevel(){
 
 
 void Board::detach(Block* b){
-
+    
 }
+
+
+
 /*
 ostream & operator<< (ostream &out, const Board &b) {
    cout << "Level:   " << b.getLevel() << endl;

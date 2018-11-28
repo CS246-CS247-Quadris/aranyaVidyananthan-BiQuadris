@@ -3,6 +3,7 @@
 #include "board.h"
 
 
+
 //ctor
 Biquadris::Biquadris(){
    boardOne = new Board(1);
@@ -11,12 +12,11 @@ Biquadris::Biquadris(){
    ScoreTwo = 0;
 }
 
-//dtor
 
-Biquadris::~Biquadris(){
-}
+//dtor
+Biquadris::~Biquadris(){}
+
 
 void Biquadris::ClearBoards(){
-
 
 }
