@@ -3,12 +3,16 @@
 
 using namespace std;
 
+class Block;
+class Board;
+
 class Level{
 protected:
     int levelNumber;
+    Board * board;
 
 public:
-    Level();
+    Level( int levelnumber, Board * board );
     ~Level();
     virtual Block* nextBlock()=0;
     virtual const int getLevel()=0;

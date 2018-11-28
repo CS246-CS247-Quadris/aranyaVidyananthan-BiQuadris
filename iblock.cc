@@ -17,20 +17,20 @@ IBlock::~IBlock() {
 
 bool IBlock::set () {
     // check if the four cells needed for block are empty
-    if( (g.cells[0][3]).getStatus()  == true ) {
-        temp.emplaceback( g.cells[0][3] );
+    if( (g->cells[0][3]).getStatus()  == true ) {
+        temp.emplaceback( g->cells[0][3] );
     }
     else { temp.clear(); return false; }
-    if( (g.cells[1][3]).getStatus()  == true ) {
-        temp.emplaceback( g.cells[1][3] );
+    if( (g->cells[1][3]).getStatus()  == true ) {
+        temp.emplaceback( g->cells[1][3] );
     }
     else { temp.clear(); return false; }
-    if( (g.cells[2][3]).getStatus() == true ) {
-        temp.emplaceback( g.cells[2][3] );
+    if( (g->cells[2][3]).getStatus() == true ) {
+        temp.emplaceback( g->cells[2][3] );
     }
     else { temp.clear(); return false; }
-    if( (g.cells[3][3]).getStatus() == true ) {
-        temp.emplaceback( g.cells[3][3] );
+    if( (g->cells[3][3]).getStatus() == true ) {
+        temp.emplaceback( g->cells[3][3] );
     }
     else { temp.clear(); return false; }
     for ( n:shape) {
@@ -85,8 +85,20 @@ const char IBlock::getType() override {
     return type;
 }
 
-
+// direction = 1, means clockwise, -1 means couterclockwise
 bool IBlock::rotate( int direction ) override {
-
+    for ( std::vector < Cell * >::iterator n = shape.begin(); n != shape.end(); ++n) {
+        n.setStatus( true };
+    }
+    if ( direction == 1 ) {  //clockwise
+        if ( orientation + direction == 5 ) { direction = 1; }
+        else { direction == orientation + direction; }
+    }
+    else { // counterclockwise
+        if ( orientation + direction == 0 ) { direction = 4; }
+        else { direction = orientation + direction; } 
+    }
+// now direction is the new orientation of the block
+    
 }
 

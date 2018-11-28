@@ -10,38 +10,38 @@ Board::Board(int player):player{player}{}
 Board::~Board(){}
 
 Block* Board::createBlock(){
-   return level->nextBlock();
+    return level->nextBlock();
   
 }
 
 bool Board::rotateBlock(Block* b, int direction){
-
+    return true;
 }
 
 int Board::clearLines(){
-
+    return 0;
 }
 
 void Board::setLevel(int l){
-   if(l == 0){
+    if(l == 0){
  
-   }else if(l == 1){
+    }else if(l == 1){
 
-   }else if(l == 2){
+    }else if(l == 2){
 
-   }else if(l == 3){
+    }else if(l == 3){
 
-   }else if(l == 4){
+    }else if(l == 4){
 
-   }
+    }
 }
 
 void Board::clearBoard(){
-
+    
 }
 
 int Board::getLevel(){
-   return level->getLevel();
+    return level->getLevel();
 }
 
 void Board::detach(Block* b){
