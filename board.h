@@ -23,12 +23,14 @@ public:
     ~Board();
     Block* createBlock();
     bool rotateBlock(Block* b, int direction);
-    int clearLines();
+    int clearLine( int rownumber );
     void setLevel(int l);
     void clearBoard();
     int getLevel();
     void detach(Block* b);
 
 };
+
+ostream & Board::operator<<( ostream &out, const Board & b )
 
 #endif

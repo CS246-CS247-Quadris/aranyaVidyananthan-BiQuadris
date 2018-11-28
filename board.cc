@@ -9,10 +9,8 @@
 #include "levelfour.h"
 #include "level.h"
 
-using namespace std;
 
-
-Board::Board(int player):player{player}, level{new LevelZero()}, currblock{}{
+Board::Board(int player):player{player}, level{new LevelZero()}, nextblock{}{
     levelnum = 0;
     cells.resize(11); // 11 columns
     for(int i = 0; i < 11; ++i){
@@ -25,9 +23,9 @@ Board::Board(int player):player{player}, level{new LevelZero()}, currblock{}{
 
 
 Board::~Board(){
-    for ( int n = 0; n < 11; ++n ) { cells[n].clear; }
-    cells.clear;
-    cells.shrink_to_fit;
+    for ( int n = 0; n < 11; ++n ) { cells[n].clear(); }
+    cells.clear();
+    cells.shrink_to_fit();
     delete level;
 }
 
@@ -40,16 +38,16 @@ Block* Board::createBlock(){
 
 
 bool Board::rotateBlock(Block* b, int direction){
-    b.rotate( direction );
+    b->rotate( direction );
 }
 
 
-int Board::clearLine(){
+int Board::clearLine( int rownumber ){
     
 }
 
 Cell* Board::getCell(int i, int j){
-   return cells[i][j];
+   return &cells[i][j];
 
 }
 
@@ -106,4 +104,5 @@ ostream & operator<< ( ostream &out, const Board & b ) {
     }
     std::endl;
     std::cout << *newblock << std::endl;
+    return out;
 }
