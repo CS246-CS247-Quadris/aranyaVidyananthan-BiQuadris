@@ -1,6 +1,8 @@
 #ifndef _LEVELTWO_H
 #define _LEVELTWO_H
+#include "level.h"
 
+class Block;
 class Board;
 
 using namespace std;

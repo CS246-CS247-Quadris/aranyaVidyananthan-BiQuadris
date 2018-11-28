@@ -1,6 +1,5 @@
-#include <stdlib.h>
+#include <cstdlib>
 #include "levelone.h"
-#include "block.h"
 #include "sblock.h"
 #include "zblock.h"
 #include "tblock.h"
@@ -9,8 +8,12 @@
 #include "lblock.h"
 #include "oblock.h"
 
+class Board;
+
 //constructor
-LevelOne::LevelOne( ): Level{1}{}
+LevelOne::LevelOne( ){
+   levelNumber = 1;
+}
 
 
 //destructor

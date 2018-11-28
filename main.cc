@@ -1,9 +1,9 @@
-#include <ifstream>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <stdlib>
+#include <cstdlib>
 #include "cell.h"
 #include "block.h"
 #include "level.h"
@@ -49,4 +49,5 @@ int main () {
       }else if(s == "T"){
       }else if(s == "O"){
       }
+   }
 }

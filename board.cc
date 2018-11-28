@@ -17,7 +17,7 @@ Board::Board(int player):player{player}{
    for(int i = 0; i < 11; ++i){
        cells.resize(18); // 18 rows
       for(int j = 0; j < 18; ++j){
-         cells[i].emplace_back(Cell(i,j));// create empty cells
+         cells[i].emplace_back(new Cell(i,j));// create empty cells
       }
    }
 }
@@ -40,6 +40,10 @@ int Board::clearLines(){
     return 0;
 }
 
+Cell* Board::getCell(int i, int j){
+   return cells[i][j];
+
+}
 
 void Board::setLevel(int l){
     levelnum = l;
