@@ -3,6 +3,8 @@
 
 class Board;
 
+using namespace std;
+
 class Biquadris{
 protected:
     Board* boardOne;

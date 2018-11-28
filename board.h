@@ -5,15 +5,16 @@
 #include "cell.h"
 #include "level.h"
 
-
 class Block;
+
+using namespace std;
 
 class Board{
 protected:
     Block * nextblock;
-    std::vector< std::vector < Cell > > cells;
+    vector< vector < Cell * > > cells;
     Level *level;
-    std::vector< Block* > blocks;
+    vector< Block* > blocks;
     int player;
     int levelnum;
    
