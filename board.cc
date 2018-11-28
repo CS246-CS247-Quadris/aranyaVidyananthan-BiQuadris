@@ -54,6 +54,14 @@ void Board::createBlock(){
 }
 
 
+// sets the next block to current and creates a new next block
+void Board::setNewBlock(){
+    Block * curr = nextBlock;
+    blocks.emplace_back( curr );
+    createBlock();    
+}
+
+
 int Board::clearLines(int i){
     return 0;
 }

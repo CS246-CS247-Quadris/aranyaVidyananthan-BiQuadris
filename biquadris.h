@@ -1,10 +1,8 @@
 #ifndef _BIQUADRIS_H
 #define _BIQUADRIS_H
-
 #include <cstdlib>
-class Board;
 
-//using namespace std;
+class Board;
 
 class Biquadris{
 protected:
@@ -12,12 +10,13 @@ protected:
     Board* boardTwo;
     int ScoreOne;
     int ScoreTwo;
+    int currplayer;
 
 public:
     Biquadris();
     ~Biquadris();
-    void ClearBoards();
-
+    Board * getCurrPlayer();
+    void switchPlayer();
 };
 
 #endif

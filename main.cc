@@ -20,22 +20,25 @@ int main () {
     while(cin >> s) {
         if(s == "left"){
         //move the current block one cell to the left
-                          
+            b->getCurrPlayer()->getCurrBlock()->move( 4 );                 
         }else if(s == "right"){
         //move the current block one cell to the right
-
+            b->getCurrPlayer()->getCurrBlock()->move( 2 );
         }else if(s == "down"){
         //move the current block one cell downward
-
+             b->getCurrPlayer()->getCurrBlock()->move( 3 );
         }else if(s == "clockwise"){
         //rotate the current block 90 degrees clockwise
-
+            b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
         }else if(s == "counterclockwise"){
-        //rotate the current block 90 clockwise
-
+        //rotate the current block 90 degrees counterclockwise
+            b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
         }else if(s == "drop"){
         //drops the current block
-
+            bool drop = true;
+            while( drop ) {
+                drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
+            }
         }else if(s == "levelup"){
         //increase the difficulty level of the game by one.
 

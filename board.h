@@ -27,6 +27,7 @@ public:
 
     Block * getNextBlock();
     Block * getCurrBlock();
+    void setNewBlock();
     Cell* getCell(int i, int j);
     void createBlock();
     int clearLines(int i);
