@@ -3,8 +3,8 @@
 
 //ctor
 Biquadris::Biquadris(){
-   boardOne = new Board();
-   boardTwo = new Board();
+   boardOne = new Board(1);
+   boardTwo = new Board(2);
    ScoreOne = 0;
    ScoreTwo = 0;
 }

@@ -1,5 +1,6 @@
 #ifndef _BIQUADRIS_H
 #define _BIQUADRIS_H
+#include "board.h"
 
 using namespace std;
 
