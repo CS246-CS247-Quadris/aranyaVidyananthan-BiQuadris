@@ -9,12 +9,11 @@ class Board;
 class Level{
 protected:
     int levelNumber;
-    Board * board;
 
 public:
-    Level( int levelnumber, Board * board );
+    Level( int levelnumber );
     ~Level();
-    virtual Block* nextBlock()=0;
+    virtual Block* nextBlock( Board * board )=0;
     virtual const int getLevel()=0;
 
 };

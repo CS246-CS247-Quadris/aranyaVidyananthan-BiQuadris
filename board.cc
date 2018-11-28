@@ -13,69 +13,60 @@ using namespace std;
 
 Board::Board(int player):player{player}{
    levelnum = 0;
-   cells.resize(18); // 15+ 3 rows
-   for(int i = 0; i < 18; i ++){
-      for(int j = 0; j < 11; j ++){
-         cells.push_back(Cell(j,i));// create empty cells
+   cells.resize(11); // 11 columns
+   for(int i = 0; i < 11; ++i){
+       cells.resize(18); // 18 rows
+      for(int j = 0; j < 18; ++j){
+         cells[i].emplace_back(Cell(i,j));// create empty cells
       }
    }
-   
 }
+
+
 Board::~Board(){}
 
+
 Block* Board::createBlock(){
-    return level->nextBlock();
-  
+    return level->nextBlock( this ); 
 }
+
 
 bool Board::rotateBlock(Block* b, int direction){
     return true;
 }
 
+
 int Board::clearLines(){
     return 0;
 }
 
+
 void Board::setLevel(int l){
-<<<<<<< HEAD
+    levelnum = l;
     if(l == 0){
- 
+      level = new LevelZero(); 
     }else if(l == 1){
-
+      level = new LevelOne();
     }else if(l == 2){
-
+      level = new LevelTwo();
     }else if(l == 3){
-
+      level = new LevelThree();
     }else if(l == 4){
-
+      level = new LevelFour();
     }
-=======
-   levelnum = l;
-   if(l == 0){
-     level = new LevelZero(); 
-   }else if(l == 1){
-     level = new LevelOne();
-   }else if(l == 2){
-     level = new LevelTwo();
-   }else if(l == 3){
-     level = new LevelThree();
-   }else if(l == 4){
-     level = new LevelFour();
-   }
->>>>>>> 00d152c3430003c65aff2dbad3d2493415be9734
+
 }
+
 
 void Board::clearBoard(){
     
 }
 
+
 int Board::getLevel(){
-<<<<<<< HEAD
-    return level->getLevel();
-=======
-   return levelnum;
->>>>>>> 00d152c3430003c65aff2dbad3d2493415be9734
+    return levelnum;
 }
+
 
 void Board::detach(Block* b){
 

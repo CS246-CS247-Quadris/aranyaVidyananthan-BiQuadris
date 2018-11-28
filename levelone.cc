@@ -10,7 +10,7 @@
 #include "oblock.h"
 
 //constructor
-LevelOne::LevelOne( Board * board ): Level{1, board}{}
+LevelOne::LevelOne( ): Level{1}{}
 
 
 //destructor
@@ -25,7 +25,7 @@ const int LevelOne::getLevel(){
 
 //using random number to control the probability of
 //which type of new block is generated
-Block* LevelOne::nextBlock(){
+Block* LevelOne::nextBlock( Board * board ){
     Block *block;
     int rn = rand()%12; // rn in the range 0 to 11
     if(rn == 0){
