@@ -11,38 +11,46 @@
 
 using namespace std;
 
-Board::Board(int player):player{player}{
-   levelnum = 0;
-   cells.resize(11); // 11 columns
-   for(int i = 0; i < 11; ++i){
-       cells.resize(18); // 18 rows
-      for(int j = 0; j < 18; ++j){
-         cells[i].emplace_back(Cell(i,j));// create empty cells
-      }
-   }
+Board::Board(int player):player{player}, level{new LevelZero()}, currblock{}{
+    levelnum = 0;
+    cells.resize(11); // 11 columns
+    for(int i = 0; i < 11; ++i){
+        cells.resize(24); // 18 rows
+        for(int j = 0; j < 24; ++j){
+           cells[i].emplace_back(Cell(i,j));// create empty cells
+        }
+    }
 }
 
 
-Board::~Board(){}
+Board::~Board(){
+    for ( int n = 0; n < 11; ++n ) { cells[n].clear; }
+    cells.clear;
+    cells.shrink_to_fit;
+    delete level;
+}
 
 
 Block* Board::createBlock(){
-    return level->nextBlock( this ); 
+    Block * b = level->nextBlock( this ); // creates a new block
+    blocks.emplace_back( b );
+    return b;
 }
 
 
 bool Board::rotateBlock(Block* b, int direction){
-    return true;
+    b.rotate( direction );
 }
 
 
-int Board::clearLines(){
-    return 0;
+int Board::clearLine(){
+    
 }
 
 
 void Board::setLevel(int l){
     levelnum = l;
+    delete level;
     if(l == 0){
       level = new LevelZero(); 
     }else if(l == 1){
@@ -54,12 +62,20 @@ void Board::setLevel(int l){
     }else if(l == 4){
       level = new LevelFour();
     }
-
 }
 
 
 void Board::clearBoard(){
-    
+    for ( int i = 17; i >= 0 ; --i ) {
+        bool row = true;
+        for ( int n = 0; n < 11; ++n ) {
+            if ( cells[n][i].getStatus() == true ) { 
+                 row = false;
+                 break;
+            }    
+        }
+        if ( row == true ) { clearLine( i ); }
+    }   
 }
 
 
@@ -69,5 +85,19 @@ int Board::getLevel(){
 
 
 void Board::detach(Block* b){
+    
+}
 
+
+ostream & operator<< ( ostream &out, const Board & b ) {
+    std::cout << "Level:    " << b.levelnum << std::endl;
+    std::cout << "Score:    " << b.score << std::endl;
+    std::cout << "-----------" << std::endl;
+    for ( int n = 0; n < 11; ++n ) {
+        for ( int i = 0; i < 18; ++i ) {
+             std::cout << b.cells[n][i].getType();
+        }
+    std::endl;
+    }
+    std::endl;
 }

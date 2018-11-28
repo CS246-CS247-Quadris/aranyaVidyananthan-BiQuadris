@@ -10,6 +10,7 @@ using namespace std;
 
 class Board{
 protected:
+    Block * currblock;
     vector<vector<Cell>> cells;
     Level *level;
     vector<Block*> blocks;
