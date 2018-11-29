@@ -1,1 +1,1 @@
-level.o: level.cc level.h block.h
+level.o: level.cc level.h block.h iblock.h

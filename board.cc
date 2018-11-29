@@ -31,7 +31,7 @@ Board::~Board(){
     for ( int n = 0; n < 11; ++n ) { cells[n].clear(); }
     cells.clear();
     cells.shrink_to_fit();
-    //delete level;
+    delete level;
 }
  
 
@@ -79,6 +79,7 @@ Cell* Board::getCell(int i, int j){
 
 
 void Board::setLevel(int l){
+    delete level;
     levelnum = l;
     if(l == 0){
       level = new LevelZero(); 

@@ -13,9 +13,10 @@ protected:
 public:
     Level( );
     ~Level();
-    virtual Block* nextBlock( Board * board )=0;
-    virtual const int getLevel()=0;
+    virtual Block* nextBlock( Board * board );
+    virtual const int getLevel();
 
 };
+
 
 #endif
