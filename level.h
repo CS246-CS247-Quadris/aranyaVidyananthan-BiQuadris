@@ -12,7 +12,7 @@ protected:
 
 public:
     Level( );
-    ~Level();
+    virtual ~Level();
     virtual Block* nextBlock( Board * board );
     virtual const int getLevel();
 
