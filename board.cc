@@ -12,7 +12,7 @@
 
 
 Board::Board(int player) {
-    level = new LevelZero;
+    level = new LevelZero();
     levelnum = 0;
     player = player;
     cells.resize(11); // 11 columns
