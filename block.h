@@ -16,7 +16,7 @@ protected:
  
 public:
     Block( );
-    ~Block();
+    virtual~Block();
     virtual bool set()=0;
     virtual bool move(int direction)=0;
     virtual bool rotate(int direction)=0;
