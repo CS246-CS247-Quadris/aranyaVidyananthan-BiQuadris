@@ -22,8 +22,8 @@ LevelZero::~LevelZero(){}
 
 //make the virtual nextblock concrete
 
-Block* LevelZero::nextBlock(Board *b){
-   Block *bl = new IBlock(b);
+Block* LevelZero::nextBlock( Board * b){
+   Block *bl = new IBlock( b );
    return bl;
 }
 

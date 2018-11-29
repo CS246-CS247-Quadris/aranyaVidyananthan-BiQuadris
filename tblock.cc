@@ -2,9 +2,15 @@
 #include "tblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
+TBlock::TBlock( Board * g ) {
+     type = 'T';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
 
-TBlock::TBlock( Board * g ) : Block{'t', g}{}
 
 
 TBlock::~TBlock() {
@@ -36,7 +42,7 @@ bool TBlock::set () {
     
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 't' );
+        shape[index]->setType( 'T' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -85,7 +91,7 @@ bool TBlock::move( int direction ){
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' ');
         shape[index] = temp[index];
-        shape[index]->setType( 't' );
+        shape[index]->setType( 'T' );
         shape[index]->setStatus( false ); // set new cells to full
     }
     return true;
@@ -114,9 +120,8 @@ bool TBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, TBlock block ) {
-    out << "TTT" << std::endl;
-    out << " T " << std:: endl;
-    return out;
+void TBlock::print() {
+    std::cout << "TTT" << std::endl;
+    std::cout << " T " << std::endl;
 }
 

@@ -2,9 +2,14 @@
 #include "lblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
-
-LBlock::LBlock( Board * g ) : Block{'l', g}{}
+LBlock::LBlock( Board * g ) {
+     type = 'L';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
 
 
 LBlock::~LBlock() {
@@ -36,7 +41,7 @@ bool LBlock::set () {
     
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 'l' );
+        shape[index]->setType( 'L' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -85,7 +90,7 @@ bool LBlock::move( int direction ){
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType( ' ');
         shape[index] = temp[index];
-        shape[index]->setType( 'l' );
+        shape[index]->setType( 'L' );
         shape[index]->setStatus( false ); // set new cells to full
     }
     return true;
@@ -114,10 +119,9 @@ bool LBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, LBlock block ) {
-    out << "  L" << std::endl;
-    out << "LLL" << std::endl;
-    return out;
+void LBlock::print(){
+    std::cout << "  L" << std::endl;
+    std::cout << "LLL" << std::endl;
 }
 
 

@@ -2,9 +2,15 @@
 #include "sblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
+SBlock::SBlock( Board * g ) {
+     type = 'S';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
 
-SBlock::SBlock( Board * g ) : Block{'s', g}{}
 
 
 SBlock::~SBlock() {
@@ -36,7 +42,7 @@ bool SBlock::set () {
     
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 's' );
+        shape[index]->setType( 'S' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -85,7 +91,7 @@ bool SBlock::move( int direction ){
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType( ' ');
         shape[index] = temp[index];
-        shape[index]->setType( 's' );
+        shape[index]->setType( 'S' );
         shape[index]->setStatus( false ); // set new cells to full
     }
     return true;
@@ -114,8 +120,7 @@ bool SBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, SBlock block ) {
-    out << " SS" << std::endl;
-    out << "SS"  << std::endl;
-    return out;
+void SBlock::print() {
+    std::cout << " SS" << std::endl;
+    std::cout << "SS"  << std::endl;
 }

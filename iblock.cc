@@ -2,9 +2,14 @@
 #include "iblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
-
-IBlock::IBlock( Board * g ) : Block{'i', g}{}
+IBlock::IBlock( Board * g ) {
+     type = 'I';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
 
 
 IBlock::~IBlock() {
@@ -18,11 +23,11 @@ IBlock::~IBlock() {
 
 bool IBlock::set () {
     // check if the four cells needed for block are empty
-    if( (g->getCell(0,3))->getStatus()  == true ) {
+    if( (g->getCell(0,3))->getStatus() == true ) {
         temp.emplace_back( g->getCell(0,3));
     }
     else { temp.clear(); return false; }
-    if( (g->getCell(1,3))->getStatus()  == true ) {
+    if( (g->getCell(1,3))->getStatus() == true ) {
         temp.emplace_back( g->getCell(1,3));
     }
     else { temp.clear(); return false; }
@@ -34,10 +39,9 @@ bool IBlock::set () {
         temp.emplace_back( g->getCell(3,3));
     }
     else { temp.clear(); return false; }
-    
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 'i' );
+        shape[index]->setType( 'I' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -46,12 +50,12 @@ bool IBlock::set () {
 
 
 bool IBlock::move( int direction ){
-    for ( int n = 0; n < 4; n++ ) {
+    for ( int n = 0; n < 4; ++n ) {
          shape[n]->setStatus( true );
-         }
+    }
 
-        // check if the shape cells can move, add cells to temp vector
-    for ( int i = 0; i < 4; i ++ ) {
+    // check if the shape cells can move, add cells to temp vector
+    for ( int i = 0; i < 4; ++i ) {
         // set the new x and y cells based on direction moving
         int a = 0;
         int b = 0;
@@ -71,24 +75,23 @@ bool IBlock::move( int direction ){
         if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){ 
             temp.emplace_back( g->getCell(a,b) );
         }else {
-            //for ( auto k:shape ) { shape[n].setStatus( false ); }
-            for(int k = 0; i < 4; k++){
+            for(int k = 0; k < 4; ++k ){
                shape[k]->setStatus(false);
             }
             temp.clear();
             return false;
         }
-    
    }
 
     // set new shape to the temp cells
-    for ( int index = 0; index < 4; index ++ ) {
+    for ( int index = 0; index < 4; ++index ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' ');
         shape[index] = temp[index];
-        shape[index]->setType( 'i' );
+        shape[index]->setType( 'I' );
         shape[index]->setStatus( false ); // set new cells to full
     }
+    temp.clear();
     return true;
 }
 
@@ -115,7 +118,6 @@ bool IBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, IBlock block ) {
-    out << "IIII" << std::endl;
-    return out;
+void IBlock::print(){
+    std::cout << "IIII" << std::endl;
 }

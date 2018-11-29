@@ -2,9 +2,15 @@
 #include "zblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
+ZBlock::ZBlock( Board * g ) {
+     type = 'Z';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
 
-ZBlock::ZBlock( Board * g ) : Block{'z', g}{}
 
 
 ZBlock::~ZBlock() {
@@ -36,7 +42,7 @@ bool ZBlock::set () {
     
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 'z' );
+        shape[index]->setType( 'Z' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -85,7 +91,7 @@ bool ZBlock::move( int direction ){
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType( ' ');
         shape[index] = temp[index];
-        shape[index]->setType( 'z' );
+        shape[index]->setType( 'Z' );
         shape[index]->setStatus( false ); // set new cells to full
     }
     return true;
@@ -114,10 +120,9 @@ bool ZBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, ZBlock block ) {
-    out << "ZZ" << std::endl;
-    out << " ZZ" << std::endl;
-    return out;
+void ZBlock::print() {
+    std::cout << "ZZ" << std::endl;
+    std::cout << " ZZ" << std::endl;
 }
 
 

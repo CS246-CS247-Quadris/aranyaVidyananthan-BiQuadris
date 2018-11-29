@@ -8,7 +8,7 @@
 #include "levelthree.h"
 #include "levelfour.h"
 #include "level.h"
-
+#include <iostream>
 
 
 Board::Board(int player) {
@@ -17,19 +17,21 @@ Board::Board(int player) {
     player = player;
     cells.resize(11); // 11 columns
     for(int i = 0; i < 11; ++i){
-        cells.resize(18); // 18 rows
+        cells[i].resize(18); // 18 rows
         for(int j = 0; j < 18; ++j){
-           cells[i].emplace_back(new Cell(i,j));// create empty cells
+           cells[i][j] =  new Cell(i,j);// create empty cells
         }
     }
     Block * b = level->nextBlock( this );
+    b->print();
     blocks.emplace_back( b ); // adds the currblock
+    b->set();
     createBlock(); // creates the next block
 }
 
 
 Board::~Board(){
-    for ( int n = 0; n < 11; ++n ) { cells[n].clear(); }
+    for ( int n = 0; n < 11; ++n ) { cells[n].clear(); cells[n].shrink_to_fit();  }
     cells.clear();
     cells.shrink_to_fit();
     delete level;
@@ -59,7 +61,9 @@ void Board::createBlock(){
 bool Board::setNewBlock(){ // if it returns false the game is over
     Block * curr = nextBlock;
     blocks.emplace_back( curr ); 
-    return curr->set(); // sets the curr block to the top of the board    
+    bool retval = curr->set(); // sets the curr block to the top of the board    
+    if (retval == false) { delete curr; }
+    return retval;
 }
 
 
@@ -75,7 +79,6 @@ int Board::getScore(){
 
 Cell* Board::getCell(int i, int j){
    return cells[i][j];
-
 }
 
 
@@ -97,7 +100,6 @@ void Board::setLevel(int l){
 
 
 void Board::clearBoard(){
-
    for (int i = 17; i >= 0; i --){
       bool row = true;
       for(int n = 0; n < 11; n ++){

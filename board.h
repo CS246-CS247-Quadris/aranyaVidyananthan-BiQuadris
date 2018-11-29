@@ -13,7 +13,7 @@ using namespace std;
 class Board{
 protected:
     Block * nextblock;
-    vector< vector < Cell * > > cells;
+    std::vector< std::vector < Cell * > > cells;
     Level *level;
     vector< Block* > blocks;
     int player;
@@ -39,5 +39,4 @@ public:
 
 };
 
-//ostream & Board::operator<<( ostream &out, const Board &b)
 #endif

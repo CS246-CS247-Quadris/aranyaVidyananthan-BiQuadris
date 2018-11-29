@@ -2,9 +2,16 @@
 #include "jblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
 
-JBlock::JBlock( Board * g ) : Block{'j', g}{}
+JBlock::JBlock( Board * g ) {
+     type = 'J';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
+
 
 
 JBlock::~JBlock() {
@@ -36,7 +43,7 @@ bool JBlock::set () {
     
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 't' );
+        shape[index]->setType( 'J' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -85,7 +92,7 @@ bool JBlock::move( int direction ){
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' ');
         shape[index] = temp[index];
-        shape[index]->setType( 'j' );
+        shape[index]->setType( 'J' );
         shape[index]->setStatus( false ); // set new cells to full
     }
     return true;
@@ -114,8 +121,7 @@ bool JBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, JBlock block ){
-    out << "J" << std::endl;
-    out << "JJJ" << std::endl;
-    return out;
+void JBlock::print() {
+    std::cout << "J" << std::endl;
+    std::cout << "JJJ" << std::endl;
 }

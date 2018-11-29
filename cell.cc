@@ -7,8 +7,8 @@ Cell::~Cell() {}
 
 
 const char Cell::getType() { 
-    if ( isempty ) { return t; }
-    else { return 'a'; } // an error cell does not contain a block 
+    if (!(isempty )) { return t; }
+    else { return ' '; } // an error cell does not contain a block 
 }
 
 void Cell::setType(char type) {

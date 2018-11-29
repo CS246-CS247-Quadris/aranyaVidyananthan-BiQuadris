@@ -2,9 +2,15 @@
 #include "oblock.h"
 #include "board.h"
 #include "cell.h"
+#include <iostream>
 
+OBlock::OBlock( Board * g ) {
+     type = 'O';
+     orientation = 1;
+     g = g;
+     removed = 0;
+}
 
-OBlock::OBlock( Board * g ) : Block{'o', g}{}
 
 
 OBlock::~OBlock() {
@@ -36,7 +42,7 @@ bool OBlock::set () {
     
     for (int index = 0; index < 4; index ++) {
         shape[index] = temp[index];
-        shape[index]->setType( 'o' );
+        shape[index]->setType( 'O' );
         shape[index]->setStatus( false );
     }
     temp.clear();
@@ -85,7 +91,7 @@ bool OBlock::move( int direction ){
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' ');
         shape[index] = temp[index];
-        shape[index]->setType( 'o' );
+        shape[index]->setType( 'O' );
         shape[index]->setStatus( false ); // set new cells to full
     }
     return true;
@@ -114,10 +120,9 @@ bool OBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, OBlock block ) {
-    out << "OO" << std::endl;
-    out << "OO" << std::endl;
-    return out;
+void OBlock::print() {
+    std::cout << "OO" << std::endl;
+    std::cout << "OO" << std::endl;
 }
 
 

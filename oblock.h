@@ -17,9 +17,8 @@ public:
     const char getType() override;
     // rotates the block one turn clockwise or counterclockwise, return true if successful
     bool rotate( int direction ) override;
-
+    void print();
 };
 
-std::ostream & operator<<( std::ostream & out, OBlock block );
 
 #endif
