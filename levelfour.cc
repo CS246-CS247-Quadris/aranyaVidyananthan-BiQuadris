@@ -14,9 +14,7 @@ using namespace std;
 
 
 //constructor
-LevelFour::LevelFour(){
-   levelNumber = 4;
-}
+LevelFour::LevelFour(): Level{4}{}
 
 
 //destructor

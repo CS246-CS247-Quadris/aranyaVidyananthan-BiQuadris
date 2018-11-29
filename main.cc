@@ -83,6 +83,7 @@ int main () {
         }else if(s == "O"){
 
         }
-    } 
+    }
+    std::cout << "GAME OVER!" << std::endl; 
     delete b;
 }

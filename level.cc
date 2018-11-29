@@ -2,7 +2,7 @@
 #include "block.h"
 #include "iblock.h"
 
-Level::Level( ){}
+Level::Level( int levelnumber ): levelNumber{levelnumber}{}
 
 
 Level::~Level() {}

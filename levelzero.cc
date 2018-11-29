@@ -12,9 +12,7 @@ class Board;
 using namespace std;
 
 //constructor
-LevelZero::LevelZero(){
-   levelNumber = 0;
-}
+LevelZero::LevelZero(): Level{0}{}
 
 //destructor
 LevelZero::~LevelZero(){}

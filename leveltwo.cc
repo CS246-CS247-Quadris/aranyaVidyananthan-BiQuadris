@@ -10,9 +10,7 @@
 
 class Board;
 //constructor
-LevelTwo::LevelTwo(){
-   levelNumber = 2;
-}
+LevelTwo::LevelTwo(): Level{2}{}
 
 
 //destructor

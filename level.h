@@ -11,7 +11,7 @@ protected:
     int levelNumber;
 
 public:
-    Level( );
+    Level( int levelnumber );
     virtual ~Level();
     virtual Block* nextBlock( Board * board );
     virtual const int getLevel();
