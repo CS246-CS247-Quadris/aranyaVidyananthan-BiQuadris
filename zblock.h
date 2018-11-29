@@ -1,8 +1,7 @@
 #ifndef _ZBLOCK_H
 #define _ZBLOCK_H
 #include "block.h"
-
-using namespace std;
+#include <iostream>
 
 class ZBlock : public Block{
 
@@ -20,5 +19,7 @@ public:
     bool rotate( int direction ) override;
 
 };
+
+std::ostream & operator<<( std::ostream & out, Zblock block );
 
 #endif

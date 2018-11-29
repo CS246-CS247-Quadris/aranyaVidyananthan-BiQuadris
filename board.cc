@@ -11,7 +11,8 @@
 
 
 
-Board::Board(int player): levelnum{0}, player{player}, level{new LevelZero}{
+Board::Board(int player) {
+    level = new LevelZero;
     levelnum = 0;
     player = player;
     cells.resize(11); // 11 columns

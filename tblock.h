@@ -1,8 +1,7 @@
 #ifndef _TBLOCK_H
 #define _TBLOCK_H
 #include "block.h"
-
-using namespace std;
+#include <iostream>
 
 class TBlock : public Block{
 
@@ -19,7 +18,8 @@ public:
     // rotates the block one turn clockwise or counterclockwise, return true if successful
     bool rotate( int direction ) override;
 
-
 };
+
+std::ostream & operator<<( std::ostream & out, Tblock block );
 
 #endif

@@ -1,9 +1,7 @@
 #ifndef _SBLOCK_H
 #define _SBLOCK_H
 #include "block.h"
-
-
-using namespace std;
+#include <iostream>
 
 class SBlock : public Block{
 
@@ -21,5 +19,7 @@ public:
     bool rotate( int direction ) override;
 
 };
+
+std::ostream & operator<<( std::ostream & out, Sblock block );
 
 #endif

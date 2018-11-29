@@ -1,8 +1,7 @@
 #ifndef _JBLOCK_H
 #define _JBLOCK_H
 #include "block.h"
-
-using namespace std;
+#include <iostream>
 
 class JBlock : public Block{
 
@@ -20,5 +19,7 @@ public:
     bool rotate( int direction ) override;
 
 };
+
+std::ostream & operator<<( std::ostream & out, Jblock block );
 
 #endif

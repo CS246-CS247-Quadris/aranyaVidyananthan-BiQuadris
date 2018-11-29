@@ -1,8 +1,7 @@
 #ifndef _IBLOCK_H
 #define _IBLOCK_H
 #include "block.h"
-
-using namespace std;
+#include <iostream>
 
 class IBlock : public Block{
 
@@ -20,5 +19,7 @@ public:
     bool rotate( int direction ) override;
 
 };
+
+std::ostream & operator<<( std::ostream & out, Iblock block );
 
 #endif
