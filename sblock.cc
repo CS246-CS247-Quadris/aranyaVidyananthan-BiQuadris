@@ -4,13 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-SBlock::SBlock( Board * g ) {
-     type = 'S';
-     orientation = 1;
-     g = g;
-     removed = 0;
-}
-
+SBlock::SBlock( Board * g ): Block{'S', g }{}
 
 
 SBlock::~SBlock() {
@@ -41,7 +35,7 @@ bool SBlock::set () {
     else { temp.clear(); return false; }
     
     for (int index = 0; index < 4; index ++) {
-        shape[index] = temp[index];
+        shape.emplace_back(temp[index]);
         shape[index]->setType( 'S' );
         shape[index]->setStatus( false );
     }

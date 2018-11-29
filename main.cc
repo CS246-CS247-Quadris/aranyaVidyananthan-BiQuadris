@@ -84,4 +84,5 @@ int main () {
 
         }
     } 
+    delete b;
 }

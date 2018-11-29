@@ -5,12 +5,7 @@
 #include <iostream>
 
 
-JBlock::JBlock( Board * g ) {
-     type = 'J';
-     orientation = 1;
-     g = g;
-     removed = 0;
-}
+JBlock::JBlock( Board * g ): Block{'J', g }{}
 
 
 
@@ -42,7 +37,7 @@ bool JBlock::set () {
     else { temp.clear(); return false; }
     
     for (int index = 0; index < 4; index ++) {
-        shape[index] = temp[index];
+        shape.emplace_back(temp[index]);
         shape[index]->setType( 'J' );
         shape[index]->setStatus( false );
     }

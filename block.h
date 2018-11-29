@@ -15,7 +15,7 @@ protected:
     int removed;
  
 public:
-    Block( );
+    Block( char type, Board * g );
     virtual~Block();
     virtual bool set()=0;
     virtual bool move(int direction)=0;

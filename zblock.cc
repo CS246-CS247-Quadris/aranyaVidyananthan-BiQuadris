@@ -4,12 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-ZBlock::ZBlock( Board * g ) {
-     type = 'Z';
-     orientation = 1;
-     g = g;
-     removed = 0;
-}
+ZBlock::ZBlock( Board * g ): Block{'Z', g }{}
 
 
 
@@ -41,7 +36,7 @@ bool ZBlock::set () {
     else { temp.clear(); return false; }
     
     for (int index = 0; index < 4; index ++) {
-        shape[index] = temp[index];
+        shape.emplace_back(temp[index]);
         shape[index]->setType( 'Z' );
         shape[index]->setStatus( false );
     }

@@ -4,12 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-OBlock::OBlock( Board * g ) {
-     type = 'O';
-     orientation = 1;
-     g = g;
-     removed = 0;
-}
+OBlock::OBlock( Board * g ): Block{'O', g }{}
 
 
 
@@ -41,7 +36,7 @@ bool OBlock::set () {
     else { temp.clear(); return false; }
     
     for (int index = 0; index < 4; index ++) {
-        shape[index] = temp[index];
+        shape.emplace_back(temp[index]);
         shape[index]->setType( 'O' );
         shape[index]->setStatus( false );
     }

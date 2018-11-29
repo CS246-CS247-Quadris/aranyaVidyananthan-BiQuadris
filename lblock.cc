@@ -4,12 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-LBlock::LBlock( Board * g ) {
-     type = 'L';
-     orientation = 1;
-     g = g;
-     removed = 0;
-}
+LBlock::LBlock( Board * g ): Block{'L', g }{}
 
 
 LBlock::~LBlock() {
@@ -40,7 +35,7 @@ bool LBlock::set () {
     else { temp.clear(); return false; }
     
     for (int index = 0; index < 4; index ++) {
-        shape[index] = temp[index];
+        shape.emplace_back(temp[index]);
         shape[index]->setType( 'L' );
         shape[index]->setStatus( false );
     }
