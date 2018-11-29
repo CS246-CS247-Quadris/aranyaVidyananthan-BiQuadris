@@ -113,3 +113,11 @@ bool ZBlock::rotate( int direction ) {
     return true;
 }
 
+
+std::ostream & operator<<( std::ostream & out, ZBlock block ) {
+    out << "ZZ" << std::endl;
+    out << " ZZ" << std::endl;
+    return out;
+}
+
+

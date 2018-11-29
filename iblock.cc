@@ -114,3 +114,8 @@ bool IBlock::rotate( int direction ) {
     return true;
 }
 
+
+std::ostream & operator<<( std::ostream & out, IBlock block ) {
+    out << "IIII" << std::endl;
+    return out;
+}

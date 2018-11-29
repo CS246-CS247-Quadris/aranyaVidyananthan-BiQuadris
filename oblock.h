@@ -20,6 +20,6 @@ public:
 
 };
 
-std::ostream & operator<<( std::ostream & out, Oblock block );
+std::ostream & operator<<( std::ostream & out, OBlock block );
 
 #endif

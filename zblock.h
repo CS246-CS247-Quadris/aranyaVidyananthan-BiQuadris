@@ -20,6 +20,6 @@ public:
 
 };
 
-std::ostream & operator<<( std::ostream & out, Zblock block );
+std::ostream & operator<<( std::ostream & out, ZBlock block );
 
 #endif

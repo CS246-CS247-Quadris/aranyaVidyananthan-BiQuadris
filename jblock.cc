@@ -113,3 +113,9 @@ bool JBlock::rotate( int direction ) {
     return true;
 }
 
+
+std::ostream & operator<<( std::ostream & out, JBlock block ){
+    out << "J" << std::endl;
+    out << "JJJ" << std::endl;
+    return out;
+}

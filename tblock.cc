@@ -113,3 +113,10 @@ bool TBlock::rotate( int direction ) {
     return true;
 }
 
+
+std::ostream & operator<<( std::ostream & out, TBlock block ) {
+    out << "TTT" << std::endl;
+    out << " T " << std:: endl;
+    return out;
+}
+

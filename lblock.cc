@@ -113,3 +113,11 @@ bool LBlock::rotate( int direction ) {
     return true;
 }
 
+
+std::ostream & operator<<( std::ostream & out, LBlock block ) {
+    out << "  L" << std::endl;
+    out << "LLL" << std::endl;
+    return out;
+}
+
+

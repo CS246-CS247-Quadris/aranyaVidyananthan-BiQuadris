@@ -114,7 +114,8 @@ bool SBlock::rotate( int direction ) {
 }
 
 
-std::ostream & operator<<( std::ostream & out, Sblock block ) {
-    std::out << " SS" << std::endl;
-    std::out << "SS"  << std::endl;
+std::ostream & operator<<( std::ostream & out, SBlock block ) {
+    out << " SS" << std::endl;
+    out << "SS"  << std::endl;
+    return out;
 }

@@ -113,3 +113,11 @@ bool OBlock::rotate( int direction ) {
     return true;
 }
 
+
+std::ostream & operator<<( std::ostream & out, OBlock block ) {
+    out << "OO" << std::endl;
+    out << "OO" << std::endl;
+    return out;
+}
+
+
