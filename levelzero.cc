@@ -17,14 +17,12 @@ LevelZero::LevelZero(){
 }
 
 //destructor
-
 LevelZero::~LevelZero(){}
 
 //make the virtual nextblock concrete
-
 Block* LevelZero::nextBlock( Board * b){
-   Block *bl = new IBlock( b );
-   return bl;
+   return new IBlock( b );
+   
 }
 
 //this is the method that actually does the work

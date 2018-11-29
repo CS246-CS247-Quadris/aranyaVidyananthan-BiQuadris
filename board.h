@@ -8,14 +8,13 @@ class Block;
 
 class Board{
 protected:
-    Block * nextblock;
     std::vector< std::vector < Cell * > > cells;
     Level *level;
-    std::vector< Block* > blocks;
+    std::vector< Block * > blocks;
     int player;
     int levelnum;
-    Block* nextBlock = nullptr;
-    int score = 0;
+    Block* nextBlock;
+    int score;
    
 public:
     Board(int player);

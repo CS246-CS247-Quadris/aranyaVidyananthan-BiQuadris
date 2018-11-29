@@ -11,17 +11,15 @@
 #include <iostream>
 
 
-Board::Board( int player ) {
-    level = new LevelZero();
-    levelnum = 0;
-    player = player;
-    cells.resize(11); // 11 columns
-    for(int i = 0; i < 11; ++i){
-        cells[i].resize(18); // 18 rows
-        for(int j = 0; j < 18; ++j){
-           cells[i][j] =  new Cell(i,j);// create empty cells
+Board::Board( int player ):level{new LevelZero}, player{player}, 
+    levelnum{0}, nextBlock{}, score{0} {
+        cells.resize(11); // 11 columns
+        for(int i = 0; i < 11; ++i){
+            cells[i].resize(18); // 18 rows
+            for(int j = 0; j < 18; ++j){
+                cells[i][j] =  new Cell(i,j);// create empty cells
+            }
         }
-    }
 }
 
 
