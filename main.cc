@@ -46,10 +46,14 @@ int main () {
             b->getCurrPlayer()->createBlock();
         }else if(s == "levelup"){
         //increase the difficulty level of the game by one.
-
+            if(b->getCurrPlayer()->getLevel()< 4){
+                b->getCurrPlayer()->setLevel(b->getCurrPlayer()->getLevel()+1);
+            }
         }else if(s == "leveldown"){
         // decreases the difficulty level of the game by one
-
+            if(b->getCurrPlayer()->getLevel()> 0){
+                b->getCurrPlayer()->setLevel(b->getCurrPlayer()->getLevel()-1);
+            }
         }else if(s == "norandom"){
         //taking input from the sequence file
 
