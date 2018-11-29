@@ -19,7 +19,7 @@ Board::Board( int player ) {
     for(int i = 0; i < 11; ++i){
         cells[i].resize(18); // 18 rows
         for(int j = 0; j < 18; ++j){
-           cells[i][j] = new Cell(i,j);// create empty cells
+           cells[i][j] =  new Cell(i,j);// create empty cells
         }
     }
 }
@@ -93,12 +93,8 @@ int Board::getScore(){
 }
 
 
-Cell* Board::getCell(int i, int j){
-std::cout << i << " " << j << std::endl;
-std::cout << cells[i][j]->getX();
-std::cout << cells[i][j]->getY();
-std::cout << cells[i][j]->getType();
-   return (cells[i][j]);
+Cell * Board::getCell(int i, int j){
+   return cells[i][j];
 }
 
 
