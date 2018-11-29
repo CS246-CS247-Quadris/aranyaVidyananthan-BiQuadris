@@ -1,6 +1,7 @@
 #include "cell.h"
+#include <iostream>
 
-Cell::Cell( int x, int y ): isempty{true}, x{x}, y{y}, t{}{}
+Cell::Cell( int x, int y ): isempty{true}, t{}, x{x}, y{y}{}
 
 
 Cell::~Cell() {}
@@ -34,3 +35,7 @@ const int Cell::getY() {
     return y;
 }
 
+void Cell::print() {
+    if (!(isempty )) { std::cout << t; }
+    else { std::cout << ' '; } 
+}

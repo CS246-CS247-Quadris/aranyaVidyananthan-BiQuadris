@@ -1,21 +1,17 @@
 #ifndef _BOARD_H
 #define _BOARD_H
-#include <ostream>
 #include <vector>
-#include "board.h"
 #include "cell.h"
 #include "level.h"
 
 class Block;
-
-using namespace std;
 
 class Board{
 protected:
     Block * nextblock;
     std::vector< std::vector < Cell * > > cells;
     Level *level;
-    vector< Block* > blocks;
+    std::vector< Block* > blocks;
     int player;
     int levelnum;
     Block* nextBlock = nullptr;
@@ -36,7 +32,8 @@ public:
     int getLevel();
     int getScore();
     void detach(Block* b);
-
+    void print();
+    void setFirstBlock();
 };
 
 #endif

@@ -17,6 +17,8 @@ public:
     ~Biquadris();
     Board * getCurrPlayer();
     void switchPlayer();
+    void print();
+    void setFirstBlocks();
 };
 
 #endif

@@ -1,14 +1,21 @@
 #include <ostream>
 #include "biquadris.h"
 #include "board.h"
+#include <iostream>
 
 //constructor
 Biquadris::Biquadris(): boardOne{new Board(1)}, 
-    boardTwo{new Board(2)}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}{}
+    boardTwo{new Board(2)}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}{
+}
 
 
 //destructor
 Biquadris::~Biquadris(){}
+
+void Biquadris::setFirstBlocks() {
+    boardOne->setFirstBlock();
+    boardTwo->setFirstBlock();
+}
 
 
 Board * Biquadris::getCurrPlayer() {
@@ -22,3 +29,19 @@ void Biquadris::switchPlayer() {
     else { currplayer = 1; }
 }
 
+void Biquadris::print() {
+    for ( int i = 0; i < 18; ++i ) {
+        for ( int n = 0; n < 11; ++n ) {
+            boardOne->getCell(n,i)->print();
+        }
+    std::cout << '\n' << std::endl;
+    }
+    std::cout << '\n' << std::endl;
+    for ( int i = 0; i < 18; ++i ) {
+        for ( int n = 0; n < 11; ++n ) {
+            boardTwo->getCell(n,i)->print();
+        }
+    std::cout << '\n' << std::endl;
+    }
+    std::cout << '\n' << std::endl;
+}

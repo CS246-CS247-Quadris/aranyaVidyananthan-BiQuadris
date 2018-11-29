@@ -11,7 +11,7 @@
 #include <iostream>
 
 
-Board::Board(int player) {
+Board::Board( int player ) {
     level = new LevelZero();
     levelnum = 0;
     player = player;
@@ -19,24 +19,39 @@ Board::Board(int player) {
     for(int i = 0; i < 11; ++i){
         cells[i].resize(18); // 18 rows
         for(int j = 0; j < 18; ++j){
-           cells[i][j] =  new Cell(i,j);// create empty cells
+           cells[i][j] = new Cell(i,j);// create empty cells
         }
     }
+}
+
+
+void Board::setFirstBlock() {
     Block * b = level->nextBlock( this );
-    b->print();
     blocks.emplace_back( b ); // adds the currblock
     b->set();
-    createBlock(); // creates the next block
 }
 
 
 Board::~Board(){
-    for ( int n = 0; n < 11; ++n ) { cells[n].clear(); cells[n].shrink_to_fit();  }
+    for ( int n = 0; n < 11; ++n ) { 
+        cells[n].clear(); 
+        cells[n].shrink_to_fit();  
+    }
     cells.clear();
     cells.shrink_to_fit();
     delete level;
 }
  
+void Board::print() {
+    for ( int i = 0; i < 18; ++i ) {
+        for ( int n = 0; n < 11; ++n ) {
+            cells[n][i]->print();
+        }
+    std::cout << '\n' << std::endl;
+    }
+    std::cout << '\n' << std::endl;
+}
+
 
 // returns the current block
 Block * Board::getCurrBlock() {
@@ -60,7 +75,8 @@ void Board::createBlock(){
 // sets the next block to current and creates a new next block
 bool Board::setNewBlock(){ // if it returns false the game is over
     Block * curr = nextBlock;
-    blocks.emplace_back( curr ); 
+    blocks.emplace_back( curr );
+
     bool retval = curr->set(); // sets the curr block to the top of the board    
     if (retval == false) { delete curr; }
     return retval;
@@ -78,7 +94,11 @@ int Board::getScore(){
 
 
 Cell* Board::getCell(int i, int j){
-   return cells[i][j];
+std::cout << i << " " << j << std::endl;
+std::cout << cells[i][j]->getX();
+std::cout << cells[i][j]->getY();
+std::cout << cells[i][j]->getType();
+   return (cells[i][j]);
 }
 
 

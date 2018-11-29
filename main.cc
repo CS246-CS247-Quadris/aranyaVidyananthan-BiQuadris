@@ -16,6 +16,7 @@ int main () {
 
     string s;
     Biquadris * b = new Biquadris();
+    b->setFirstBlocks();   
     b->getCurrPlayer()->createBlock();
     // the interpreter starts here
     while(cin >> s) {
@@ -27,7 +28,7 @@ int main () {
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
         }else if(s == "down"){
         //move the current block one cell downward
-             b->getCurrPlayer()->getCurrBlock()->move( 3 );
+            b->getCurrPlayer()->getCurrBlock()->move( 3 );
         }else if(s == "clockwise"){
         //rotate the current block 90 degrees clockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
@@ -41,7 +42,7 @@ int main () {
                 drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
             } // currplayer's turn is over
             drop = b->getCurrPlayer()->setNewBlock(); // next block becomes curr
-            if (!drop) { /* game over */ break; }
+            if (!drop) { break; } // game over
             b->switchPlayer();
             b->getCurrPlayer()->createBlock();
         }else if(s == "levelup"){
@@ -82,5 +83,5 @@ int main () {
         }else if(s == "O"){
 
         }
-    }
+    } 
 }

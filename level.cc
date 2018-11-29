@@ -11,7 +11,6 @@ const int Level::getLevel(){
    return -1;
 }
 
-Block* Level::nextBlock(Board* b){
-
+Block* Level::nextBlock(Board * b){
    return new IBlock(b);
 }

@@ -5,7 +5,7 @@ using namespace std;
 
 class Cell{
 
-private:
+protected:
    bool isempty;
    char t;
    int x;
@@ -20,7 +20,7 @@ public:
    void setStatus( bool status );
    const int getX();
    const int getY();
-   
+   void print();  
 };
 
 #endif
