@@ -55,10 +55,10 @@ void Board::createBlock(){
 
 
 // sets the next block to current and creates a new next block
-void Board::setNewBlock(){
+bool Board::setNewBlock(){ // if it returns false the game is over
     Block * curr = nextBlock;
-    blocks.emplace_back( curr );
-    createBlock();    
+    blocks.emplace_back( curr ); 
+    return curr->set(); // sets the curr block to the top of the board    
 }
 
 

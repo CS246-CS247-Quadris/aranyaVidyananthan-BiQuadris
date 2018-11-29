@@ -16,6 +16,7 @@ int main () {
 
     string s;
     Biquadris * b = new Biquadris();
+    b->getCurrPlayer()->createBlock();
     // the interpreter starts here
     while(cin >> s) {
         if(s == "left"){
@@ -38,7 +39,11 @@ int main () {
             bool drop = true;
             while( drop ) {
                 drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
-            }
+            } // currplayer's turn is over
+            drop = b->getCurrPlayer()->setNewBlock(); // next block becomes curr
+            if (!drop) { /* game over */ break; }
+            b->switchPlayer();
+            b->getCurrPlayer()->createBlock();
         }else if(s == "levelup"){
         //increase the difficulty level of the game by one.
 
