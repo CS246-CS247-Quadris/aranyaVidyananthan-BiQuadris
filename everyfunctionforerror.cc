@@ -1,16 +1,15 @@
-Board::Board( int player ) {
-    level = new LevelZero();
-    levelnum = 0;
-    player = player;
-    cells.resize(11); // 11 columns
-    for(int i = 0; i < 11; ++i){
-        cells[i].resize(18); // 18 rows
-        for(int j = 0; j < 18; ++j){
-           cells[i][j] =  new Cell(i,j);// create empty cells
+Board::Board( int player ):level{new LevelZero}, blocks{}, player{player},
+    levelnum{0}, nextBlock{}, score{0} {
+        cells.resize(11); // 11 columns
+        for(int i = 0; i < 11; ++i){
+            cells[i].resize(18); // 18 rows
+            for(int j = 0; j < 18; ++j){
+                cells[i][j] =  new Cell(i,j);// create empty cells
+            }
         }
-    }
-    std::cout << cells[0][3]->getX() << std::endl;
 }
+
+Cell::Cell( int x, int y ): isempty{true}, t{}, x{x}, y{y}{}
 
 
 void Board::setFirstBlock() {
@@ -28,24 +27,10 @@ bool IBlock::set () {
     if( (g->getCell(0,3))->getStatus() == true ) {
         temp.emplace_back( g->getCell(0,3));
     }
-    else { temp.clear(); return false; }
-    if( (g->getCell(1,3))->getStatus() == true ) {
-        temp.emplace_back( g->getCell(1,3));
-    }
-    else { temp.clear(); return false; }
-    if( (g->getCell(2,3))->getStatus() == true ) {
-        temp.emplace_back( g->getCell(2,3) );
-    }
-    else { temp.clear(); return false; }
-    if( (g->getCell(3,3))->getStatus() == true ) {
-        temp.emplace_back( g->getCell(3,3));
-    }
-    else { temp.clear(); return false; }
-    for (int index = 0; index < 4; index ++) {
-        shape[index] = temp[index];
-        shape[index]->setType( 'I' );
-        shape[index]->setStatus( false );
-    }
-    temp.clear();
-    return true;
+    ..............
 }
+
+Cell * Board::getCell(int i, int j){
+   return cells[i][j];
+}
+

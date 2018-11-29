@@ -11,7 +11,7 @@
 #include <iostream>
 
 
-Board::Board( int player ):level{new LevelZero}, player{player}, 
+Board::Board( int player ):level{new LevelZero}, blocks{}, player{player}, 
     levelnum{0}, nextBlock{}, score{0} {
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
