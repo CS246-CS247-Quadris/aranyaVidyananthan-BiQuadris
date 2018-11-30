@@ -1,5 +1,6 @@
 #ifndef _LEVEL_H
 #define _LEVEL_H
+#include <string>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ protected:
 public:
     Level( int levelnumber );
     virtual ~Level();
-    virtual Block* nextBlock( Board * board );
+    virtual Block* nextBlock( Board * board, string t );
     virtual const int getLevel();
 
 };

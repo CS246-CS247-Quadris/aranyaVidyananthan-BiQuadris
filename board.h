@@ -1,8 +1,10 @@
 #ifndef _BOARD_H
 #define _BOARD_H
 #include <vector>
+#include <string>
 #include "cell.h"
 #include "level.h"
+using namespace std;
 
 class Block;
 
@@ -24,7 +26,7 @@ public:
     Block * getCurrBlock();
     bool setNewBlock();
     Cell* getCell(int i, int j);
-    void createBlock();
+    void createBlock(string t);
     int clearLines(int i);
     void setLevel(int l);
     void clearBoard();
@@ -32,7 +34,7 @@ public:
     int getScore();
     void detach(Block* b);
     void print();
-    void setFirstBlock();
+    void setFirstBlock(string t);
 };
 
 #endif

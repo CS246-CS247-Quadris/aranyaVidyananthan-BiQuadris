@@ -11,7 +11,7 @@ class LevelTwo : public Level{
 public:
     LevelTwo();
     ~LevelTwo();
-    Block* nextBlock( Board * board )override;
+    Block* nextBlock( Board * board,string t )override;
     const int getLevel()override;
 };
 

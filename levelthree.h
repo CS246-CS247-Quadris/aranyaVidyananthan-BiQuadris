@@ -10,7 +10,7 @@ class LevelThree : public Level{
 public:
     LevelThree();
     ~LevelThree();
-    Block* nextBlock( Board * board )override;
+    Block* nextBlock( Board * board,string t )override;
     const int getLevel()override;
 };
 

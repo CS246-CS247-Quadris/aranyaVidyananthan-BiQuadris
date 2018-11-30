@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <string>
 #include "levelfour.h"
 #include "sblock.h"
 #include "lblock.h"
@@ -31,8 +32,8 @@ const int LevelFour::getLevel(){
 
 //using random number to control the probability of
 //which type of new block is generated
-Block* LevelFour::nextBlock(Board* b){
-
+Block* LevelFour::nextBlock(Board* b,string t){
+   t = "...";
    int rn = rand()%9; // rn in the range 0 to 8
    if(rn == 0 || rn == 7){
       Block* bl = new SBlock(b);

@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <string>
 #include "leveltwo.h"
 #include "iblock.h"
 #include "oblock.h"
@@ -7,6 +8,8 @@
 #include "zblock.h"
 #include "tblock.h"
 #include "jblock.h"
+
+using namespace std;
 
 class Board;
 //constructor
@@ -27,8 +30,8 @@ const int LevelTwo::getLevel(){
 
 //using random number to control the probability of
 //which type of new block is generated
-Block* LevelTwo::nextBlock(Board* b){
-
+Block* LevelTwo::nextBlock(Board* b,string t){
+   t = "...";
    int rn = rand()%7; // rn in the range 0 to 6
    if(rn == 0){
       Block* bl = new SBlock(b);
