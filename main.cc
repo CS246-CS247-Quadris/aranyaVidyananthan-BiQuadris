@@ -57,19 +57,34 @@ int main () {
     while(cin >> s) {
         if(s == "left"){
         //move the current block one cell to the left
-            b->getCurrPlayer()->getCurrBlock()->move( 4 );                 
+            b->getCurrPlayer()->getCurrBlock()->move( 4 );
+            if(b->getCurrPlayer()->getLevel()==(3||4)){
+                b->getCurrPlayer()->getCurrBlock()->move(3);
+            }                
         }else if(s == "right"){
         //move the current block one cell to the right
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
+            if(b->getCurrPlayer()->getLevel()==(3||4)){
+                b->getCurrPlayer()->getCurrBlock()->move(3);
+            }
         }else if(s == "down"){
         //move the current block one cell downward
             b->getCurrPlayer()->getCurrBlock()->move( 3 );
+            if(b->getCurrPlayer()->getLevel()==(3||4)){
+                b->getCurrPlayer()->getCurrBlock()->move(3);
+            }
         }else if(s == "clockwise"){
         //rotate the current block 90 degrees clockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
+            if(b->getCurrPlayer()->getLevel()==(3||4)){
+                b->getCurrPlayer()->getCurrBlock()->move(3);
+            }
         }else if(s == "counterclockwise"){
         //rotate the current block 90 degrees counterclockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
+            if(b->getCurrPlayer()->getLevel()==(3||4)){
+                b->getCurrPlayer()->getCurrBlock()->move(3);
+            }
         }else if(s == "drop"){
         //drops the current block
             bool drop = true;
