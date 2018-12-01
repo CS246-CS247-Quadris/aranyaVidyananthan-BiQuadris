@@ -36,6 +36,8 @@ const int Cell::getY() {
 }
 
 void Cell::print() {
-    if (!(isempty )) { std::cout << t; }
+    if (!(isempty )) { 
+        std::cout << t;
+    }
     else { std::cout << ' '; } 
 }
