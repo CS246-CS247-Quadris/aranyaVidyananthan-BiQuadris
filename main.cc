@@ -97,26 +97,26 @@ int main () {
             bool drop = true;
             while( drop ) {
                 drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
+            }
              // currplayer's turn is over
             // next block becomes curr
-                if (!drop) {
-                    b->switchPlayer();
-                    cout<< "currentPlayer: "<< b->playerNum()<< endl; 
-                    break; } // game over
-                
-            }
+            drop = b->getCurrPlayer()->setNewBlock();
+            if (!drop) {
+                break; } // game over
+            b->switchPlayer();    
+           
             if(b->getCurrPlayer()->getLevel()== 0){
                 if(b->playerNum()==1){
                     aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
-                }else{
+               }else{
                     aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);
-                }
-            }else if(b->getCurrPlayer()->getLevel()== 1){
-                b->getCurrPlayer()->createBlock("n");
-            }else if(b->getCurrPlayer()->getLevel()== 2){
-                b->getCurrPlayer()->createBlock("n");
-            }else if(b->getCurrPlayer()->getLevel()== 3){
-                b->getCurrPlayer()->createBlock("n");
+               }
+            //}else if(b->getCurrPlayer()->getLevel()== 1){
+               // b->getCurrPlayer()->createBlock("n");
+            //}else if(b->getCurrPlayer()->getLevel()== 2){
+               // b->getCurrPlayer()->createBlock("n");
+            //}else if(b->getCurrPlayer()->getLevel()== 3){
+               // b->getCurrPlayer()->createBlock("n");
             }else{ 
                 b->getCurrPlayer()->createBlock("n");
             }
