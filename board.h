@@ -9,7 +9,7 @@ using namespace std;
 class Block;
 
 class Board{
-protected:
+private:
     std::vector< std::vector < Cell * > > cells;
     Level *level;
     std::vector< Block * > blocks;
@@ -17,8 +17,11 @@ protected:
     int levelnum;
     Block* nextBlock;
     int score;
-  
+    // clears the row i and drops all the above blocks down a row
     int clearLines(int i); 
+    // prints the board
+    void print();
+
 public:
     Board(int player);
     ~Board();
@@ -44,8 +47,6 @@ public:
     int getScore();
     // returns the player number
     int getPlayer();
-    // prints the board
-    void print();
 
 };
 
