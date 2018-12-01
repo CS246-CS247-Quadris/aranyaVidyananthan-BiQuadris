@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-JBlock::JBlock( Board * g ): Block{'J', g }{}
+JBlock::JBlock(int level, Board * g ): Block{level,'J', g }{}
 
 
 

@@ -15,5 +15,5 @@ const int Level::getLevel(){
 }
 
 Block* Level::nextBlock(Board * b, string t){
-   return new IBlock(b);
+   return new IBlock(levelNumber,b);
 }

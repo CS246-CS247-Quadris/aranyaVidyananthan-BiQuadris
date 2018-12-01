@@ -6,7 +6,7 @@
 class ZBlock : public Block{
 
 public:
-    ZBlock( Board * g );
+    ZBlock(int level, Board * g );
     ~ZBlock();
 
     // sets the block in its first pos, true if successful

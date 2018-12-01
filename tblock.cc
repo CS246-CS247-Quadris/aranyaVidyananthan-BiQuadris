@@ -4,7 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-TBlock::TBlock( Board * g ): Block{'T', g }{}
+TBlock::TBlock(int level, Board * g ): Block{level,'T', g }{}
 
 
 TBlock::~TBlock() {

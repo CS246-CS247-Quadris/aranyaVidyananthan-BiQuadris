@@ -6,7 +6,7 @@
 class JBlock : public Block{
 
 public:
-    JBlock( Board * g );
+    JBlock(int level, Board * g );
     ~JBlock();
 
     // sets the block in its first pos, true if successful

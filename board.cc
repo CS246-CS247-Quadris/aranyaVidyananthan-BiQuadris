@@ -89,7 +89,11 @@ bool Board::setNewBlock(){ // if it returns false the game is over
     return retval;
 }
 
+void Board::addScorefromBlock(int l){
 
+   int s = (l+1)*(l+1);
+   score += s;
+}
 int Board::getPlayer() {
    return player;
 }

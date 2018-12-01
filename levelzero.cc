@@ -22,25 +22,25 @@ LevelZero::~LevelZero(){}
 Block* LevelZero::nextBlock(Board * b, string t){
    string blockName = t;
    if(blockName == "S"){
-      Block* bl = new SBlock(b);
+      Block* bl = new SBlock(0,b);
       return bl;
    }else if(blockName == "I"){
-      Block* bl = new IBlock(b);
+      Block* bl = new IBlock(0,b);
       return bl;
    }else if(blockName == "L"){
-      Block* bl = new LBlock(b);
+      Block* bl = new LBlock(0,b);
       return bl;
    }else if(blockName == "Z"){
-      Block* bl = new ZBlock(b);
+      Block* bl = new ZBlock(0,b);
       return bl;
    }else if(blockName == "J"){
-      Block* bl = new JBlock(b);
+      Block* bl = new JBlock(0,b);
       return bl;
    }else if(blockName == "T"){
-      Block* bl = new TBlock(b);
+      Block* bl = new TBlock(0,b);
       return bl;
    }else{
-      Block* bl = new OBlock(b);
+      Block* bl = new OBlock(0,b);
       return bl;
    }
    

@@ -5,7 +5,7 @@
 #include <iostream>
 
 
-OBlock::OBlock( Board * g ): Block{'O', g }{}
+OBlock::OBlock(int level, Board * g ): Block{level,'O', g }{}
 
 
 OBlock::~OBlock() {

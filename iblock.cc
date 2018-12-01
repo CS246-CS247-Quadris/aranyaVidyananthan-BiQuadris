@@ -4,7 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-IBlock::IBlock( Board * g ): Block{'I', g }{}
+IBlock::IBlock( int level,Board * g ): Block{level,'I', g }{}
 
 
 IBlock::~IBlock() {

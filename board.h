@@ -49,6 +49,7 @@ public:
     int getPlayer();
     void detach(Block* b);
     void updateScore(int lines);
+    void addScorefromBlock(int l);
 };
 
 #endif

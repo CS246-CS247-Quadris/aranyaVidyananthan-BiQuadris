@@ -3,8 +3,8 @@
 #include "board.h"
 
 
-Block::Block( char type, Board * g ):shape{}, 
-    temp{}, type{type}, orientation{1}, g{g}, removed{0}{}
+Block::Block(int levelcreated, char type, Board * g ):shape{}, 
+    temp{}, levelcreated{levelcreated},type{type}, orientation{1}, g{g}, removed{0}{}
 
 Block::~Block() {}
 
@@ -36,6 +36,7 @@ void Block::clearLine(int rowNum){
         shape.back()->setStatus(false);
     }
     temp.clear();
+    if(shape.size()==0){g->addScorefromBlock(levelcreated);}
  
 
 

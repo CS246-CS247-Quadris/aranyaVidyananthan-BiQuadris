@@ -33,25 +33,25 @@ Block* LevelOne::nextBlock( Board * board, string t ){
     t = "...";
     int rn = rand()%12; // rn in the range 0 to 11
     if(rn == 0){
-       block = new SBlock( board );
+       block = new SBlock(1, board );
        if ( block->set() == false) { /* there isnt space to create the block */}
     }else if(rn == 1){
-       block = new ZBlock( board );
+       block = new ZBlock( 1,board );
        if ( block->set() == false) { /* there isnt space to create the block */ }
     }else if(rn == 2 || rn == 3){
-       block = new TBlock( board );
+       block = new TBlock( 1,board );
        if ( block->set() == false) { /* there isnt space to create the block */ }
     }else if(rn == 4 || rn == 5){
-       block = new IBlock( board );
+       block = new IBlock(1, board );
        if ( block->set() == false) { /* there isnt space to create the block */ }
     }else if(rn == 6 || rn == 7){
-       block = new JBlock( board );
+       block = new JBlock(1, board );
        if ( block->set() == false) { /* there isnt space to create the block */ }
     }else if(rn == 8 || rn == 9){
-       block = new LBlock( board );
+       block = new LBlock(1, board );
        if ( block->set() == false) { /* there isnt space to create the block */ }
     }else{
-       block = new OBlock( board );
+       block = new OBlock(1, board );
        if ( block->set() == false) { /* there isnt space to create the block */ }
     }
     return block;
