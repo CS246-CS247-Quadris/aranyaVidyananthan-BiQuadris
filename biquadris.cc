@@ -30,18 +30,20 @@ void Biquadris::switchPlayer() {
 }
 
 void Biquadris::print() {
+    std::cout << "Level:    " << boardOne->getLevel() << "       " << "Level:    " << boardTwo->getLevel() << std::endl;
+    std::cout << "Score:    " << boardOne->getScore() << "       " << "Score:    " << boardTwo->getScore() << std::endl;
+    std::cout << "-----------       -----------" << std::endl;
     for ( int i = 0; i < 18; ++i ) {
         for ( int n = 0; n < 11; ++n ) {
             boardOne->getCell(n,i)->print();
         }
-    std::cout << '\n' << std::endl;
-    }
-    std::cout << '\n' << std::endl;
-    for ( int i = 0; i < 18; ++i ) {
+        std::cout << "       ";
         for ( int n = 0; n < 11; ++n ) {
             boardTwo->getCell(n,i)->print();
         }
-    std::cout << '\n' << std::endl;
+    std::cout << '\n';
     }
-    std::cout << '\n' << std::endl;
+    std::cout << "-----------       -----------" << std::endl;
+    std::cout << "Next:      " << "       " << "Next:      " << std::endl;
+    getCurrPlayer()->getNextBlock()->print();
 }

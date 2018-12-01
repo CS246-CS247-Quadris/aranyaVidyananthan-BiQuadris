@@ -30,6 +30,7 @@ public:
     void clearBoard();
     int getLevel();
     int getScore();
+    int getPlayer();
     void detach(Block* b);
     void print();
     void setFirstBlock();

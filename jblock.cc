@@ -117,6 +117,8 @@ bool JBlock::rotate( int direction ) {
 
 
 void JBlock::print() {
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "J" << std::endl;
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "JJJ" << std::endl;
 }

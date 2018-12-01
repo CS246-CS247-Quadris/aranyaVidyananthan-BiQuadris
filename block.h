@@ -21,7 +21,7 @@ public:
     virtual bool move(int direction)=0;
     virtual bool rotate(int direction)=0;
     virtual const char getType()=0;
-    virtual void print() = 0; 
+    virtual void print()=0; 
 };
 
 #endif

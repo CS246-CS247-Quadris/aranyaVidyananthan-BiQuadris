@@ -68,22 +68,27 @@ bool IBlock::move( int direction ){
 
         if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){ 
             temp.emplace_back( g->getCell(a,b) );
-        }else {
+            std::cout << a << b << std::endl;
+        }
+        else {
             for(int k = 0; k < 4; ++k ){
                shape[k]->setStatus(false);
             }
             temp.clear();
             return false;
-        }
+       }
    }
 
     // set new shape to the temp cells
-    for ( int index = 0; index < 4; ++index ) {
+    for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
-        shape[index]->setType(' ');
-        shape[index] = temp[index];
-        shape[index]->setType( 'I' );
-        shape[index]->setStatus( false ); // set new cells to full
+        shape[index]->setType(' '); // set old shape cella to no type
+    }
+    shape.clear();
+    for ( int index = 0; index < 4; index++ ) {
+        shape.emplace_back( temp[index] );
+        shape.back()->setType( 'I' );
+        shape.back()->setStatus( false ); // set new cells to full
     }
     temp.clear();
     return true;
@@ -112,6 +117,7 @@ bool IBlock::rotate( int direction ) {
 }
 
 
-void IBlock::print(){
+void IBlock::print() {
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "IIII" << std::endl;
 }

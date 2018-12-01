@@ -18,6 +18,7 @@ int main () {
     Biquadris * b = new Biquadris();
     b->setFirstBlocks();   
     b->getCurrPlayer()->createBlock();
+    b->print();
     // the interpreter starts here
     while(cin >> s) {
         if(s == "left"){
@@ -83,6 +84,7 @@ int main () {
         }else if(s == "O"){
 
         }
+    b->print();
     }
     std::cout << "GAME OVER!" << std::endl; 
     delete b;

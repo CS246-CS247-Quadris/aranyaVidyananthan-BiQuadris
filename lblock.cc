@@ -115,7 +115,9 @@ bool LBlock::rotate( int direction ) {
 
 
 void LBlock::print(){
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "  L" << std::endl;
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "LLL" << std::endl;
 }
 

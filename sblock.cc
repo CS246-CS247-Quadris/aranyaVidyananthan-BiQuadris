@@ -96,6 +96,7 @@ const char SBlock::getType(){
     return type;
 }
 
+
 // direction = 1, means clockwise, -1 means couterclockwise
 bool SBlock::rotate( int direction ) {
     for (int n = 0; n < 4; n++) {
@@ -115,6 +116,8 @@ bool SBlock::rotate( int direction ) {
 
 
 void SBlock::print() {
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << " SS" << std::endl;
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "SS"  << std::endl;
 }

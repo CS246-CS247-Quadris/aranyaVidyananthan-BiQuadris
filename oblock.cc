@@ -4,8 +4,8 @@
 #include "cell.h"
 #include <iostream>
 
-OBlock::OBlock( Board * g ): Block{'O', g }{}
 
+OBlock::OBlock( Board * g ): Block{'O', g }{}
 
 
 OBlock::~OBlock() {
@@ -77,8 +77,7 @@ bool OBlock::move( int direction ){
             }
             temp.clear();
             return false;
-        }
-    
+        }    
    }
 
     // set new shape to the temp cells
@@ -96,6 +95,7 @@ bool OBlock::move( int direction ){
 const char OBlock::getType(){
     return type;
 }
+
 
 // direction = 1, means clockwise, -1 means couterclockwise
 bool OBlock::rotate( int direction ) {
@@ -116,8 +116,9 @@ bool OBlock::rotate( int direction ) {
 
 
 void OBlock::print() {
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "OO" << std::endl;
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "OO" << std::endl;
 }
-
 

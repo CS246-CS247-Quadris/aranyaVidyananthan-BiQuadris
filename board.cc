@@ -40,6 +40,7 @@ Board::~Board(){
     delete level;
 }
  
+
 void Board::print() {
     for ( int i = 0; i < 18; ++i ) {
         for ( int n = 0; n < 11; ++n ) {
@@ -78,6 +79,11 @@ bool Board::setNewBlock(){ // if it returns false the game is over
     bool retval = curr->set(); // sets the curr block to the top of the board    
     if (retval == false) { delete curr; }
     return retval;
+}
+
+
+int Board::getPlayer() {
+   return player;
 }
 
 
@@ -133,24 +139,3 @@ int Board::getLevel(){
 }
 
 
-void Board::detach(Block* b){
-    
-}
-
-
-
-/*
-ostream & operator<< (ostream &out, const Board &b) {
-   cout << "Level:   " << b.getLevel() << endl;
-   cout << "Score:   " << b.getScore() << endl;
-   cout << "-----------" << endl;
-   for(int n = 0; n < 11; n ++){
-      for(int i = 0; i < 18; i++){
-         cout << b.getCell()->getType();
-      }
-      cout << endl;
-   }
-   cout << endl;
-   //cout << *newblock << endl;
-   return out;
-}*/

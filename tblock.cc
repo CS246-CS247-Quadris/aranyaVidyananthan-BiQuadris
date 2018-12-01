@@ -76,8 +76,7 @@ bool TBlock::move( int direction ){
             }
             temp.clear();
             return false;
-        }
-    
+        }    
    }
 
     // set new shape to the temp cells
@@ -95,6 +94,7 @@ bool TBlock::move( int direction ){
 const char TBlock::getType(){
     return type;
 }
+
 
 // direction = 1, means clockwise, -1 means couterclockwise
 bool TBlock::rotate( int direction ) {
@@ -115,7 +115,10 @@ bool TBlock::rotate( int direction ) {
 
 
 void TBlock::print() {
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "TTT" << std::endl;
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << " T " << std::endl;
 }
+
 

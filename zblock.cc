@@ -116,7 +116,9 @@ bool ZBlock::rotate( int direction ) {
 
 
 void ZBlock::print() {
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << "ZZ" << std::endl;
+    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
     std::cout << " ZZ" << std::endl;
 }
 
