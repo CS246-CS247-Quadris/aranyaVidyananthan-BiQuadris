@@ -104,16 +104,13 @@ const char OBlock::getType(){
 
 // direction = 1, means clockwise, -1 means couterclockwise
 bool OBlock::rotate( int direction ) {
-    for (int n = 0; n < 4; n++) {
-        shape[n]->setStatus( true );
-    }
     if ( direction == 1 ) {  //clockwise
-        if ( orientation + direction == 5 ) { direction = 1; }
-        else { direction = orientation + direction; }
+        if ( orientation + direction == 5 ) { orientation = 1; }
+        else { orientation = orientation + direction; }
     }
     else { // counterclockwise
-        if ( orientation + direction == 0 ) { direction = 4; }
-        else { direction = orientation + direction; } 
+        if ( orientation + direction == 0 ) { orientation = 4; }
+        else { orientation = orientation + direction; } 
     }
 // now direction is the new orientation of the block
     return true;
