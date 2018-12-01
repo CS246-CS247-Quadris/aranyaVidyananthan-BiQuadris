@@ -20,9 +20,22 @@ void Biquadris::setFirstBlocks(string t1,string t2){
     boardTwo->setFirstBlock(t2);
 }
 
+void Biquadris::newHigh(){
+    if(currplayer == 1){
+        if(ScoreOne < boardTwo->getScore()){
+            ScoreOne = boardOne->getScore();
+        }
+    }else{
+        if(ScoreTwo < boardTwo->getScore()){
+            ScoreTwo = boardTwo->getScore();
+        }
+    }
+}
 
 Board * Biquadris::getCurrPlayer() {
-    if ( currplayer == 1 ) { return boardOne; }
+    if ( currplayer == 1 ) {
+         return boardOne; 
+    }
     return boardTwo;
 }
 
@@ -37,6 +50,7 @@ int Biquadris::playerNum(){
 }
 
 void Biquadris::print() {
+    std::cout << "Hi Score: " << ScoreOne << "       " << "Hi Score  " << ScoreTwo << std::endl;
     std::cout << "Level:    " << boardOne->getLevel() << "       " << "Level:    " << boardTwo->getLevel() << std::endl;
     std::cout << "Score:    " << boardOne->getScore() << "       " << "Score:    " << boardTwo->getScore() << std::endl;
     std::cout << "-----------       -----------" << std::endl;
