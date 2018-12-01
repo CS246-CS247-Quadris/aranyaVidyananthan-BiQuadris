@@ -72,7 +72,7 @@ bool OBlock::move( int direction ){
             temp.emplace_back( g->getCell(a,b) );
         }else {
             //for ( auto k:shape ) { shape[n].setStatus( false ); }
-            for(int k = 0; i < 4; k++){
+            for(int k = 0; k < 4; k++){
                shape[k]->setStatus(false);
             }
             temp.clear();
@@ -81,13 +81,18 @@ bool OBlock::move( int direction ){
    }
 
     // set new shape to the temp cells
-    for ( int index = 0; index < 4; index ++ ) {
+    for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
-        shape[index]->setType(' ');
-        shape[index] = temp[index];
-        shape[index]->setType( 'O' );
-        shape[index]->setStatus( false ); // set new cells to full
+        shape[index]->setType(' '); // set old shape cella to no type
     }
+    shape.clear();
+    for ( int index = 0; index < 4; index++ ) {
+        shape.emplace_back( temp[index] );
+        shape.back()->setType( 'O' );
+        shape.back()->setStatus( false ); // set new cells to full
+    }
+
+    temp.clear();
     return true;
 }
 
@@ -116,9 +121,9 @@ bool OBlock::rotate( int direction ) {
 
 
 void OBlock::print() {
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "OO" << std::endl;
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "OO" << std::endl;
 }
 

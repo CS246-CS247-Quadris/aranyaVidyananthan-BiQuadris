@@ -97,14 +97,12 @@ int main () {
             bool drop = true;
             while( drop ) {
                 drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
-            }
-             // currplayer's turn is over
+            }  // currplayer's turn is over
             // next block becomes curr
             drop = b->getCurrPlayer()->setNewBlock();
-            if (!drop) {
-                break; } // game over
+            if (!drop) { break; } // game over
             b->switchPlayer();    
-           
+
             if(b->getCurrPlayer()->getLevel()== 0){
                 if(b->playerNum()==1){
                     aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
@@ -117,7 +115,8 @@ int main () {
                // b->getCurrPlayer()->createBlock("n");
             //}else if(b->getCurrPlayer()->getLevel()== 3){
                // b->getCurrPlayer()->createBlock("n");
-            }else{ 
+            }
+            else{ 
                 b->getCurrPlayer()->createBlock("n");
             }
         }else if(s == "levelup"){

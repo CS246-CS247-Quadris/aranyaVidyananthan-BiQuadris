@@ -47,12 +47,12 @@ bool JBlock::set () {
 
 
 bool JBlock::move( int direction ){
-    for ( int n = 0; n < 4; n++ ) {
+    for ( int n = 0; n < 4; ++n ) {
          shape[n]->setStatus( true );
          }
 
         // check if the shape cells can move, add cells to temp vector
-    for ( int i = 0; i < 4; i ++ ) {
+    for ( int i = 0; i < 4; ++i ) {
         // set the new x and y cells based on direction moving
         int a = 0;
         int b = 0;
@@ -73,7 +73,7 @@ bool JBlock::move( int direction ){
             temp.emplace_back( g->getCell(a,b) );
         }else {
             //for ( auto k:shape ) { shape[n].setStatus( false ); }
-            for(int k = 0; i < 4; k++){
+            for(int k = 0; k < 4; ++k ){
                shape[k]->setStatus(false);
             }
             temp.clear();
@@ -83,13 +83,18 @@ bool JBlock::move( int direction ){
    }
 
     // set new shape to the temp cells
-    for ( int index = 0; index < 4; index ++ ) {
+    for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
-        shape[index]->setType(' ');
-        shape[index] = temp[index];
-        shape[index]->setType( 'J' );
-        shape[index]->setStatus( false ); // set new cells to full
+        shape[index]->setType(' '); // set old shape cella to no type
     }
+    shape.clear();
+    for ( int index = 0; index < 4; index++ ) {
+        shape.emplace_back( temp[index] );
+        shape.back()->setType( 'J' );
+        shape.back()->setStatus( false ); // set new cells to full
+    }
+
+    temp.clear();
     return true;
 }
 
@@ -117,8 +122,8 @@ bool JBlock::rotate( int direction ) {
 
 
 void JBlock::print() {
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "J" << std::endl;
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "JJJ" << std::endl;
 }

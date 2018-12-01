@@ -71,7 +71,7 @@ bool TBlock::move( int direction ){
             temp.emplace_back( g->getCell(a,b) );
         }else {
             //for ( auto k:shape ) { shape[n].setStatus( false ); }
-            for(int k = 0; i < 4; k++){
+            for(int k = 0; k < 4; k++){
                shape[k]->setStatus(false);
             }
             temp.clear();
@@ -80,13 +80,18 @@ bool TBlock::move( int direction ){
    }
 
     // set new shape to the temp cells
-    for ( int index = 0; index < 4; index ++ ) {
+    for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
-        shape[index]->setType(' ');
-        shape[index] = temp[index];
-        shape[index]->setType( 'T' );
-        shape[index]->setStatus( false ); // set new cells to full
+        shape[index]->setType(' '); // set old shape cella to no type
     }
+    shape.clear();
+    for ( int index = 0; index < 4; index++ ) {
+        shape.emplace_back( temp[index] );
+        shape.back()->setType( 'T' );
+        shape.back()->setStatus( false ); // set new cells to full
+    }
+
+    temp.clear();
     return true;
 }
 
@@ -115,9 +120,9 @@ bool TBlock::rotate( int direction ) {
 
 
 void TBlock::print() {
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "TTT" << std::endl;
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << " T " << std::endl;
 }
 

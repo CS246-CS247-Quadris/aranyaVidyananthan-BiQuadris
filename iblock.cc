@@ -68,7 +68,6 @@ bool IBlock::move( int direction ){
 
         if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){ 
             temp.emplace_back( g->getCell(a,b) );
-            std::cout << a << b << std::endl;
         }
         else {
             for(int k = 0; k < 4; ++k ){
@@ -118,6 +117,6 @@ bool IBlock::rotate( int direction ) {
 
 
 void IBlock::print() {
-    if ( g->getPlayer() == 2 ) { std::cout << "                             " << std::endl; }
+    if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "IIII" << std::endl;
 }
