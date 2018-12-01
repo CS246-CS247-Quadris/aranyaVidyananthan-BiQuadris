@@ -99,6 +99,8 @@ int main () {
                 drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }  // currplayer's turn is over
             // next block becomes curr
+            int lines = b->getCurrPlayer()->clearBoard();
+            b->getCurrPlayer()->updateScore(lines);
             drop = b->getCurrPlayer()->setNewBlock();
             if (!drop) { break; } // game over
             b->switchPlayer();    

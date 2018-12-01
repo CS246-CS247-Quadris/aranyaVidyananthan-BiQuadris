@@ -90,8 +90,11 @@ int Board::getPlayer() {
 }
 
 
-int Board::clearLines(int i){
-    return 0;
+void Board::clearLines(int i){
+    int index = blocks.size()-1;
+    for(int n = 0; n < index; n ++){
+        blocks.at(n)->clearLine(i);
+    }
 }
 
 
@@ -122,7 +125,8 @@ void Board::setLevel(int l){
 }
 
 
-void Board::clearBoard(){
+int Board::clearBoard(){
+   int lines = 0;
    for (int i = 17; i >= 0; i --){
       bool row = true;
       for(int n = 0; n < 11; n ++){
@@ -131,9 +135,18 @@ void Board::clearBoard(){
             break;
          }
       }
-      if(row){this->clearLines(i);}
-   }     
+      if(row){
+          this->clearLines(i);
+          lines ++;
+      }
+   }
+   return lines;     
 
+}
+
+void Board::updateScore(int lines){
+    int s = (levelnum + lines)*(levelnum + lines);
+    score += s;
 }
 
 

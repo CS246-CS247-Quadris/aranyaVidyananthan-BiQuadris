@@ -27,15 +27,16 @@ public:
     bool setNewBlock();
     Cell* getCell(int i, int j);
     void createBlock(string t);
-    int clearLines(int i);
+    void clearLines(int i);
     void setLevel(int l);
-    void clearBoard();
+    int clearBoard();
     int getLevel();
     int getScore();
     int getPlayer();
     void detach(Block* b);
     void print();
     void setFirstBlock(string t);
+    void updateScore(int lines);
 };
 
 #endif
