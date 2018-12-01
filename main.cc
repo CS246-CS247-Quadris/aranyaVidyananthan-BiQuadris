@@ -45,11 +45,6 @@ int main () {
     
     string s;
     Biquadris * b = new Biquadris();
-<<<<<<< HEAD
-    b->setFirstBlocks();   
-    b->getCurrPlayer()->createBlock();
-    b->print();
-=======
     b->setFirstBlocks(listOne.at(locOne), listTwo.at(locTwo));
     locOne ++;
     locTwo ++;
@@ -58,7 +53,7 @@ int main () {
     }else{
        aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);
     }
->>>>>>> a251e8eab561807167f1521e46f5e72ed71a4056
+    b->print();
     // the interpreter starts here
     while(cin >> s) {
         if(s == "left"){

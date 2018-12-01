@@ -1,10 +1,8 @@
 #ifndef _LEVEL_H
 #define _LEVEL_H
-<<<<<<< HEAD
 #include "block.h"
-=======
 #include <string>
->>>>>>> a251e8eab561807167f1521e46f5e72ed71a4056
+
 
 using namespace std;
 
