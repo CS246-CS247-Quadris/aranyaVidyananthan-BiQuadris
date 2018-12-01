@@ -22,6 +22,7 @@ public:
     void print();
     void setFirstBlocks(string t1, string t2);
     int playerNum();
+    void newHigh();
 };
 
 #endif

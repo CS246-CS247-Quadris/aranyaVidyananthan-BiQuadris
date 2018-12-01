@@ -100,7 +100,10 @@ int main () {
             }  // currplayer's turn is over
             // next block becomes curr
             int lines = b->getCurrPlayer()->clearBoard();
-            if(lines > 0){b->getCurrPlayer()->updateScore(lines);}
+            if(lines > 0){
+                b->getCurrPlayer()->updateScore(lines);
+                b->newHigh();
+            }
             drop = b->getCurrPlayer()->setNewBlock();
             if (!drop) { break; } // game over
             b->switchPlayer();    
