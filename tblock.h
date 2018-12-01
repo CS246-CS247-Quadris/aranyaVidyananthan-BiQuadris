@@ -6,7 +6,7 @@
 class TBlock : public Block{
 
 public:
-    TBlock( Board * g );
+    TBlock(int level, Board * g );
     ~TBlock();
 
     // sets the block in its first pos, true if successful

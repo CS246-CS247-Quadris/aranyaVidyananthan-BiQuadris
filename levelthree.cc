@@ -34,25 +34,25 @@ Block* LevelThree::nextBlock(Board* b, string t){
    t = "...";
    int rn = rand()%9; // rn in the range 0 to 8
    if(rn == 0 || rn == 7){
-      Block* bl = new SBlock(b);
+      Block* bl = new SBlock(3,b);
       return bl;
    }else if(rn == 1 || rn == 8){
-      Block *bl = new ZBlock(b);
+      Block *bl = new ZBlock(3,b);
       return bl;
    }else if(rn == 2){
-      Block *bl = new TBlock(b);
+      Block *bl = new TBlock(3,b);
       return bl;
    }else if(rn == 3){
-      Block *bl = new IBlock(b);
+      Block *bl = new IBlock(3,b);
       return bl;
    }else if(rn == 4){
-      Block *bl = new JBlock(b);
+      Block *bl = new JBlock(3,b);
       return bl;
    }else if(rn == 5){
-      Block *bl = new LBlock(b);
+      Block *bl = new LBlock(3,b);
       return bl;
    }else{
-      Block *bl = new OBlock(b);
+      Block *bl = new OBlock(3,b);
       return bl;
    }
    

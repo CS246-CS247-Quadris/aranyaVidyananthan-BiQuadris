@@ -54,3 +54,5 @@ void Biquadris::print() {
     std::cout << "Next:      " << "       " << "Next:      " << std::endl;
     getCurrPlayer()->getNextBlock()->print();
 }
+
+

@@ -20,7 +20,7 @@ private:
     int topLeftX;
     int topLeftY;
     // clears the row i and drops all the above blocks down a row
-    int clearLines(int i); 
+    void clearLines(int i); 
     // prints the board
     void print();
 
@@ -42,14 +42,16 @@ public:
     // sets the level to the given level
     void setLevel(int l);
     // checks if any of the rows are full and removes them
-    void clearBoard();
+    int clearBoard();
     // returs the level of the player
     int getLevel();
     // returns the score of the player
     int getScore();
     // returns the player number
     int getPlayer();
-
+    void detach(Block* b);
+    void updateScore(int lines);
+    void addScorefromBlock(int l);
 };
 
 #endif

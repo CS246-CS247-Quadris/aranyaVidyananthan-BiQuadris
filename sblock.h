@@ -6,7 +6,7 @@
 class SBlock : public Block{
 
 public:
-    SBlock( Board * g );
+    SBlock(int level, Board * g );
     ~SBlock();
 
     // sets the block in its first pos, true if successful

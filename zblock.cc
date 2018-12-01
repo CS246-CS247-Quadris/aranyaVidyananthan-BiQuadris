@@ -4,7 +4,7 @@
 #include "cell.h"
 #include <iostream>
 
-ZBlock::ZBlock( Board * g ): Block{'Z', g }{}
+ZBlock::ZBlock(int level, Board * g ): Block{level,'Z', g }{}
 
 
 

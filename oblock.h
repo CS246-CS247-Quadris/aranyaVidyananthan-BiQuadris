@@ -6,7 +6,7 @@
 class OBlock : public Block{
 
 public:
-    OBlock( Board * g );
+    OBlock(int level, Board * g );
     ~OBlock();
 
     // sets the block in its first pos, true if successful
