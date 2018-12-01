@@ -45,13 +45,18 @@ Board::~Board(){
  
 
 void Board::print() {
+    std::cout << "Level:    " << getLevel() << std::endl;
+    std::cout << "Score:    " << getScore() << std::endl;
+    std::cout << "-----------"  << std::endl;
     for ( int i = 0; i < 18; ++i ) {
         for ( int n = 0; n < 11; ++n ) {
-            cells[n][i]->print();
+            getCell(n,i)->print();
         }
-    std::cout << '\n' << std::endl;
+    std::cout << '\n';
     }
-    std::cout << '\n' << std::endl;
+    std::cout << "-----------" << std::endl;
+    std::cout << "Next:      " << std::endl;
+    getNextBlock()->print();
 }
 
 

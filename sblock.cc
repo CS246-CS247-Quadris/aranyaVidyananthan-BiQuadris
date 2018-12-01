@@ -107,16 +107,52 @@ bool SBlock::rotate( int direction ) {
     for (int n = 0; n < 4; n++) {
         shape[n]->setStatus( true );
     }
+    // check if the shape cells can move, add cells to temp vector
+    for ( int i = 0; i < 4; ++i ) {
+        int a = shape[i]->getX();
+        int b = shape[i]->getY();
+        if (( orientation == 1 ) | ( orientation == 3 )) {
+            if ( i == 0 ) { b = shape[i]->getY() - 2; }      
+            if ( i == 3 ) { a = shape[i]->getX() - 2; }
+        }
+        else {
+            if ( i == 0 ) { b = shape[i]->getY() + 2; }
+            if ( i == 3 ) { a = shape[i]->getX() + 2; }
+        }
+        if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+            temp.emplace_back( g->getCell(a,b) );
+        }
+        else {
+            for( int k = 0; k < 4; ++k ){
+               shape[k]->setStatus(false);
+            }
+            temp.clear();
+            return false;
+       }
+    }
+    // set new shape to the temp cells
+    for ( int index = 0; index < 4; index++ ) {
+        shape[index]->setStatus( true ); // set old shape cells to empty
+        shape[index]->setType(' '); // set old shape cella to no type
+    }
+    shape.clear();
+    for ( int index = 0; index < 4; index++ ) {
+        shape.emplace_back( temp[index] );
+        shape.back()->setType( 'S' );
+        shape.back()->setStatus( false ); // set new cells to full
+    }
+    temp.clear();
+
+    //sets orientation of the block
     if ( direction == 1 ) {  //clockwise
-        if ( orientation + direction == 5 ) { direction = 1; }
-        else { direction = orientation + direction; }
+        if ( orientation + direction == 5 ) { orientation = 1; }
+        else { orientation = orientation + direction; }
     }
     else { // counterclockwise
-        if ( orientation + direction == 0 ) { direction = 4; }
-        else { direction = orientation + direction; } 
+        if ( orientation + direction == 0 ) { orientation = 4; }
+        else { orientation = orientation + direction; } 
     }
-// now direction is the new orientation of the block
-    return true;
+     return true;
 }
 
 
