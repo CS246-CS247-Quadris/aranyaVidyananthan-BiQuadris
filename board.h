@@ -17,6 +17,8 @@ private:
     int levelnum;
     Block* nextBlock;
     int score;
+    int topLeftX;
+    int topLeftY;
     // clears the row i and drops all the above blocks down a row
     int clearLines(int i); 
     // prints the board
