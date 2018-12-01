@@ -8,6 +8,8 @@
 #include "lblock.h"
 #include "oblock.h"
 
+using namespace std;
+
 class Board;
 
 //constructor
@@ -26,8 +28,9 @@ const int LevelOne::getLevel(){
 
 //using random number to control the probability of
 //which type of new block is generated
-Block* LevelOne::nextBlock( Board * board ){
+Block* LevelOne::nextBlock( Board * board, string t ){
     Block *block;
+    t = "...";
     int rn = rand()%12; // rn in the range 0 to 11
     if(rn == 0){
        block = new SBlock( board );

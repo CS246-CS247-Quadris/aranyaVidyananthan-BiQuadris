@@ -1,6 +1,8 @@
 #ifndef _BIQUADRIS_H
 #define _BIQUADRIS_H
+#include<string>
 #include <cstdlib>
+using namespace std;
 
 class Board;
 
@@ -18,7 +20,8 @@ public:
     Board * getCurrPlayer();
     void switchPlayer();
     void print();
-    void setFirstBlocks();
+    void setFirstBlocks(string t1, string t2);
+    int playerNum();
 };
 
 #endif

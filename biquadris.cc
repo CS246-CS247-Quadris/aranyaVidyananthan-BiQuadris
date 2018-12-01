@@ -2,6 +2,9 @@
 #include "biquadris.h"
 #include "board.h"
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 //constructor
 Biquadris::Biquadris(): boardOne{new Board(1)}, 
@@ -12,9 +15,9 @@ Biquadris::Biquadris(): boardOne{new Board(1)},
 //destructor
 Biquadris::~Biquadris(){}
 
-void Biquadris::setFirstBlocks() {
-    boardOne->setFirstBlock();
-    boardTwo->setFirstBlock();
+void Biquadris::setFirstBlocks(string t1,string t2){
+    boardOne->setFirstBlock(t1);
+    boardTwo->setFirstBlock(t2);
 }
 
 
@@ -27,6 +30,10 @@ Board * Biquadris::getCurrPlayer() {
 void Biquadris::switchPlayer() {
     if ( currplayer == 1 ) { currplayer = 2; }
     else { currplayer = 1; }
+}
+
+int Biquadris::playerNum(){
+    return currplayer;
 }
 
 void Biquadris::print() {

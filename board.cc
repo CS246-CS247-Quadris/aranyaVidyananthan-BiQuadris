@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 #include "board.h"
 #include "block.h"
 #include "cell.h"
@@ -9,6 +10,8 @@
 #include "levelfour.h"
 #include "level.h"
 #include <iostream>
+
+using namespace std;
 
 
 Board::Board( int player ):level{new LevelZero}, blocks{}, player{player}, 
@@ -23,8 +26,8 @@ Board::Board( int player ):level{new LevelZero}, blocks{}, player{player},
 }
 
 
-void Board::setFirstBlock() {
-    Block * b = level->nextBlock( this );
+void Board::setFirstBlock(string t) {
+    Block * b = level->nextBlock( this, t );
     blocks.emplace_back( b ); // adds the currblock
     b->set();
 }
@@ -65,8 +68,8 @@ Block * Board::getNextBlock() {
 
 
 // creates a new block based on the level of the player
-void Board::createBlock(){
-    Block * b = level->nextBlock( this ); // creates a new block
+void Board::createBlock(string t){
+    Block * b = level->nextBlock( this, t ); // creates a new block
     nextBlock = b;
 }
 

@@ -17,14 +17,10 @@ LevelZero::LevelZero(): Level{0}{}
 //destructor
 LevelZero::~LevelZero(){}
 
-//make the virtual nextblock concrete
-Block* LevelZero::nextBlock( Board * b){
-   return new IBlock( b );
-   
-}
 
 //this is the method that actually does the work
-Block* LevelZero::nextBlock(string blockName,Board * b){
+Block* LevelZero::nextBlock(Board * b, string t){
+   string blockName = t;
    if(blockName == "S"){
       Block* bl = new SBlock(b);
       return bl;

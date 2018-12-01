@@ -10,8 +10,7 @@ class LevelZero : public Level{
 public:
     LevelZero();
     ~LevelZero();
-    Block* nextBlock( Board * b )override;
-    Block* nextBlock(string blockName, Board *b);
+    Block* nextBlock( Board * b, string t )override;
     const int getLevel()override;
 };
 
