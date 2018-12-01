@@ -24,7 +24,7 @@ void setList(vector<string> &list, int & length, string filename){
 }
 
 void aNewLevelZeroBlock(Biquadris* b, vector<string>& list, int & loc, int & length){
-   if(loc == length) loc = 0;
+   if(loc == length){ loc = 0;}
    b->getCurrPlayer()->createBlock(list.at(loc));
    loc ++;
 }
@@ -50,8 +50,10 @@ int main () {
     locTwo ++;
     if(b->playerNum()==1){
        aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
+       cout << "current player: " << b->playerNum() << endl;
     }else{
        aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);
+       cout << "current player "<< b->playerNum() << endl;
     }
     b->print();
     // the interpreter starts here
@@ -59,13 +61,15 @@ int main () {
         if(s == "left"){
         //move the current block one cell to the left
             b->getCurrPlayer()->getCurrBlock()->move( 4 );
-            if(b->getCurrPlayer()->getLevel()==(3||4)){
+            if(b->getCurrPlayer()->getLevel()== 3 ||
+               b->getCurrPlayer()->getLevel()==4){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }                
         }else if(s == "right"){
         //move the current block one cell to the right
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
-            if(b->getCurrPlayer()->getLevel()==(3||4)){
+            if(b->getCurrPlayer()->getLevel()==3 ||
+               b->getCurrPlayer()->getLevel()==4){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
         }else if(s == "down"){
@@ -77,13 +81,15 @@ int main () {
         }else if(s == "clockwise"){
         //rotate the current block 90 degrees clockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
-            if(b->getCurrPlayer()->getLevel()==(3||4)){
+            if(b->getCurrPlayer()->getLevel()==4 ||
+               b->getCurrPlayer()->getLevel()==3){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
         }else if(s == "counterclockwise"){
         //rotate the current block 90 degrees counterclockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
-            if(b->getCurrPlayer()->getLevel()==(3||4)){
+            if(b->getCurrPlayer()->getLevel()==3||
+               b->getCurrPlayer()->getLevel()==4){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
         }else if(s == "drop"){
@@ -91,10 +97,14 @@ int main () {
             bool drop = true;
             while( drop ) {
                 drop = b->getCurrPlayer()->getCurrBlock()->move( 3 );
-            } // currplayer's turn is over
-            drop = b->getCurrPlayer()->setNewBlock(); // next block becomes curr
-            if (!drop) { break; } // game over
-            b->switchPlayer();
+             // currplayer's turn is over
+            // next block becomes curr
+                if (!drop) {
+                    b->switchPlayer();
+                    cout<< "currentPlayer: "<< b->playerNum()<< endl; 
+                    break; } // game over
+                
+            }
             if(b->getCurrPlayer()->getLevel()== 0){
                 if(b->playerNum()==1){
                     aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
