@@ -39,6 +39,7 @@ bool ZBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'Z' );
         shape[index]->setStatus( false );
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 8 );
     }
     temp.clear();
     return true;
@@ -85,12 +86,14 @@ bool ZBlock::move( int direction ){
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'Z' );
         shape.back()->setStatus( false ); // set new cells to full
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 8 );
     }
     temp.clear();
     return true;
@@ -133,12 +136,14 @@ bool ZBlock::rotate( int direction ) {
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'Z' );
         shape.back()->setStatus( false ); // set new cells to full
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 8 );
     }
     temp.clear();
 

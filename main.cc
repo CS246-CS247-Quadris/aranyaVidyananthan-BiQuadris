@@ -9,6 +9,8 @@
 #include "level.h"
 #include "board.h"
 #include "biquadris.h"
+#include "window.h"
+
 
 using namespace std;
 

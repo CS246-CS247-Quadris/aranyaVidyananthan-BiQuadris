@@ -3,21 +3,21 @@
 #include "board.h"
 #include <iostream>
 #include <string>
+#include "window.h"
 
 using namespace std;
 
 //constructor
-Biquadris::Biquadris(): boardOne{new Board(1)}, 
-    boardTwo{new Board(2)}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}{
-}
+Biquadris::Biquadris(): boardOne{new Board( 1, 0, 3 )}, 
+    boardTwo{new Board( 2, 18, 3)}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{new Xwindow( 493, 425 )}{}
 
 
 //destructor
 Biquadris::~Biquadris(){}
 
 void Biquadris::setFirstBlocks(string t1,string t2){
-    boardOne->setFirstBlock(t1);
-    boardTwo->setFirstBlock(t2);
+    boardOne->init( t1, display );
+    boardTwo->init( t2, display );
 }
 
 void Biquadris::newHigh(){

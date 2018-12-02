@@ -38,6 +38,7 @@ bool SBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'S' );
         shape[index]->setStatus( false );
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 5 );
     }
     temp.clear();
     return true;
@@ -84,12 +85,14 @@ bool SBlock::move( int direction ){
     for ( int index = 0; index < 4; ++index ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
     }
     shape.clear();
     for ( int index = 0; index < 4; ++index ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'S' );
         shape.back()->setStatus( false ); // set new cells to full
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 5 );
     }
 
     temp.clear();
@@ -134,12 +137,14 @@ bool SBlock::rotate( int direction ) {
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'S' );
         shape.back()->setStatus( false ); // set new cells to full
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 5 );
     }
     temp.clear();
 

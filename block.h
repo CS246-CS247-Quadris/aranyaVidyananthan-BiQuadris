@@ -2,6 +2,7 @@
 #define _BLOCK_H
 #include <vector>
 
+
 class Cell;
 class Board;
 
@@ -14,6 +15,7 @@ protected:
     int orientation;
     Board *g;
     int removed;
+    const int scale;
  
     virtual const char getType()=0;
 public:

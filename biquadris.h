@@ -2,6 +2,9 @@
 #define _BIQUADRIS_H
 #include<string>
 #include <cstdlib>
+#include "window.h"
+
+
 using namespace std;
 
 class Board;
@@ -13,6 +16,7 @@ protected:
     int ScoreOne;
     int ScoreTwo;
     int currplayer;
+    Xwindow *display;
 
 public:
     Biquadris();

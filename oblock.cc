@@ -39,6 +39,7 @@ bool OBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'O' );
         shape[index]->setStatus( false );
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 7 );
     }
     temp.clear();
     return true;
@@ -71,7 +72,6 @@ bool OBlock::move( int direction ){
         if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){ 
             temp.emplace_back( g->getCell(a,b) );
         }else {
-            //for ( auto k:shape ) { shape[n].setStatus( false ); }
             for(int k = 0; k < 4; k++){
                shape[k]->setStatus(false);
             }
@@ -84,12 +84,14 @@ bool OBlock::move( int direction ){
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'O' );
         shape.back()->setStatus( false ); // set new cells to full
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 7 );
     }
 
     temp.clear();

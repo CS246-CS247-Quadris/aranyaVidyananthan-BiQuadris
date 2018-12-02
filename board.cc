@@ -10,12 +10,13 @@
 #include "levelfour.h"
 #include "level.h"
 #include <iostream>
+#include "window.h"
 
 using namespace std;
 
 
-Board::Board( int player ):level{new LevelZero}, blocks{}, player{player}, 
-    levelnum{0}, nextBlock{}, score{0} {
+Board::Board( int player, int X, int y ):level{new LevelZero}, blocks{}, player{player}, 
+    X{X}, Y{Y}, levelnum{0}, nextBlock{}, score{0}, xw{nullptr} {
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
             cells[i].resize(18); // 18 rows
@@ -26,7 +27,8 @@ Board::Board( int player ):level{new LevelZero}, blocks{}, player{player},
 }
 
 
-void Board::setFirstBlock(string t) {
+void Board::init( string t, Xwindow *display ) {
+    xw = display;
     Block * b = level->nextBlock( this, t );
     blocks.emplace_back( b ); // adds the currblock
     b->set();
@@ -72,6 +74,21 @@ Block * Board::getNextBlock() {
 }
 
 
+int Board::getX() {
+    return X;
+}
+
+
+int Board::getY() {
+    return Y;
+}
+
+
+Xwindow * Board::getDisplay() {
+    return xw;
+}
+
+ 
 // creates a new block based on the level of the player
 void Board::createBlock(string t){
     Block * b = level->nextBlock( this, t ); // creates a new block

@@ -1,10 +1,10 @@
 #include "block.h"
 #include "cell.h"
 #include "board.h"
-
+#include "window.h"
 
 Block::Block(int levelcreated, char type, Board * g ):shape{}, 
-    temp{}, levelcreated{levelcreated},type{type}, orientation{1}, g{g}, removed{0}{}
+    temp{}, levelcreated{levelcreated},type{type}, orientation{1}, g{g}, removed{0}, scale{17}{}
 
 Block::~Block() {}
 

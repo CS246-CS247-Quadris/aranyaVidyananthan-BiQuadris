@@ -40,6 +40,7 @@ bool JBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'J' );
         shape[index]->setStatus( false );
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 3 );
     }
     temp.clear();
     return true;
@@ -79,19 +80,20 @@ bool JBlock::move( int direction ){
             temp.clear();
             return false;
         }
-    
    }
 
     // set new shape to the temp cells
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'J' );
         shape.back()->setStatus( false ); // set new cells to full
+        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 3 );
     }
 
     temp.clear();
@@ -105,18 +107,16 @@ const char JBlock::getType(){
 
 // direction = 1, means clockwise, -1 means couterclockwise
 bool JBlock::rotate( int direction ) {
-    for (int n = 0; n < 4; n++) {
-        shape[n]->setStatus( true );
-    }
+    // sets new orientation of block
     if ( direction == 1 ) {  //clockwise
-        if ( orientation + direction == 5 ) { direction = 1; }
-        else { direction = orientation + direction; }
+        if ( orientation + direction == 5 ) { orientation = 1; }
+        else { orientation = orientation + direction; }
     }
     else { // counterclockwise
-        if ( orientation + direction == 0 ) { direction = 4; }
-        else { direction = orientation + direction; } 
+        if ( orientation + direction == 0 ) { orientation = 4; }
+        else { orientation = orientation + direction; }
     }
-// now direction is the new orientation of the block
+    // now direction is the new orientation of the block
     return true;
 }
 
