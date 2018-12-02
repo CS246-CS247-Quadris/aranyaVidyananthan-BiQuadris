@@ -31,10 +31,33 @@ void aNewLevelZeroBlock(Biquadris* b, vector<string>& list, int & loc, int & len
    loc ++;
 }
 
-int main () {
+int main (int argc, char* argv[]) {
     
     string filenameOne = "sequence1.txt";
     string filenameTwo = "sequence2.txt";
+    int seedNumber = 0;
+    int argsNum = argc -1;
+    //commandline interface
+    for(int i =0; i < argsNum; i ++){
+        stringstream ss(argv[i]);
+        string s = ss.str();
+        if(s == "-scriptfile1"){
+            i ++;
+            stringstream ssfn1(argv[i]);
+            filenameOne = ssfn1.str();
+        }else if(s == "-scriptfile2"){
+            i ++;
+            stringstream ssfn2(argv[i]);
+            filenameTwo = ssfn2.str();
+        }else if(s == "-seed"){
+            i ++;
+            stringstream sn(argv[i]);
+            sn >> seedNumber;
+        }
+    }
+            
+
+
     vector<string> listOne;
     int listLengthOne = 0;
     vector<string> listTwo;
@@ -45,6 +68,9 @@ int main () {
     int locTwo = 0;
    // the above code initialize the two vectors of blocknames to read from
     
+
+
+
     string s;
     Biquadris * b = new Biquadris();
     b->setFirstBlocks( listOne.at(locOne), listTwo.at(locTwo) );
