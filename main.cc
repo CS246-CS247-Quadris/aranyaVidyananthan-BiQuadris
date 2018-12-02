@@ -60,41 +60,41 @@ int main () {
     b->print();
     // the interpreter starts here
     while(cin >> s) {
-        if(s == "left"){
+        if(s.compare(0,3,"lef")==0){
         //move the current block one cell to the left
             b->getCurrPlayer()->getCurrBlock()->move( 4 );
             if(b->getCurrPlayer()->getLevel()== 3 ||
                b->getCurrPlayer()->getLevel()==4){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }                
-        }else if(s == "right"){
+        }else if(s.compare(0,2,"ri")==0){
         //move the current block one cell to the right
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
             if(b->getCurrPlayer()->getLevel()==3 ||
                b->getCurrPlayer()->getLevel()==4){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
-        }else if(s == "down"){
+        }else if(s.compare(0,2,"do")==0){
         //move the current block one cell downward
             b->getCurrPlayer()->getCurrBlock()->move( 3 );
             if(b->getCurrPlayer()->getLevel()==(3||4)){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
-        }else if(s == "clockwise"){
+        }else if(s.compare(0,2,"cl")==0){
         //rotate the current block 90 degrees clockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
             if(b->getCurrPlayer()->getLevel()==4 ||
                b->getCurrPlayer()->getLevel()==3){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
-        }else if(s == "counterclockwise"){
+        }else if(s.compare(0,2,"co")==0){
         //rotate the current block 90 degrees counterclockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
             if(b->getCurrPlayer()->getLevel()==3||
                b->getCurrPlayer()->getLevel()==4){
                 b->getCurrPlayer()->getCurrBlock()->move(3);
             }
-        }else if(s == "drop"){
+        }else if(s.compare(0,2,"dr")==0){
         //drops the current block
             bool drop = true;
             while( drop ) {
@@ -126,12 +126,12 @@ int main () {
             else{ 
                 b->getCurrPlayer()->createBlock("n");
             }
-        }else if(s == "levelup"){
+        }else if(s.compare(0,6,"levelu")==0){
         //increase the difficulty level of the game by one.
             if(b->getCurrPlayer()->getLevel()< 4 && b->getCurrPlayer()->getLevel()!= -1){
                 b->getCurrPlayer()->setLevel(b->getCurrPlayer()->getLevel()+1);
             }
-        }else if(s == "leveldown"){
+        }else if(s.compare(0,6,"leveld")== 0){
         // decreases the difficulty level of the game by one
             if(b->getCurrPlayer()->getLevel()> 0){
                 b->getCurrPlayer()->setLevel(b->getCurrPlayer()->getLevel()-1);
@@ -146,7 +146,7 @@ int main () {
         //opens the file whose name is the next string
         //generate blocks according to it
 
-        }else if(s == "restart"){
+        }else if(s.compare(0,2,"re")==0){
         //clears the board
 
         }else if(s == "I"){
