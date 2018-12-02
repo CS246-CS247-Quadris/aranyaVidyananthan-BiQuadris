@@ -1,2 +1,0 @@
-g++-5 -std=c++14 -Wall -MMD -Werror=vla -g   -c -o window.o window.cc
-<builtin>: recipe for target 'window.o' failed
