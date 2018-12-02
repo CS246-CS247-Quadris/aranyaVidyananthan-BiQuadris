@@ -164,6 +164,8 @@ bool SBlock::rotate( int direction ) {
 void SBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << " SS" << std::endl;
+    g->getDisplay()->fillRectangle( ( 1 + g->getX())*scale, ( 21 + g->getY())*scale, scale*2, scale, 5 );
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "SS"  << std::endl;
+    g->getDisplay()->fillRectangle( ( 0 + g->getX())*scale, ( 22 + g->getY())*scale, scale*2, scale, 5 );
 }

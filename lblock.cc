@@ -122,8 +122,10 @@ bool LBlock::rotate( int direction ) {
 void LBlock::print(){
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "  L" << std::endl;
+    g->getDisplay()->fillRectangle( (2 + g->getX())*scale, (21 + g->getY())*scale, scale, scale, 4 );
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "LLL" << std::endl;
+    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (22 + g->getY())*scale, scale*3, scale, 4 );
 }
 
 

@@ -124,6 +124,8 @@ bool JBlock::rotate( int direction ) {
 void JBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "J" << std::endl;
+    g->getDisplay()->fillRectangle( ( 0 + g->getX())*scale, ( 21  + g->getY())*scale, scale, scale, 3 );
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "JJJ" << std::endl;
+    g->getDisplay()->fillRectangle( ( 0 + g->getX())*scale, ( 22  + g->getY())*scale, scale*3, scale, 3 );
 }

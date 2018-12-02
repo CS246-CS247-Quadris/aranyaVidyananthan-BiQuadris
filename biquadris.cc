@@ -9,16 +9,29 @@ using namespace std;
 
 //constructor
 Biquadris::Biquadris(): boardOne{new Board( 1, 0, 3 )}, 
-    boardTwo{new Board( 2, 18, 3)}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{new Xwindow( 493, 425 )}{}
+    boardTwo{new Board( 2, 18, 3 )}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{new Xwindow( 493, 442 )}{
+        display->drawString( 0, 17, "Level:");
+        display->drawString( 170, 17, "0" );
+        display->drawString( 0, 34, "Score:");
+        display->drawString( 170, 34, "0" );
+        display->drawString( 306, 17, "Level:");
+        display->drawString( 476, 17, "0" );
+        display->drawString( 306, 34, "Score:");
+        display->drawString( 476, 34, "0" );
+        display->drawString( 0, 391, "Next:" );
+        display->drawString( 306, 391, "Next:" );
+}
 
 
 //destructor
 Biquadris::~Biquadris(){}
 
+
 void Biquadris::setFirstBlocks(string t1,string t2){
     boardOne->init( t1, display );
     boardTwo->init( t2, display );
 }
+
 
 void Biquadris::newHigh(){
     if(currplayer == 1){
@@ -31,6 +44,7 @@ void Biquadris::newHigh(){
         }
     }
 }
+
 
 Board * Biquadris::getCurrPlayer() {
     if ( currplayer == 1 ) {
@@ -45,9 +59,11 @@ void Biquadris::switchPlayer() {
     else { currplayer = 1; }
 }
 
+
 int Biquadris::playerNum(){
     return currplayer;
 }
+
 
 void Biquadris::print() {
     std::cout << "Hi Score: " << ScoreOne << "       " << "Hi Score  " << ScoreTwo << std::endl;

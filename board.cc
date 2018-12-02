@@ -14,9 +14,11 @@
 
 using namespace std;
 
+const int scale = 17;
 
-Board::Board( int player, int X, int y ):level{new LevelZero}, blocks{}, player{player}, 
-    X{X}, Y{Y}, levelnum{0}, nextBlock{}, score{0}, xw{nullptr} {
+
+Board::Board( int player, int x, int y ):level{new LevelZero}, blocks{}, player{player}, 
+    X{x}, Y{y}, levelnum{0}, nextBlock{}, score{0}, xw{nullptr} {
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
             cells[i].resize(18); // 18 rows
@@ -100,17 +102,19 @@ void Board::createBlock(string t){
 bool Board::setNewBlock(){ // if it returns false the game is over
     Block * curr = nextBlock;
     blocks.emplace_back( curr );
-
+    xw->fillRectangle( (0 + X)*scale, (21 + Y)*scale, scale*29, scale*2, 0 );
     bool retval = curr->set(); // sets the curr block to the top of the board    
     if (retval == false) { delete curr; }
     return retval;
 }
 
-void Board::addScorefromBlock(int l){
 
+void Board::addScorefromBlock(int l){
    int s = (l+1)*(l+1);
    score += s;
 }
+
+
 int Board::getPlayer() {
    return player;
 }

@@ -164,8 +164,10 @@ bool ZBlock::rotate( int direction ) {
 void ZBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "ZZ" << std::endl;
+    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*2, scale, 8 );
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << " ZZ" << std::endl;
+    g->getDisplay()->fillRectangle( (1 + g->getX())*scale, (22 + g->getY())*scale, scale*2, scale, 8 );
 }
 
 

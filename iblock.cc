@@ -163,4 +163,5 @@ bool IBlock::rotate( int direction ) {
 void IBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "IIII" << std::endl;
+    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*4, scale, 2 );
 }

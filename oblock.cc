@@ -122,7 +122,9 @@ bool OBlock::rotate( int direction ) {
 void OBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "OO" << std::endl;
+    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*2, scale*2, 7 );
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "OO" << std::endl;
+    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (22 + g->getY())*scale, scale*2, scale*2, 7 );
 }
 

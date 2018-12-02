@@ -123,8 +123,10 @@ bool TBlock::rotate( int direction ) {
 void TBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "TTT" << std::endl;
+    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*3, scale, 6 );
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << " T " << std::endl;
+    g->getDisplay()->fillRectangle( (1 + g->getX())*scale, (22 + g->getY())*scale, scale, scale, 6 );
 }
 
 
