@@ -18,7 +18,7 @@ const int scale = 17;
 
 
 Board::Board( int player, int x, int y ):level{new LevelZero}, blocks{}, player{player}, 
-    X{x}, Y{y}, levelnum{0}, nextBlock{}, score{0}, xw{nullptr} {
+    blind{false}, X{x}, Y{y}, levelnum{0}, nextBlock{}, score{0}, xw{nullptr} {
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
             cells[i].resize(18); // 18 rows
@@ -28,7 +28,7 @@ Board::Board( int player, int x, int y ):level{new LevelZero}, blocks{}, player{
         }
 }
 
-
+ 
 void Board::init( string t, Xwindow *display ) {
     xw = display;
     Block * b = level->nextBlock( this, t );
@@ -73,6 +73,16 @@ Block * Board::getCurrBlock() {
 //returns the next block
 Block * Board::getNextBlock() {
     return nextBlock;
+}
+
+
+bool Board::getBlind() {
+    return blind;
+}
+
+
+void Board::setBlind( bool b ) {
+    blind = b;
 }
 
 

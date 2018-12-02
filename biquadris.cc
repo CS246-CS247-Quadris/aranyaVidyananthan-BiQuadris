@@ -70,13 +70,23 @@ void Biquadris::print() {
     std::cout << "Level:    " << boardOne->getLevel() << "       " << "Level:    " << boardTwo->getLevel() << std::endl;
     std::cout << "Score:    " << boardOne->getScore() << "       " << "Score:    " << boardTwo->getScore() << std::endl;
     std::cout << "-----------       -----------" << std::endl;
-    for ( int i = 0; i < 18; ++i ) {
-        for ( int n = 0; n < 11; ++n ) {
-            boardOne->getCell(n,i)->print();
+    for ( int i = 0; i < 18; ++i ) { // row number
+        for ( int n = 0; n < 11; ++n ) { // column number
+            if ( boardOne->getBlind() == true && n >= 2 && n <= 8 && i >= 2 && i <= 11 ) {
+                std::cout << "?";
+            }
+            else {
+                boardOne->getCell(n,i)->print();
+            }
         }
         std::cout << "       ";
         for ( int n = 0; n < 11; ++n ) {
-            boardTwo->getCell(n,i)->print();
+            if ( boardTwo->getBlind() == true && n >= 2 && n <= 8 && i >= 2 && i <= 11 ) {
+                std::cout << "?";
+            }
+            else {
+                boardTwo->getCell(n,i)->print();
+            }
         }
     std::cout << '\n';
     }

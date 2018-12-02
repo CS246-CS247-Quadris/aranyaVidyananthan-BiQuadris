@@ -21,6 +21,7 @@ private:
     int levelnum;
     Block* nextBlock;
     int score;
+    bool blind;
     int X;
     int Y;
     Xwindow *xw;
@@ -59,6 +60,10 @@ public:
     int getX();
     //returns the y coordinate for the top left cell of the board
     int getY();
+    // sets the blind field
+    void setBlind( bool b );
+    // returns the blind field
+    bool getBlind();
     void detach(Block* b);
     void updateScore(int lines);
     void addScorefromBlock(int l);
