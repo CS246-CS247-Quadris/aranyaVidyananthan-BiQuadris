@@ -106,7 +106,191 @@ const char TBlock::getType(){
 
 // direction = 1, means clockwise, -1 means couterclockwise
 bool TBlock::rotate( int direction ) {
+    for (int n = 0; n < 4; n++) { // set the old cells to empty
+        shape[n]->setStatus( true );
+    }
     // sets new orientation of block
+    if ( direction == 1 ) {
+        for ( int i = 0; i < 4; ++i ) {
+            int a = shape[i]->getX();
+            int b = shape[i]->getY();
+
+            if ( orientation == 1 ) {
+                if ( i == 3 ) {
+                    a = shape[i]->getX() - 1;
+                    b = shape[i]->getY() - 1;
+                }
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                    temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+
+            else if ( orientation == 2 ) {
+        	if ( i == 3 ) { 
+		     a = shape[i]->getX() + 1;
+		     b = shape[i]->getY() + 2; 
+		}
+                else if ( i == 0 ) { b = shape[i]->getY() + 1; }	   
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                    temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+
+            else if ( orientation == 3 ) {
+                if ( i == 1 ) { 
+		    a = shape[i]->getX() - 1;
+                    b = shape[i]->getY() - 1;
+		}
+                else if ( i == 3 ) { 
+		    a = shape[i]->getX() - 2; 
+		    b = shape[i]->getY() - 2; 
+		}
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                   temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                   for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+            else if ( orientation == 4 ) {
+                if ( i == 0 ) { b = shape[i]->getY() - 1; }
+                else if ( i == 1 ) {
+                   a = shape[i]->getX() + 1;
+                   b = shape[i]->getY() + 1;
+                }
+		else if ( i == 3 ) {
+	           a = shape[i]->getX() + 2;
+            	   b = shape[i]->getY() + 1;
+		}
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                   temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+        }
+    }
+
+    else if ( direction == -1 ) { // counterclockwise
+        for ( int i = 0; i < 4; ++i ) {
+            int a = shape[i]->getX();
+            int b = shape[i]->getY();
+        
+            if ( orientation == 1 ) {
+                if ( i == 0 ) { b = shape[i]->getY() + 1; }
+		else if ( i == 1 ) {
+                    a = shape[i]->getX() - 1;
+                    b = shape[i]->getY() - 1;
+                }
+                else if ( i == 3 ) {
+                    a = shape[i]->getX() - 2;
+                    b = shape[i]->getY() - 1;
+                }
+
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                    temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+
+            else if ( orientation == 2 ) {
+                if ( i == 3 ) {
+                    a = shape[i]->getX() + 1;
+                    b = shape[i]->getY() + 1;
+                }
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                    temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+            else if ( orientation == 3 ) {
+                if ( i == 0 ) { b = shape[i]->getY() - 1; }
+                else if ( i == 3 ) {       
+                   a = shape[i]->getX() - 1;
+                   b = shape[i]->getY() - 2;
+                }
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                   temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+            else if ( orientation == 4 ) {
+                if ( i == 1 ) { 
+		    a = shape[i]->getX() + 1; 
+		    b = shape[i]->getY() + 1; 
+	        }
+                else if ( i == 3 ) {
+                   a = shape[i]->getX() + 2;
+                   b = shape[i]->getY() + 2;
+                }
+                if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
+                   temp.emplace_back( g->getCell( a, b ) );
+                }
+                else {
+                    for( int k = 0; k < 4; ++k ){
+                       shape[k]->setStatus(false);
+                    }
+                    temp.clear();
+                    return false;
+                }
+            }
+        }
+    }
+    // set new shape to the temp cells
+    for ( int index = 0; index < 4; index++ ) {
+        shape[index]->setStatus( true ); // set old shape cells to empty
+        shape[index]->setType(' '); // set old shape cells to no type
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale , ( shape[index]->getY() + g->getY() )*scale , scale, scale, 0 ); }
+    }
+    shape.clear();
+    for ( int index = 0; index < 4; index++ ) {
+        shape.emplace_back( temp[index] );
+        shape.back()->setType( 'T' );
+        shape.back()->setStatus( false ); // set new cells to full
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 6 ); }
+    }
+    temp.clear();
     if ( direction == 1 ) {  //clockwise
         if ( orientation + direction == 5 ) { orientation = 1; }
         else { orientation = orientation + direction; }
@@ -115,7 +299,7 @@ bool TBlock::rotate( int direction ) {
         if ( orientation + direction == 0 ) { orientation = 4; }
         else { orientation = orientation + direction; }
     }
-// now direction is the new orientation of the block
+    // now direction is the new orientation of the block
     return true;
 }
 
