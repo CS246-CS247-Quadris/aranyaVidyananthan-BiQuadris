@@ -27,7 +27,6 @@ void Block::clearLine( int rowNum ){
     if( shape.empty() ){ return; }
     char c = shape[0]->getType();
     for(int i = 0; i < index; i ++){
-        //g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
         if(shape[i]->getY() > rowNum){
             temp.emplace_back(g->getCell(shape[i]->getX(),shape[i]->getY()));
             //in this case, it is just the same cell originally in shape
@@ -85,5 +84,12 @@ void Block::clearLine( int rowNum ){
     temp.clear();
     if( shape.size() == 0 ){ g->addScorefromBlock( levelcreated ); }
 }
+
+
+int Block::getRemoved() {
+    return removed;
+}
+
+
 
 

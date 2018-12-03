@@ -81,17 +81,14 @@ void Board::restart( int playernum, int a, int b, int levelnumber ) {
             delete cells[i][n];
         }
         cells[i].clear();
-        cells[i].shrink_to_fit();
     }
     cells.clear();
-    cells.shrink_to_fit();
     delete level;
     int length = blocks.size();
     for ( int i = 0; i < length; ++i ) {
         delete blocks[i];
     }
     blocks.clear();
-    blocks.shrink_to_fit();
     delete nextBlock;
     score = 0;
     xw = nullptr;
@@ -297,6 +294,12 @@ int Board::clearBoard(){
           lines ++;
           i ++;
       }
+   }
+   for ( std::vector < Block * >::iterator it = blocks.begin() ; it < blocks.end(); ++it ) {
+       if ( (*it)->getRemoved() == 4 ) {
+           delete *it;
+           blocks.erase( it );
+       }
    }
    return lines;     
 

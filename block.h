@@ -27,6 +27,7 @@ public:
     virtual void print()=0; 
     void clearLine(int rowNum);
     void clearBlock();
+    int getRemoved();
 };
 
 #endif
