@@ -17,8 +17,16 @@ using namespace std;
 const int scale = 17;
 
 
-Board::Board( int player, int x, int y ):level{new LevelZero}, blocks{}, player{player}, 
-    blind{false}, X{x}, Y{y}, levelnum{0}, nextBlock{}, score{0}, xw{nullptr} {
+Board::Board( int player, int x, int y, int levelnumber ):blocks{},
+    player{player}, blind{false}, X{x}, Y{y}, nextBlock{}, score{0}, xw{nullptr} {
+        // if start level is supplied as a command line arg
+        levelnumber = levelnumber;       
+        if ( levelnumber == 0 ) { level = new LevelZero; }
+        else if ( levelnumber == 1 ) { level = new LevelOne; }
+        else if ( levelnumber == 2 ) { level = new LevelTwo; }
+        else if ( levelnumber == 3 ) { level = new LevelThree; }
+        else { level = new LevelFour; }
+
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
             cells[i].resize(18); // 18 rows

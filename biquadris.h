@@ -19,7 +19,7 @@ protected:
     Xwindow *display;
 
 public:
-    Biquadris();
+    Biquadris( int level = 0 );
     ~Biquadris();
     // returns the cureent board being played
     Board * getCurrPlayer();

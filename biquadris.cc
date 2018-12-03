@@ -8,8 +8,8 @@
 using namespace std;
 
 //constructor
-Biquadris::Biquadris(): boardOne{new Board( 1, 0, 3 )}, 
-    boardTwo{new Board( 2, 18, 3 )}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{new Xwindow( 493, 442 )}{
+Biquadris::Biquadris( int level ): boardOne{new Board( 1, 0, 3, level )}, 
+    boardTwo{new Board( 2, 18, 3, level )}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{new Xwindow( 493, 442 )}{
         display->drawString( 0, 17, "Level:");
         display->drawString( 170, 17, "0" );
         display->drawString( 0, 34, "Score:");

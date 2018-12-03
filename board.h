@@ -31,7 +31,7 @@ private:
     void print();
 
 public:
-    Board(int player, int X, int Y);
+    Board(int player, int X, int Y, int levelnumber );
     ~Board();
     // returns the current block on the board
     Block * getNextBlock();

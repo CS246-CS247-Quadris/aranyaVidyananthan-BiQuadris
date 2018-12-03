@@ -36,29 +36,36 @@ int main (int argc, char* argv[]) {
     string filenameOne = "sequence1.txt";
     string filenameTwo = "sequence2.txt";
     int seedNumber = 0;
+    int levelnumber = 0;
     int argsNum = argc -1;
+
     //commandline interface
-    for(int i =0; i < argsNum; i ++){
+    for(int i = 0; i < argsNum; i++){
         stringstream ss(argv[i]);
         string s = ss.str();
-        if(s == "-scriptfile1"){
-            i ++;
+        if( s == "-scriptfile1" ) {
+            i++;
             stringstream ssfn1(argv[i]);
             filenameOne = ssfn1.str();
            
-        }else if(s == "-scriptfile2"){
-            i ++;
+        }
+        else if( s == "-scriptfile2" ) { 
+            i++;
             stringstream ssfn2(argv[i]);
             filenameTwo = ssfn2.str();
-        }else if(s == "-seed"){
-            i ++;
+        } 
+        else if( s == "-seed" ) {
+            i++;
             stringstream sn(argv[i]);
             sn >> seedNumber;
         }
+        else if( s == "-startlevel" ) {
+            i++;
+            stringstream sl(argv[i]);
+            sl >> levelnumber;
+        }   
     }
             
-
-
     vector<string> listOne;
     int listLengthOne = 0;
     vector<string> listTwo;
@@ -73,7 +80,7 @@ int main (int argc, char* argv[]) {
 
 
     string s;
-    Biquadris * b = new Biquadris();
+    Biquadris *b = new Biquadris( levelnumber ); 
     b->setFirstBlocks( listOne.at(locOne), listTwo.at(locTwo) );
     locOne ++;
     locTwo ++;
