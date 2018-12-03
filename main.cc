@@ -138,7 +138,9 @@ int main (int argc, char* argv[]) {
         //move the current block one cell to the left
         if( s.compare( 0, 3, "lef" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 4 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ){ b->getCurrPlayer()->getCurrBlock()->move( 3 ); }            
+            if( b->getCurrPlayer()->getLevel() == 3 || 
+            b->getCurrPlayer()->getLevel()== 4){ 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }            
             if ( heavy ) {
                 bool fail = true;
                 for ( int i = 0; i < 2; ++i ) {
@@ -164,7 +166,9 @@ int main (int argc, char* argv[]) {
         //move the current block one cell to the right
         else if( s.compare( 0, 2, "ri" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) { b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+            b->getCurrPlayer()->getLevel() == 4 ) { 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
             if ( heavy ) {
                 bool fail = true;
                 for ( int i = 0; i < 2; ++i ) {
@@ -190,19 +194,25 @@ int main (int argc, char* argv[]) {
         //move the current block one cell downward
         else if( s.compare ( 0, 2, "do" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 3 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ){ b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+            b->getCurrPlayer()->getLevel()== 4){ 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
         }
  
         //rotate the current block 90 degrees clockwise  
         else if( s.compare ( 0, 2, "cl" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) { b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+                b->getCurrPlayer()->getLevel() == 4 ) { 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
         }
 
         //rotate the current block 90 degrees counterclockwise
         else if( s.compare( 0, 2, "co" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) { b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+                b->getCurrPlayer()->getLevel() == 4) { 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
         }
 
         //drops the current block
