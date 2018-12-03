@@ -10,6 +10,17 @@ Block::Block(int levelcreated, char type, Board * g ):shape{},
 Block::~Block() {}
 
 
+void Block::clearBlock() {
+    int i = shape.size();
+    for ( int n = 0; n < i; ++n ) {
+        shape[n]->setType( ' ' );
+        shape[n]->setStatus( true );
+        if ( g->getDisplay() ) {
+            g->getDisplay()->fillRectangle( ( shape[n]->getX()+ g->getX())*scale, ( shape[n]->getY() + g->getY() )*scale, scale, scale, 0 );
+        }
+    }
+}
+
 // clears the row passed, and moves any blocks above the line cleared
 void Block::clearLine( int rowNum ){
     int index = shape.size();

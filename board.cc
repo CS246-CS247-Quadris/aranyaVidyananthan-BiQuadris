@@ -24,8 +24,8 @@ using namespace std;
 const int scale = 17;
 
 
-Board::Board( int player, int x, int y, int levelnumber ):blocks{},player{player},
-    blind{false}, X{x}, Y{y}, levelnum{levelnumber},nextBlock{}, score{0}, xw{nullptr} {
+Board::Board( int player, int x, int y, int levelnumber ): xw{nullptr}, blocks{}, 
+    player{player},blind{false}, X{x}, Y{y}, levelnum{levelnumber},nextBlock{}, score{0} {
         // if start level is supplied as a command line arg
         if ( levelnumber == 0 ) { level = new LevelZero; }
         else if ( levelnumber == 1 ) { level = new LevelOne; }
@@ -178,6 +178,7 @@ Xwindow * Board::getDisplay() {
 
 // changes the current block to the type t
 bool Board::changeCurrBlock(string t) {
+    blocks.back()->clearBlock();
     delete blocks.back();
     Level * levelzero = new LevelZero();
     Block * b = levelzero->nextBlock( this, t );

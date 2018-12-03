@@ -26,6 +26,7 @@ public:
     virtual bool rotate(int direction)=0;
     virtual void print()=0; 
     void clearLine(int rowNum);
+    void clearBlock();
 };
 
 #endif

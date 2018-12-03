@@ -15,6 +15,7 @@ class Xwindow;
 class Board{
 private:
     std::vector< std::vector < Cell * > > cells;
+    Xwindow * xw;
     Level *level;
     std::vector< Block * > blocks;
     int player;
@@ -24,7 +25,6 @@ private:
     int levelnum;
     Block* nextBlock;
     int score;
-    Xwindow *xw;
     // clears the row i and drops all the above blocks down a row
     void clearLines(int i); 
     // prints the board
