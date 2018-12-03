@@ -76,6 +76,7 @@ int main (int argc, char* argv[]) {
     int levelnumber = 0;
     int argsNum = argc -1;
     bool graphics = true;
+    bool random = true;
     //commandline interface
     for(int i = 0; i < argsNum; i++){
         stringstream ss(argv[i]);
@@ -114,6 +115,11 @@ int main (int argc, char* argv[]) {
     setList( listTwo, listLengthTwo, filenameTwo );
     int locOne = 0;
     int locTwo = 0;
+    vector<string> alternate; // the sequence we use under "sequence"
+  
+    int alternateindex = 0;
+ 
+    int alternatelength = 0;
    // the above code initialize the two vectors of blocknames to read from
     
 
@@ -132,13 +138,15 @@ int main (int argc, char* argv[]) {
     }
     b->print();
 
-    bool heavy = true;
+    bool heavy = false;
     // the interpreter starts here
     while( cin >> s ) {
         //move the current block one cell to the left
         if( s.compare( 0, 3, "lef" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 4 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ){ b->getCurrPlayer()->getCurrBlock()->move( 3 ); }            
+            if( b->getCurrPlayer()->getLevel() == 3 || 
+            b->getCurrPlayer()->getLevel()== 4){ 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }            
             if ( heavy ) {
                 bool fail = true;
                 for ( int i = 0; i < 2; ++i ) {
@@ -164,7 +172,9 @@ int main (int argc, char* argv[]) {
         //move the current block one cell to the right
         else if( s.compare( 0, 2, "ri" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) { b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+            b->getCurrPlayer()->getLevel() == 4 ) { 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
             if ( heavy ) {
                 bool fail = true;
                 for ( int i = 0; i < 2; ++i ) {
@@ -190,19 +200,25 @@ int main (int argc, char* argv[]) {
         //move the current block one cell downward
         else if( s.compare ( 0, 2, "do" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 3 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ){ b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+            b->getCurrPlayer()->getLevel()== 4){ 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
         }
  
         //rotate the current block 90 degrees clockwise  
         else if( s.compare ( 0, 2, "cl" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) { b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+                b->getCurrPlayer()->getLevel() == 4 ) { 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
         }
 
         //rotate the current block 90 degrees counterclockwise
         else if( s.compare( 0, 2, "co" ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
-            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) { b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
+            if( b->getCurrPlayer()->getLevel() == 3 ||
+                b->getCurrPlayer()->getLevel() == 4) { 
+                b->getCurrPlayer()->getCurrBlock()->move( 3 ); }
         }
 
         //drops the current block
@@ -221,8 +237,14 @@ int main (int argc, char* argv[]) {
             }
             else if( b->getCurrPlayer()->getLevel() == 1 ) { b->getCurrPlayer()->createBlock( "n" ); }
             else if( b->getCurrPlayer()->getLevel() == 2 ) { b->getCurrPlayer()->createBlock( "n" ); }
-            else if( b->getCurrPlayer()->getLevel() == 3 ) { b->getCurrPlayer()->createBlock( "n" ); }
-            else { b->getCurrPlayer()->createBlock( "n" ); }
+            else { 
+                if(random){
+                    b->getCurrPlayer()->createBlock( "n" );
+                }else{
+                    aNewLevelZeroBlock(b, alternate,alternateindex, alternatelength);
+                }
+      
+            }
         }
 
         //increase the difficulty level of the game by one
@@ -241,11 +263,15 @@ int main (int argc, char* argv[]) {
 
         //taking input from the sequence file
         else if( s == "norandom" ){
- 
+            random = false;
+            string fn;
+            cin >> fn;
+            setList(alternate, alternatelength, fn);
         }
 
         //restore back to randomness
         else if( s == "random" ){
+            random = true;
 
         }
  

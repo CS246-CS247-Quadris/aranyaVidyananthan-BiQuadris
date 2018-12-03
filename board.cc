@@ -295,6 +295,7 @@ int Board::clearBoard(){
       if(row){
           this->clearLines(i);
           lines ++;
+          i ++;
       }
    }
    return lines;     
