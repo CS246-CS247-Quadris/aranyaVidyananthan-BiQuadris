@@ -76,6 +76,7 @@ int main (int argc, char* argv[]) {
     int levelnumber = 0;
     int argsNum = argc -1;
     bool graphics = true;
+    bool random = true;
     //commandline interface
     for(int i = 0; i < argsNum; i++){
         stringstream ss(argv[i]);
@@ -114,6 +115,11 @@ int main (int argc, char* argv[]) {
     setList( listTwo, listLengthTwo, filenameTwo );
     int locOne = 0;
     int locTwo = 0;
+    vector<string> alternate; // the sequence we use under "sequence"
+  
+    int alternateindex = 0;
+ 
+    int alternatelength = 0;
    // the above code initialize the two vectors of blocknames to read from
     
 
@@ -132,7 +138,7 @@ int main (int argc, char* argv[]) {
     }
     b->print();
 
-    bool heavy = true;
+    bool heavy = false;
     // the interpreter starts here
     while( cin >> s ) {
         //move the current block one cell to the left
@@ -231,8 +237,14 @@ int main (int argc, char* argv[]) {
             }
             else if( b->getCurrPlayer()->getLevel() == 1 ) { b->getCurrPlayer()->createBlock( "n" ); }
             else if( b->getCurrPlayer()->getLevel() == 2 ) { b->getCurrPlayer()->createBlock( "n" ); }
-            else if( b->getCurrPlayer()->getLevel() == 3 ) { b->getCurrPlayer()->createBlock( "n" ); }
-            else { b->getCurrPlayer()->createBlock( "n" ); }
+            else { 
+                if(random){
+                    b->getCurrPlayer()->createBlock( "n" );
+                }else{
+                    aNewLevelZeroBlock(b, alternate,alternateindex, alternatelength);
+                }
+      
+            }
         }
 
         //increase the difficulty level of the game by one
@@ -251,11 +263,15 @@ int main (int argc, char* argv[]) {
 
         //taking input from the sequence file
         else if( s == "norandom" ){
- 
+            random = false;
+            string fn;
+            cin >> fn;
+            setList(alternate, alternatelength, fn);
         }
 
         //restore back to randomness
         else if( s == "random" ){
+            random = true;
 
         }
  
