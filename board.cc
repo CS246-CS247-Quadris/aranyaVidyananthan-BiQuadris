@@ -11,14 +11,21 @@
 #include "level.h"
 #include <iostream>
 #include "window.h"
+#include "iblock.h"
+#include "lblock.h"
+#include "oblock.h"
+#include "jblock.h"
+#include "tblock.h"
+#include "zblock.h"
+#include "sblock.h"
 
 using namespace std;
 
 const int scale = 17;
 
 
-Board::Board( int player, int x, int y, int levelnumber ):blocks{}, levelnum{levelnumber},
-    player{player}, blind{false}, X{x}, Y{y}, nextBlock{}, score{0}, xw{nullptr} {
+Board::Board( int player, int x, int y, int levelnumber ):blocks{},player{player},
+    blind{false}, X{x}, Y{y}, levelnum{levelnumber},nextBlock{}, score{0}, xw{nullptr} {
         // if start level is supplied as a command line arg
         if ( levelnumber == 0 ) { level = new LevelZero; }
         else if ( levelnumber == 1 ) { level = new LevelOne; }
@@ -127,6 +134,38 @@ bool Board::setNewBlock(){ // if it returns false the game is over
     return retval;
 }
 
+void Board::setCurrBlock(string type){
+        
+    Block* newc;
+    if(type == "S"){
+        newc = new SBlock(levelnum, this);
+    }else if(type == "T"){
+        newc = new TBlock(levelnum, this);
+    }else if(type == "Z"){
+        newc = new ZBlock(levelnum, this);
+    }else if(type == "I"){
+        newc = new IBlock(levelnum, this);
+    }else if(type == "O"){
+        newc = new OBlock(levelnum, this);
+    }else if(type == "L"){
+        newc = new LBlock(levelnum, this);
+    }else if(type == "J"){
+        newc = new JBlock(levelnum, this);
+    } 
+    delete nextBlock;
+    //Block* tp = nextBlock;
+    nextBlock = newc;
+    //delete tp;
+    
+       //blocks.pop_back();
+    
+    
+    //blocks.emplace_back(newc);
+    //newc->set();
+    //xw->fillRectangle( (0+X)*scale, (21 + Y)*scale, scale*29, scale*2, 0);
+    
+    
+}
 
 void Board::addScorefromBlock(int l){
     int s = (l+1)*(l+1);

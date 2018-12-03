@@ -199,7 +199,9 @@ int main (int argc, char* argv[]) {
         //clears the board
 
         }else if( s == "I" ) {
-
+            b->getCurrPlayer()->setCurrBlock("I");
+            //b->getCurrPlayer()->setNewBlock();
+           
         }else if( s == "J" ) {
 
         }else if( s == "S" ) {

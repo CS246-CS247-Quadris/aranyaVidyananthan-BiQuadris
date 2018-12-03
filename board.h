@@ -18,12 +18,12 @@ private:
     Level *level;
     std::vector< Block * > blocks;
     int player;
-    int levelnum;
-    Block* nextBlock;
-    int score;
     bool blind;
     int X;
     int Y;
+    int levelnum;
+    Block* nextBlock;
+    int score;
     Xwindow *xw;
     // clears the row i and drops all the above blocks down a row
     void clearLines(int i); 
@@ -65,6 +65,7 @@ public:
     // returns the blind field
     bool getBlind();
     void detach(Block* b);
+    void setCurrBlock(string type);
     void updateScore(int lines);
     void addScorefromBlock(int l);
 };
