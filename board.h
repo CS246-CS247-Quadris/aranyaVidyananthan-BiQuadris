@@ -39,6 +39,8 @@ public:
     Block * getCurrBlock();
     // sets the first block of the board using the level
     void init(string t, Xwindow *xw);
+    // clears the board and starts a new game
+    void restart( int playernum, int a, int b, int levelnumber );
     // creates the next block based on the level of the player
     void createBlock( string t );
     // sets the next block to the current block on the board

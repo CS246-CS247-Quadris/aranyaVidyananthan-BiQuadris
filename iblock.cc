@@ -10,7 +10,12 @@
 IBlock::IBlock( int level,Board * g ): Block{level,'I', g }{}
 
 
-IBlock::~IBlock() {}
+IBlock::~IBlock() {
+    shape.clear();
+    shape.shrink_to_fit();
+    temp.clear();
+    temp.shrink_to_fit();
+}
 
 
 bool IBlock::set () {
@@ -35,7 +40,7 @@ bool IBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'I' );
         shape[index]->setStatus( false );
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale , (shape[index]->getY() + g->getY())*scale , scale, scale, 2 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale , ( shape[index]->getY() + g->getY() )*scale , scale, scale, 2 ); }
     }
     temp.clear();
     return true;
@@ -81,14 +86,14 @@ bool IBlock::move( int direction ){
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 0 ); }
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'I' );
         shape.back()->setStatus( false ); // set new cells to full
-        g->getDisplay()->fillRectangle( (shape.back()->getX() + g->getX())*scale, (shape.back()->getY() + g->getY())*scale , scale, scale, 2 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape.back()->getX() + g->getX() )*scale, ( shape.back()->getY() + g->getY() )*scale , scale, scale, 2 ); }
     }
     temp.clear();
     return true;
@@ -131,14 +136,14 @@ bool IBlock::rotate( int direction ) {
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale , (shape[index]->getY() + g->getY())*scale , scale, scale, 0 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale , ( shape[index]->getY() + g->getY() )*scale , scale, scale, 0 ); }
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'I' );
         shape.back()->setStatus( false ); // set new cells to full
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 2 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 2 ); }
     }
     temp.clear();
     // sets new orientation of block
@@ -158,5 +163,5 @@ bool IBlock::rotate( int direction ) {
 void IBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "IIII" << std::endl;
-    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*4, scale, 2 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 0 + g->getX() )*scale, ( 21 + g->getY() )*scale, scale*4, scale, 2 ); }
 }

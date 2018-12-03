@@ -19,8 +19,10 @@ protected:
     Xwindow *display;
 
 public:
-    Biquadris( int level = 0 );
+    Biquadris( int level = 0, bool graphics = true );
     ~Biquadris();
+    // clears and restarts the game board
+    void restart( int level, bool graphics );
     // returns the cureent board being played
     Board * getCurrPlayer();
     // switched the board being played on

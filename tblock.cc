@@ -7,7 +7,12 @@
 TBlock::TBlock(int level, Board * g ): Block{level,'T', g }{}
 
 
-TBlock::~TBlock() {}
+TBlock::~TBlock() {
+    shape.clear();
+    shape.shrink_to_fit();
+    temp.clear();
+    temp.shrink_to_fit();
+}
 
 
 bool TBlock::set () {
@@ -33,7 +38,7 @@ bool TBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'T' );
         shape[index]->setStatus( false );
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 6 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 6 ); }
     }
     temp.clear();
     return true;
@@ -79,14 +84,14 @@ bool TBlock::move( int direction ){
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 0 ); }
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'T' );
         shape.back()->setStatus( false ); // set new cells to full
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 6 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 6 ); }
     }
 
     temp.clear();
@@ -118,10 +123,10 @@ bool TBlock::rotate( int direction ) {
 void TBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "TTT" << std::endl;
-    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*3, scale, 6 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 0 + g->getX() )*scale, ( 21 + g->getY() )*scale, scale*3, scale, 6 ); }
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << " T " << std::endl;
-    g->getDisplay()->fillRectangle( (1 + g->getX())*scale, (22 + g->getY())*scale, scale, scale, 6 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 1 + g->getX() )*scale, ( 22 + g->getY() )*scale, scale, scale, 6 ); }
 }
 
 

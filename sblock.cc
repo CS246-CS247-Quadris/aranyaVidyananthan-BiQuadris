@@ -4,36 +4,42 @@
 #include "cell.h"
 #include <iostream>
 
+
 SBlock::SBlock(int level, Board * g ): Block{level,'S', g }{}
 
 
-SBlock::~SBlock() {}
+SBlock::~SBlock() {
+    shape.clear();
+    shape.shrink_to_fit();
+    temp.clear();
+    temp.shrink_to_fit();
+}
 
 
 bool SBlock::set () {
     // check if the four cells needed for block are empty
     if( (g->getCell(0,3))->getStatus()  == true ) {
-        temp.emplace_back( g->getCell(0,3));
+        temp.emplace_back( g->getCell(0, 3) );
     }
     else { temp.clear(); return false; }
     if( (g->getCell(1,3))->getStatus()  == true ) {
-        temp.emplace_back( g->getCell(1,3));
+        temp.emplace_back( g->getCell(1, 3) );
     }
     else { temp.clear(); return false; }
     if( (g->getCell(1,2))->getStatus() == true ) {
-        temp.emplace_back( g->getCell(1,2) );
+        temp.emplace_back( g->getCell(1, 2) );
     }
     else { temp.clear(); return false; }
     if( (g->getCell(2,2))->getStatus() == true ) {
-        temp.emplace_back( g->getCell(2,2));
+        temp.emplace_back( g->getCell(2, 2) );
     }
     else { temp.clear(); return false; }
     
-    for (int index = 0; index < 4; index ++) {
+    for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'S' );
         shape[index]->setStatus( false );
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 5 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 5 ); }
     }
     temp.clear();
     return true;
@@ -80,14 +86,14 @@ bool SBlock::move( int direction ){
     for ( int index = 0; index < 4; ++index ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 0 ); }
     }
     shape.clear();
     for ( int index = 0; index < 4; ++index ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'S' );
         shape.back()->setStatus( false ); // set new cells to full
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 5 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 5 ); }
     }
 
     temp.clear();
@@ -132,14 +138,14 @@ bool SBlock::rotate( int direction ) {
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 0 ); }
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'S' );
         shape.back()->setStatus( false ); // set new cells to full
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 5 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 5 ); }
     }
     temp.clear();
 
@@ -159,8 +165,8 @@ bool SBlock::rotate( int direction ) {
 void SBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << " SS" << std::endl;
-    g->getDisplay()->fillRectangle( ( 1 + g->getX())*scale, ( 21 + g->getY())*scale, scale*2, scale, 5 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 1 + g->getX())*scale, ( 21 + g->getY())*scale, scale*2, scale, 5 ); }
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "SS"  << std::endl;
-    g->getDisplay()->fillRectangle( ( 0 + g->getX())*scale, ( 22 + g->getY())*scale, scale*2, scale, 5 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 0 + g->getX())*scale, ( 22 + g->getY())*scale, scale*2, scale, 5 ); }
 }

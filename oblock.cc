@@ -8,7 +8,12 @@
 OBlock::OBlock(int level, Board * g ): Block{level,'O', g }{}
 
 
-OBlock::~OBlock() {}
+OBlock::~OBlock() {
+    shape.clear();
+    shape.shrink_to_fit();
+    temp.clear();
+    temp.shrink_to_fit();
+}
 
 
 bool OBlock::set () {
@@ -34,7 +39,7 @@ bool OBlock::set () {
         shape.emplace_back(temp[index]);
         shape[index]->setType( 'O' );
         shape[index]->setStatus( false );
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 7 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 7 ); }
     }
     temp.clear();
     return true;
@@ -79,14 +84,14 @@ bool OBlock::move( int direction ){
     for ( int index = 0; index < 4; index++ ) {
         shape[index]->setStatus( true ); // set old shape cells to empty
         shape[index]->setType(' '); // set old shape cella to no type
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 0 ); }
     }
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
         shape.back()->setType( 'O' );
         shape.back()->setStatus( false ); // set new cells to full
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 7 );
+        if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape[index]->getX() + g->getX() )*scale, ( shape[index]->getY() + g->getY() )*scale, scale, scale, 7 ); }
     }
 
     temp.clear();
@@ -117,9 +122,9 @@ bool OBlock::rotate( int direction ) {
 void OBlock::print() {
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "OO" << std::endl;
-    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (21 + g->getY())*scale, scale*2, scale*2, 7 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 0 + g->getX() )*scale, ( 21 + g->getY() )*scale, scale*2, scale*2, 7 ); }
     if ( g->getPlayer() == 2 ) { std::cout << "                  "; }
     std::cout << "OO" << std::endl;
-    g->getDisplay()->fillRectangle( (0 + g->getX())*scale, (22 + g->getY())*scale, scale*2, scale*2, 7 );
+    if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( 0 + g->getX() )*scale, ( 22 + g->getY() )*scale, scale*2, scale*2, 7 ); }
 }
 

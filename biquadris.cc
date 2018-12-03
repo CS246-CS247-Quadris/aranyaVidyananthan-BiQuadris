@@ -8,8 +8,10 @@
 using namespace std;
 
 //constructor
-Biquadris::Biquadris( int level ): boardOne{new Board( 1, 0, 3, level )}, 
-    boardTwo{new Board( 2, 18, 3, level )}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{new Xwindow( 493, 442 )}{
+Biquadris::Biquadris( int level, bool graphics ): boardOne{new Board( 1, 0, 3, level )}, 
+    boardTwo{ new Board( 2, 18, 3, level )}, ScoreOne{0}, ScoreTwo{0}, currplayer{1}, display{nullptr} {
+    if ( graphics ) { 
+        display = new Xwindow ( 493, 442 );
         display->drawString( 0, 17, "Level:");
         display->drawString( 170, 17, to_string(level) );
         display->drawString( 0, 34, "Score:");
@@ -20,6 +22,7 @@ Biquadris::Biquadris( int level ): boardOne{new Board( 1, 0, 3, level )},
         display->drawString( 476, 34, "0" );
         display->drawString( 0, 391, "Next:" );
         display->drawString( 306, 391, "Next:" );
+    }   
 }
 
 
@@ -35,6 +38,31 @@ Biquadris::~Biquadris(){
 void Biquadris::setFirstBlocks(string t1,string t2){
     boardOne->init( t1, display );
     boardTwo->init( t2, display );
+}
+
+
+// restarts the game board
+void Biquadris::restart( int level = 0, bool graphics = true ) {
+    boardOne->restart(1, 0, 3, level );
+    boardTwo->restart(2, 18, 3, level );
+    ScoreOne = 0;
+    ScoreTwo = 0;
+    currplayer = 1;
+    if ( display ) { delete display; }
+    display = nullptr;
+    if ( graphics ) {
+        display = new Xwindow ( 493, 442 );
+        display->drawString( 0, 17, "Level:");
+        display->drawString( 170, 17, "0" );
+        display->drawString( 0, 34, "Score:");
+        display->drawString( 170, 34, "0" );
+        display->drawString( 306, 17, "Level:");
+        display->drawString( 476, 17,  "0");
+        display->drawString( 306, 34, "Score:");
+        display->drawString( 476, 34, "0" );
+        display->drawString( 0, 391, "Next:" );
+        display->drawString( 306, 391, "Next:" );
+    }
 }
 
 
