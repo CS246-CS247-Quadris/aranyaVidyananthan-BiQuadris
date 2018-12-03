@@ -21,11 +21,17 @@ protected:
 public:
     Biquadris();
     ~Biquadris();
+    // returns the cureent board being played
     Board * getCurrPlayer();
+    // switched the board being played on
     void switchPlayer();
+    // prints the board
     void print();
+    // initializes the boards with the first blocks
     void setFirstBlocks(string t1, string t2);
+    // returns the player number 
     int playerNum();
+    // changes the new high score of the game
     void newHigh();
 };
 

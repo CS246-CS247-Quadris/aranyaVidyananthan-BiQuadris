@@ -44,6 +44,8 @@ Board::~Board(){
     }
     cells.clear();
     cells.shrink_to_fit();
+    // delete blocks
+    delete nextBlock;
     delete level;
 }
  
@@ -120,8 +122,16 @@ bool Board::setNewBlock(){ // if it returns false the game is over
 
 
 void Board::addScorefromBlock(int l){
-   int s = (l+1)*(l+1);
-   score += s;
+    int s = (l+1)*(l+1);
+    score += s;
+    if ( player == 1 ) { 
+        xw->fillRectangle( 170, 34, scale, scale, 0 );
+        xw->drawString( 170, 34, to_string(score) );
+    }
+    else {
+        xw->fillRectangle( 476, 34, scale, scale, 0 );
+        xw->drawString( 476, 34, to_string(score) );
+    }
 }
 
 
@@ -162,6 +172,13 @@ void Board::setLevel(int l){
     }else if(l == 4){
       level = new LevelFour();
     }
+    if ( player == 1 ) {
+        xw->fillRectangle( 166, 6, scale, scale, 0 );
+        xw->drawString( 170, 17, to_string(levelnum) );
+    }
+    else {
+        xw->fillRectangle( 470, 6, scale, scale, 0 );
+        xw->drawString( 476, 17, to_string(levelnum) ); }
 }
 
 
@@ -187,6 +204,14 @@ int Board::clearBoard(){
 void Board::updateScore(int lines){
     int s = (levelnum + lines)*(levelnum + lines);
     score += s;
+    if ( player == 1 ) {
+        xw->fillRectangle( 166, 23, scale, scale, 0 );
+        xw->drawString( 170, 34, to_string(score) );
+    }
+    else {
+        xw->fillRectangle( 470, 23, scale, scale, 0 );
+        xw->drawString( 476, 34, to_string(score) );
+    }
 }
 
 

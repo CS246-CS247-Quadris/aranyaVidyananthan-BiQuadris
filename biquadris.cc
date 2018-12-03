@@ -24,15 +24,21 @@ Biquadris::Biquadris(): boardOne{new Board( 1, 0, 3 )},
 
 
 //destructor
-Biquadris::~Biquadris(){}
+Biquadris::~Biquadris(){
+    delete boardOne;
+    delete boardTwo;
+    delete display;
+}
 
 
+// initializes boards with the first blocks
 void Biquadris::setFirstBlocks(string t1,string t2){
     boardOne->init( t1, display );
     boardTwo->init( t2, display );
 }
 
 
+// changes the new high score of the game
 void Biquadris::newHigh(){
     if(currplayer == 1){
         if(ScoreOne < boardTwo->getScore()){
@@ -46,6 +52,7 @@ void Biquadris::newHigh(){
 }
 
 
+// returns the current board being played
 Board * Biquadris::getCurrPlayer() {
     if ( currplayer == 1 ) {
          return boardOne; 
@@ -54,12 +61,14 @@ Board * Biquadris::getCurrPlayer() {
 }
 
 
+// switches the board being played
 void Biquadris::switchPlayer() {
     if ( currplayer == 1 ) { currplayer = 2; }
     else { currplayer = 1; }
 }
 
 
+// returns the board currently being played om
 int Biquadris::playerNum(){
     return currplayer;
 }
@@ -72,6 +81,7 @@ void Biquadris::print() {
     std::cout << "-----------       -----------" << std::endl;
     for ( int i = 0; i < 18; ++i ) { // row number
         for ( int n = 0; n < 11; ++n ) { // column number
+            // checks if player ones board is blind
             if ( boardOne->getBlind() == true && n >= 2 && n <= 8 && i >= 2 && i <= 11 ) {
                 std::cout << "?";
             }
@@ -81,6 +91,7 @@ void Biquadris::print() {
         }
         std::cout << "       ";
         for ( int n = 0; n < 11; ++n ) {
+            // checks if player twos board is blind
             if ( boardTwo->getBlind() == true && n >= 2 && n <= 8 && i >= 2 && i <= 11 ) {
                 std::cout << "?";
             }
