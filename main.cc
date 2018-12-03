@@ -33,7 +33,7 @@ void aNewLevelZeroBlock(Biquadris* b, vector<string>& list, int & loc, int & len
 }
 
 
-bool end( Biquadris * b, bool & force, bool & heavy ) {
+bool end( Biquadris * b, bool & heavy ) {
     int lines = b->getCurrPlayer()->clearBoard(); // checks if any lines can be cleared
     if( lines > 0 ) { //updates score if lines are cleared
         b->getCurrPlayer()->updateScore( lines );
@@ -132,8 +132,7 @@ int main (int argc, char* argv[]) {
     }
     b->print();
 
-    bool force = false;
-    bool heavy = false;
+    bool heavy = true;
     // the interpreter starts here
     while( cin >> s ) {
         //move the current block one cell to the left
@@ -147,7 +146,7 @@ int main (int argc, char* argv[]) {
                     fail = b->getCurrPlayer()->getCurrBlock()->move( 3 );
                 }
                 if ( fail == false ) {
-                    bool gameover = end( b, force, heavy );
+                    bool gameover = end( b, heavy );
                     if ( !gameover ) { break; }
                     // generates next block for the new player based on level of player
                     if( b->getCurrPlayer()->getLevel() == 0 ) {
@@ -173,7 +172,7 @@ int main (int argc, char* argv[]) {
                     fail = b->getCurrPlayer()->getCurrBlock()->move( 3 );
                 }
                 if ( fail == false ) {
-                    bool gameover = end( b, force, heavy );
+                    bool gameover = end( b, heavy );
                     if ( !gameover ) { break; }
                     // generates next block for the new player based on level of player
                     if( b->getCurrPlayer()->getLevel() == 0 ) {
@@ -213,7 +212,7 @@ int main (int argc, char* argv[]) {
                 dropdown = b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }  // currplayer's turn is over
 
-            bool gameover = end( b, force, heavy );
+            bool gameover = end( b, heavy );
             if ( !gameover ) { break; }
             // generates next block for the new player based on level of player
             if( b->getCurrPlayer()->getLevel() == 0 ) {
