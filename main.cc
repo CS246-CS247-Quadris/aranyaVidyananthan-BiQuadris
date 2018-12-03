@@ -45,6 +45,7 @@ int main (int argc, char* argv[]) {
             i ++;
             stringstream ssfn1(argv[i]);
             filenameOne = ssfn1.str();
+           
         }else if(s == "-scriptfile2"){
             i ++;
             stringstream ssfn2(argv[i]);
