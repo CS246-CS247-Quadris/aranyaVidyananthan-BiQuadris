@@ -10,7 +10,7 @@
 #include "board.h"
 #include "biquadris.h"
 #include "window.h"
-
+#include "levelzero.h"
 
 using namespace std;
 
@@ -84,12 +84,12 @@ int main (int argc, char* argv[]) {
     b->setFirstBlocks( listOne.at(locOne), listTwo.at(locTwo) );
     locOne ++;
     locTwo ++;
-    if( b->playerNum() == 1 ){
+    if( b->getCurrPlayer()->getPlayer() == 1 ){
        aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
-       cout << "current player: " << b->playerNum() << endl;
+       cout << "current player: " << b->getCurrPlayer()->getPlayer() << endl;
     }else{
        aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);
-       cout << "current player "<< b->playerNum() << endl;
+       cout << "current player "<< b->getCurrPlayer()->getPlayer() << endl;
     }
     b->print();
     // the interpreter starts here
@@ -97,36 +97,32 @@ int main (int argc, char* argv[]) {
         if( s.compare( 0, 3, "lef" ) == 0 ){
         //move the current block one cell to the left
             b->getCurrPlayer()->getCurrBlock()->move( 4 );
-            if(b->getCurrPlayer()->getLevel()== 3 ||
-               b->getCurrPlayer()->getLevel()==4){
-                b->getCurrPlayer()->getCurrBlock()->move(3);
+            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ){
+                b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }                
         }else if( s.compare( 0, 2, "ri") == 0 ){
         //move the current block one cell to the right
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
-            if(b->getCurrPlayer()->getLevel()==3 ||
-               b->getCurrPlayer()->getLevel()==4){
-                b->getCurrPlayer()->getCurrBlock()->move(3);
+            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) {
+                b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }
         }else if( s.compare ( 0, 2, "do" ) == 0 ){
         //move the current block one cell downward
             b->getCurrPlayer()->getCurrBlock()->move( 3 );
-            if(b->getCurrPlayer()->getLevel()==(3||4)){
-                b->getCurrPlayer()->getCurrBlock()->move(3);
+            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ){
+                b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }
         }else if( s.compare ( 0, 2, "cl" ) == 0 ){
         //rotate the current block 90 degrees clockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
-            if(b->getCurrPlayer()->getLevel()==4 ||
-               b->getCurrPlayer()->getLevel()==3){
-                b->getCurrPlayer()->getCurrBlock()->move(3);
+            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) {
+                b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }
         }else if( s.compare( 0, 2,"co" ) == 0 ){
         //rotate the current block 90 degrees counterclockwise
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
-            if(b->getCurrPlayer()->getLevel()==3||
-               b->getCurrPlayer()->getLevel()==4){
-                b->getCurrPlayer()->getCurrBlock()->move(3);
+            if( b->getCurrPlayer()->getLevel() == ( 3||4 ) ) {
+                b->getCurrPlayer()->getCurrBlock()->move( 3 );
             }
         }else if( s.compare( 0, 2, "dr")  == 0 ){
         //drops the current block
@@ -137,12 +133,12 @@ int main (int argc, char* argv[]) {
             // next block becomes curr
             int lines = b->getCurrPlayer()->clearBoard();
             if( lines > 0 ) { 
-                b->getCurrPlayer()->updateScore(lines);
+                b->getCurrPlayer()->updateScore( lines );
                 b->newHigh();
             }
             drop = b->getCurrPlayer()->setNewBlock();
-            if( !drop ) { break; } // game over
-            if( b->getCurrPlayer()->getBlind() == true ) { 
+            if( !drop ) { break; } // game over // other player won
+            if( b->getCurrPlayer()->getBlind() == true ) { // players board returns to normal
                 b->getCurrPlayer()->setBlind( false );
             } 
             b->switchPlayer();
@@ -153,14 +149,17 @@ int main (int argc, char* argv[]) {
                     b->getCurrPlayer()->setBlind( true );
                 }
                 else if ( a == "force" ) {
-
+                    string chosenBlockType;
+                    cin >> chosenBlockType;
+                    bool force = b->getCurrPlayer()->changeCurrBlock( chosenBlockType );
+                    if ( !force ) { break; } // other player won
                 }
                 else { //heavy
 
                 }
             }
             if( b->getCurrPlayer()->getLevel() == 0 ){
-                if( b->playerNum() == 1 ){
+                if( b->getCurrPlayer()->getPlayer() == 1 ){
                     aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
                }else{
                     aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);
@@ -173,7 +172,7 @@ int main (int argc, char* argv[]) {
                // b->getCurrPlayer()->createBlock("n");
             }
             else{ 
-                b->getCurrPlayer()->createBlock("n");
+                b->getCurrPlayer()->createBlock( "n" );
             }
         }else if( s.compare(0, 6, "levelu") == 0 ){
         //increase the difficulty level of the game by one.
@@ -199,25 +198,34 @@ int main (int argc, char* argv[]) {
         //clears the board
 
         }else if( s == "I" ) {
-            b->getCurrPlayer()->setCurrBlock("I");
+           // b->getCurrPlayer()->Block( "I" );
             //b->getCurrPlayer()->setNewBlock();
-           
+            bool force = b->getCurrPlayer()->changeCurrBlock( "I" );
+            if ( !force ) { break; } // other player won
         }else if( s == "J" ) {
-
+            bool force = b->getCurrPlayer()->changeCurrBlock( "J" );
+            if ( !force ) { break; } // other player won
         }else if( s == "S" ) {
-
+            bool force = b->getCurrPlayer()->changeCurrBlock( "S" );
+            if ( !force ) { break; } // other player won
         }else if( s == "Z" ) {
-
-        }else if( s == "I" ) {
-
+            bool force = b->getCurrPlayer()->changeCurrBlock( "Z" );
+            if ( !force ) { break; } // other player won
+        }else if( s == "L" ) {
+            bool force = b->getCurrPlayer()->changeCurrBlock( "L" );
+            if ( !force ) { break; } // other player won
         }else if( s == "T" ) {
-
+            bool force = b->getCurrPlayer()->changeCurrBlock( "T" );
+            if ( !force ) { break; } // other player won
         }else if( s == "O" ) {
-
+            bool force = b->getCurrPlayer()->changeCurrBlock( "O" );
+            if ( !force ) { break; } // other player won
         }
     b->print();
     }
     std::cout << "GAME OVER!" << std::endl; 
+    if ( b->getCurrPlayer()->getPlayer() == 1 ) { std::cout << "Player 2 won!" << std::endl;}
+    else { std::cout << "Player 1 won!" << std::endl; }
     delete b;
     listOne.clear();
     listTwo.clear();

@@ -7,12 +7,7 @@
 SBlock::SBlock(int level, Board * g ): Block{level,'S', g }{}
 
 
-SBlock::~SBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+SBlock::~SBlock() {}
 
 
 bool SBlock::set () {

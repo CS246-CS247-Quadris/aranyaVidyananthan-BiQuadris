@@ -10,12 +10,7 @@
 IBlock::IBlock( int level,Board * g ): Block{level,'I', g }{}
 
 
-IBlock::~IBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+IBlock::~IBlock() {}
 
 
 bool IBlock::set () {

@@ -7,9 +7,21 @@ Block::Block(int levelcreated, char type, Board * g ):shape{},
     temp{}, levelcreated{levelcreated},type{type}, orientation{1}, g{g}, removed{0}, scale{17}{}
 
 
-Block::~Block() {}
+Block::~Block() {
+    int i = shape.size();
+    for ( int n = 0; n < i; ++n ) {
+        shape[n]->setStatus( true );
+        shape[n]->setStatus(' ');
+        g->getDisplay()->fillRectangle( (shape[n]->getX() + g->getX())*scale, (shape[n]->getY() + g->getY())*scale, scale, scale, 0 );
+    }
+    shape.clear();
+    shape.shrink_to_fit();
+    temp.clear();
+    temp.shrink_to_fit();
+}
 
 
+// clears the row passed, and moves any blocks above the line cleared
 void Block::clearLine(int rowNum){
     int index = shape.size();
     if(shape.empty()){return;}

@@ -9,12 +9,7 @@ JBlock::JBlock(int level, Board * g ): Block{level,'J', g }{}
 
 
 
-JBlock::~JBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+JBlock::~JBlock(){}
 
 
 bool JBlock::set () {

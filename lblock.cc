@@ -7,12 +7,7 @@
 LBlock::LBlock(int level,  Board * g ): Block{level,'L', g }{}
 
 
-LBlock::~LBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+LBlock::~LBlock() {}
 
 
 bool LBlock::set () {

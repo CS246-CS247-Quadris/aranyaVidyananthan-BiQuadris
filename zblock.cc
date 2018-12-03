@@ -8,12 +8,7 @@ ZBlock::ZBlock(int level, Board * g ): Block{level,'Z', g }{}
 
 
 
-ZBlock::~ZBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+ZBlock::~ZBlock() {}
 
 
 bool ZBlock::set () {

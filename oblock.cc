@@ -8,12 +8,7 @@
 OBlock::OBlock(int level, Board * g ): Block{level,'O', g }{}
 
 
-OBlock::~OBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+OBlock::~OBlock() {}
 
 
 bool OBlock::set () {

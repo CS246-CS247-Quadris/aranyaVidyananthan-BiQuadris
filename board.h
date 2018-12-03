@@ -40,9 +40,11 @@ public:
     // sets the first block of the board using the level
     void init(string t, Xwindow *xw);
     // creates the next block based on the level of the player
-    void createBlock(string t);
+    void createBlock( string t );
     // sets the next block to the current block on the board
     bool setNewBlock();
+    // forces the current block to a different type
+    bool changeCurrBlock(string t);
     // returns the cell at the given (i, j)
     Cell* getCell(int i, int j);
     // sets the level to the given level
@@ -64,7 +66,6 @@ public:
     void setBlind( bool b );
     // returns the blind field
     bool getBlind();
-    void detach(Block* b);
     void setCurrBlock(string type);
     void updateScore(int lines);
     void addScorefromBlock(int l);

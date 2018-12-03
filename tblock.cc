@@ -7,12 +7,7 @@
 TBlock::TBlock(int level, Board * g ): Block{level,'T', g }{}
 
 
-TBlock::~TBlock() {
-    shape.clear();
-    shape.shrink_to_fit();
-    temp.clear();
-    temp.shrink_to_fit();
-}
+TBlock::~TBlock() {}
 
 
 bool TBlock::set () {

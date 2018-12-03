@@ -116,11 +116,22 @@ Xwindow * Board::getDisplay() {
     return xw;
 }
 
- 
+
+bool Board::changeCurrBlock(string t) {
+    delete blocks.back();
+    Level * levelzero = new LevelZero();
+    Block * b = levelzero->nextBlock( this, t );
+    blocks.emplace_back( b );
+    delete levelzero;
+    bool retval = b->set();
+    if ( retval == false ) { delete blocks.back(); }
+    return retval;
+} 
+
+
 // creates a new block based on the level of the player
-void Board::createBlock(string t){
-    Block * b = level->nextBlock( this, t ); // creates a new block
-    nextBlock = b;
+void Board::createBlock(string t ){
+    nextBlock = level->nextBlock( this, t ); // creates a new block
 }
 
 
@@ -134,9 +145,9 @@ bool Board::setNewBlock(){ // if it returns false the game is over
     return retval;
 }
 
-void Board::setCurrBlock(string type){
-        
-    Block* newc;
+
+/*void Board::setCurrBlock(string type){
+   Block* newc;
     if(type == "S"){
         newc = new SBlock(levelnum, this);
     }else if(type == "T"){
@@ -155,17 +166,14 @@ void Board::setCurrBlock(string type){
     delete nextBlock;
     //Block* tp = nextBlock;
     nextBlock = newc;
-    //delete tp;
-    
+    //delete tp
        //blocks.pop_back();
-    
-    
     //blocks.emplace_back(newc);
     //newc->set();
     //xw->fillRectangle( (0+X)*scale, (21 + Y)*scale, scale*29, scale*2, 0);
     
-    
-}
+}*/
+
 
 void Board::addScorefromBlock(int l){
     int s = (l+1)*(l+1);

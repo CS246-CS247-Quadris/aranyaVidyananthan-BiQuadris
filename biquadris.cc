@@ -68,12 +68,6 @@ void Biquadris::switchPlayer() {
 }
 
 
-// returns the board currently being played om
-int Biquadris::playerNum(){
-    return currplayer;
-}
-
-
 void Biquadris::print() {
     std::cout << "Hi Score: " << ScoreOne << "       " << "Hi Score  " << ScoreTwo << std::endl;
     std::cout << "Level:    " << boardOne->getLevel() << "       " << "Level:    " << boardTwo->getLevel() << std::endl;
