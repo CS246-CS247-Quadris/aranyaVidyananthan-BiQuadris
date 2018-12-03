@@ -17,10 +17,9 @@ using namespace std;
 const int scale = 17;
 
 
-Board::Board( int player, int x, int y, int levelnumber ):blocks{},
+Board::Board( int player, int x, int y, int levelnumber ):blocks{}, levelnum{levelnumber},
     player{player}, blind{false}, X{x}, Y{y}, nextBlock{}, score{0}, xw{nullptr} {
         // if start level is supplied as a command line arg
-        levelnumber = levelnumber;       
         if ( levelnumber == 0 ) { level = new LevelZero; }
         else if ( levelnumber == 1 ) { level = new LevelOne; }
         else if ( levelnumber == 2 ) { level = new LevelTwo; }
@@ -186,7 +185,8 @@ void Board::setLevel(int l){
     }
     else {
         xw->fillRectangle( 470, 6, scale, scale, 0 );
-        xw->drawString( 476, 17, to_string(levelnum) ); }
+        xw->drawString( 476, 17, to_string(levelnum) );
+    }
 }
 
 
