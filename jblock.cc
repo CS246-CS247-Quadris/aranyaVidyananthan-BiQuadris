@@ -73,8 +73,7 @@ bool JBlock::move( int direction ){
         if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){ 
             temp.emplace_back( g->getCell(a,b) );
         }else {
-            //for ( auto k:shape ) { shape[n].setStatus( false ); }
-            for(int k = 0; k < 4; ++k ){
+             for(int k = 0; k < 4; ++k ){
                shape[k]->setStatus(false);
             }
             temp.clear();
@@ -127,7 +126,6 @@ bool JBlock::rotate( int direction ) {
                     b = shape[i]->getY() - 2;
                 }
                 if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
-std::cout << a << " " << b << std::endl;
                     temp.emplace_back( g->getCell( a, b ) );
                 }
                 else {

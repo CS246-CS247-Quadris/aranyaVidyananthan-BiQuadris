@@ -74,12 +74,14 @@ int main (int argc, char* argv[]) {
     string filenameTwo = "sequence2.txt";
     int seedNumber = 0;
     int levelnumber = 0;
+    int argsNum = argc -1;
     bool graphics = true;
     bool random = true;
     //commandline interface
-    for( int i = 1; i < argc; i++ ){
+    for(int i = 0; i < argsNum; i++){
         stringstream ss(argv[i]);
         string s = ss.str();
+std::cout << s << std::endl;
         if ( s == "-scriptfile1" ) {
             i++;
             stringstream ssfn1(argv[i]);

@@ -123,9 +123,7 @@ bool LBlock::rotate( int direction ) {
                     a = shape[i]->getX() - 2;
                     b = shape[i]->getY() - 1;
                 }
-std::cout << a << " " << b << std::endl;
                 if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
-std::cout << " im in the for loop" << std::endl;
                     temp.emplace_back( g->getCell( a, b ) );
                 }
                 else {
@@ -143,9 +141,7 @@ std::cout << " im in the for loop" << std::endl;
                     a = shape[i]->getX() + 2;
                     b = shape[i]->getY() + 1;
                 }
-std::cout << a << " " << b << std::endl;
                 if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
-std::cout << "orientation 2" << std::endl;
                     temp.emplace_back( g->getCell( a, b ) );
                 }
                 else {
