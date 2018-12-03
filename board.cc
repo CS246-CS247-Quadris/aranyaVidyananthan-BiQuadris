@@ -141,7 +141,7 @@ int Board::getPlayer() {
 
 
 void Board::clearLines(int i){
-    int index = blocks.size()-1;
+    int index = blocks.size();
     for(int n = 0; n < index; n ++){
         blocks.at(n)->clearLine(i);
     }

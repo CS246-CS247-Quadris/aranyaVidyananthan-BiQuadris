@@ -15,13 +15,14 @@ void Block::clearLine(int rowNum){
     if(shape.empty()){return;}
     char c = shape[0]->getType();
     for(int i = 0; i < index; i ++){
-        g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
+        //g->getDisplay()->fillRectangle( (shape[index]->getX() + g->getX())*scale, (shape[index]->getY() + g->getY())*scale, scale, scale, 0 );
         if(shape[i]->getY() > rowNum){
             temp.emplace_back(g->getCell(shape[i]->getX(),shape[i]->getY()));
             //in this case, it is just the same cell originally in shape
         }else if(shape[i]->getY() == rowNum){
             shape[i]->setStatus(true);
             shape[i]->setType(' ');
+            g->getDisplay()->fillRectangle((shape[i]->getX()+ g->getX())*scale, (shape[i]->getY() + g->getY())*scale, scale, scale, 0);
             removed ++;
         }else{
             shape[i]->setType(' ');
@@ -29,6 +30,7 @@ void Block::clearLine(int rowNum){
             int x = shape[i]->getX();
             int y = shape[i]->getY()+1;
             temp.emplace_back(g->getCell(x , y));
+            g->getDisplay()->fillRectangle((x + g->getX())*scale, (shape[i]->getY()+g->getY())*scale, scale,scale,0);
         }
     }
     int newsize = temp.size();
