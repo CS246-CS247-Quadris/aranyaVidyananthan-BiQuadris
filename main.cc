@@ -69,7 +69,12 @@ bool end( Biquadris * b, bool & heavy ) {
 
 
 int main (int argc, char* argv[]) {
-    
+    string scriptfile1 = "-scriptfile1";
+    string scriptfile2 = "-scriptfile2";
+    string seed = "-seed";
+    string startlevel = "-startlevel";
+    string text = "-text";
+
     string filenameOne = "sequence1.txt";
     string filenameTwo = "sequence2.txt";
     int seedNumber = 0;
@@ -80,28 +85,28 @@ int main (int argc, char* argv[]) {
     for( int i = 1; i < argc; i++ ){
         stringstream ss(argv[i]);
         string s = ss.str();
-        if ( s == "-scriptfile1" ) {
+        if ( s == scriptfile1 ) {
             i++;
             stringstream ssfn1(argv[i]);
             filenameOne = ssfn1.str();
            
         }
-        else if ( s == "-scriptfile2" ) { 
+        else if ( s == scriptfile2 ) { 
             i++;
             stringstream ssfn2(argv[i]);
             filenameTwo = ssfn2.str();
         } 
-        else if ( s == "-seed" ) {
+        else if ( s == seed ) {
             i++;
             stringstream sn(argv[i]);
             sn >> seedNumber;
         }
-        else if ( s == "-startlevel" ) {
+        else if ( s == startlevel ) {
             i++;
             stringstream sl(argv[i]);
             sl >> levelnumber;
         }   
-        else if ( s == "-text" ) {
+        else if ( s == text ) {
             graphics = false;
         }
     }
@@ -138,10 +143,24 @@ int main (int argc, char* argv[]) {
     b->print();
 
     bool heavy = false;
+
+    string left = "lef";
+    string right = "ri";
+    string down = "do";
+    string clockwise = "cl";
+    string counterclockwise = "co";
+    string drop = "dr";
+    string levelup = "levelu";
+    string leveldown = "leveld";
+    string norandom = "norandom";
+    string randomness = "random";
+    string sequence = "sequence";
+    string restart = "restart";
+
     // the interpreter starts here
     while( cin >> s ) {
         //move the current block one cell to the left
-        if( s.compare( 0, 3, "lef" ) == 0 ){
+        if( s.compare( 0, 3, left ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 4 );
             if( b->getCurrPlayer()->getLevel() == 3 || 
             b->getCurrPlayer()->getLevel()== 4){ 
@@ -169,7 +188,7 @@ int main (int argc, char* argv[]) {
         }
 
         //move the current block one cell to the right
-        else if( s.compare( 0, 2, "ri" ) == 0 ){
+        else if( s.compare( 0, 2, right ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 2 );
             if( b->getCurrPlayer()->getLevel() == 3 ||
             b->getCurrPlayer()->getLevel() == 4 ) { 
@@ -197,7 +216,7 @@ int main (int argc, char* argv[]) {
         }
 
         //move the current block one cell downward
-        else if( s.compare ( 0, 2, "do" ) == 0 ){
+        else if( s.compare ( 0, 2, down ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->move( 3 );
             if( b->getCurrPlayer()->getLevel() == 3 ||
             b->getCurrPlayer()->getLevel()== 4){ 
@@ -205,7 +224,7 @@ int main (int argc, char* argv[]) {
         }
  
         //rotate the current block 90 degrees clockwise  
-        else if( s.compare ( 0, 2, "cl" ) == 0 ){
+        else if( s.compare ( 0, 2, clockwise ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->rotate( 1 );
             if( b->getCurrPlayer()->getLevel() == 3 ||
                 b->getCurrPlayer()->getLevel() == 4 ) { 
@@ -213,7 +232,7 @@ int main (int argc, char* argv[]) {
         }
 
         //rotate the current block 90 degrees counterclockwise
-        else if( s.compare( 0, 2, "co" ) == 0 ){
+        else if( s.compare( 0, 2, counterclockwise ) == 0 ){
             b->getCurrPlayer()->getCurrBlock()->rotate( -1 );
             if( b->getCurrPlayer()->getLevel() == 3 ||
                 b->getCurrPlayer()->getLevel() == 4) { 
@@ -221,7 +240,7 @@ int main (int argc, char* argv[]) {
         }
 
         //drops the current block
-        else if( s.compare( 0, 2, "dr" ) == 0 ){
+        else if( s.compare( 0, 2, drop ) == 0 ){
             bool dropdown = true;
             while( dropdown ) {
                 dropdown = b->getCurrPlayer()->getCurrBlock()->move( 3 );
@@ -247,21 +266,21 @@ int main (int argc, char* argv[]) {
         }
 
         //increase the difficulty level of the game by one
-        else if( s.compare(0, 6, "levelu" ) == 0 ){
+        else if( s.compare(0, 6, levelup ) == 0 ){
             if(b->getCurrPlayer()->getLevel()< 4 && b->getCurrPlayer()->getLevel()!= -1){
                 b->getCurrPlayer()->setLevel(b->getCurrPlayer()->getLevel()+1);
             }
         }
 
         // decreases the difficulty level of the game by one
-        else if( s.compare(0, 6, "leveld" ) == 0 ){
+        else if( s.compare(0, 6, leveldown ) == 0 ){
             if(b->getCurrPlayer()->getLevel()> 0){
                 b->getCurrPlayer()->setLevel(b->getCurrPlayer()->getLevel()-1);
             }
         }
 
         //taking input from the sequence file
-        else if( s == "norandom" ){
+        else if( s == norandom ){
             random = false;
             string fn;
             cin >> fn;
@@ -269,18 +288,18 @@ int main (int argc, char* argv[]) {
         }
 
         //restore back to randomness
-        else if( s == "random" ){
+        else if( s == randomness ){
             random = true;
 
         }
  
         //opens the file whose name is the next string
-        else if( s == "sequence" ){
+        else if( s == sequence ){
         
         }
 
         // clears the board
-        else if( s.compare( 0, 2, "re" ) == 0 ){
+        else if( s.compare( 0, 2, restart ) == 0 ){
             b->restart( levelnumber, graphics );
             if ( levelnumber == 0 ) { b->setFirstBlocks( listOne.at(locOne), listTwo.at(locTwo) ); }
             else { b->setFirstBlocks( " ", " "); }

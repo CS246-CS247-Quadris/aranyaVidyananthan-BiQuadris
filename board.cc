@@ -25,13 +25,13 @@ const int scale = 17;
 
 
 Board::Board( int player, int x, int y, int levelnumber ): xw{nullptr}, blocks{}, 
-    player{player},blind{false}, X{x}, Y{y}, levelnum{levelnumber},nextBlock{}, score{0} {
+    player{player}, blind{false}, X{x}, Y{y}, levelnum{levelnumber},nextBlock{}, score{0} {
         // if start level is supplied as a command line arg
-        if ( levelnumber == 0 ) { level = new LevelZero; }
-        else if ( levelnumber == 1 ) { level = new LevelOne; }
-        else if ( levelnumber == 2 ) { level = new LevelTwo; }
-        else if ( levelnumber == 3 ) { level = new LevelThree; }
-        else { level = new LevelFour; }
+        if ( levelnumber == 0 ) { level = new LevelZero(); }
+        else if ( levelnumber == 1 ) { level = new LevelOne(); }
+        else if ( levelnumber == 2 ) { level = new LevelTwo(); }
+        else if ( levelnumber == 3 ) { level = new LevelThree(); }
+        else { level = new LevelFour(); }
 
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
@@ -83,7 +83,6 @@ void Board::restart( int playernum, int a, int b, int levelnumber ) {
         cells[i].clear();
     }
     cells.clear();
-    delete level;
     int length = blocks.size();
     for ( int i = 0; i < length; ++i ) {
         delete blocks[i];
@@ -106,10 +105,10 @@ void Board::restart( int playernum, int a, int b, int levelnumber ) {
     Y = b;
     levelnum = levelnumber;
     // if start level is supplied as a command line arg
-    if ( levelnumber == 0 ) { level = new LevelZero; }
-    else if ( levelnumber == 1 ) { level = new LevelOne; }
-    else if ( levelnumber == 2 ) { level = new LevelTwo; }
-    else if ( levelnumber == 3 ) { level = new LevelThree; }
+    if ( levelnumber == 0 ) { level = new LevelZero(); }
+    else if ( levelnumber == 1 ) { level = new LevelOne(); }
+    else if ( levelnumber == 2 ) { level = new LevelTwo(); }
+    else if ( levelnumber == 3 ) { level = new LevelThree(); }
     else { level = new LevelFour; }
 
 }

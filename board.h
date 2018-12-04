@@ -53,8 +53,9 @@ public:
     void setLevel(int l);
     // checks if any of the rows are full and removes them
     int clearBoard();
-    // returs the level of the player
+    // returs the display of the player
     Xwindow *getDisplay();
+    // returns the level of the player
     int getLevel();
     // returns the score of the player
     int getScore();
@@ -68,8 +69,9 @@ public:
     void setBlind( bool b );
     // returns the blind field
     bool getBlind();
-    void setCurrBlock(string type);
+    // updates the scor of the player
     void updateScore(int lines);
+    // adds the score 
     void addScorefromBlock(int l);
 };
 

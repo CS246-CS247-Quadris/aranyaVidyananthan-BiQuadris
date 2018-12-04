@@ -17,10 +17,10 @@ protected:
     int removed;
     const int scale;
  
-    virtual const char getType()=0;
 public:
     Block( int levelcreated,char type, Board * g );
     virtual~Block();
+    virtual const char getType()=0;
     virtual bool set()=0;
     virtual bool move(int direction)=0;
     virtual bool rotate(int direction)=0;
