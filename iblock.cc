@@ -91,7 +91,6 @@ bool IBlock::move( int direction ){
     shape.clear();
     for ( int index = 0; index < 4; index++ ) {
         shape.emplace_back( temp[index] );
-std::cout << shape.back()->getX() << " " << shape.back()->getY() << std::endl;
         shape.back()->setType( 'I' );
         shape.back()->setStatus( false ); // set new cells to full
         if ( g->getDisplay() ) { g->getDisplay()->fillRectangle( ( shape.back()->getX() + g->getX() )*scale, ( shape.back()->getY() + g->getY() )*scale , scale, scale, 2 ); }
@@ -127,7 +126,6 @@ bool IBlock::rotate( int direction ) {
             ++count;
         }            
         if ( a >= 0 && a < 11 && b >= 0 && b < 18 && g->getCell(a,b)->getStatus() == true ){
-std::cout << a << " " << b << std::endl;
             temp.emplace_back( g->getCell(a,b) );
         }
         else {
