@@ -69,7 +69,7 @@ void Biquadris::restart( int level = 0, bool graphics = true ) {
 // changes the new high score of the game
 void Biquadris::newHigh(){
     if(currplayer == 1){
-        if(ScoreOne < boardTwo->getScore()){
+        if(ScoreOne < boardOne->getScore()){
             ScoreOne = boardOne->getScore();
         }
     }else{

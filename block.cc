@@ -23,8 +23,9 @@ void Block::clearBlock() {
 
 // clears the row passed, and moves any blocks above the line cleared
 void Block::clearLine( int rowNum ){
-    int index = shape.size();
+    
     if( shape.empty() ){ return; }
+    int index = shape.size();
     char c = shape[0]->getType();
     for(int i = 0; i < index; i ++){
         if(shape[i]->getY() > rowNum){
@@ -82,7 +83,7 @@ void Block::clearLine( int rowNum ){
         }
     }
     temp.clear();
-    if( shape.size() == 0 ){ g->addScorefromBlock( levelcreated ); }
+    if( shape.empty() ){ g->addScorefromBlock( levelcreated ); }
 }
 
 

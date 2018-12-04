@@ -68,8 +68,8 @@ Board::~Board(){
     }
     blocks.clear();
     blocks.shrink_to_fit();
-
-    delete nextBlock;
+    //if(nextBlock != nullptr){
+       //delete nextBlock;}
     delete level;
 }
  
@@ -198,8 +198,13 @@ bool Board::setNewBlock(){ // if it returns false the game is over
     blocks.emplace_back( curr );
     if ( xw ) { xw->fillRectangle( (0 + X)*scale, (21 + Y)*scale, scale*29, scale*2, 0 ); }
     bool retval = curr->set(); // sets the curr block to the top of the board    
-    if (retval == false) { delete curr; }
-    nextBlock = nullptr;
+    if (retval == false) { 
+       // int index = blocks.size()-1;
+        blocks.pop_back();
+        delete curr;
+        curr = nullptr;
+        nextBlock = nullptr;
+    }
     return retval;
 }
 
