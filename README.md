@@ -10,12 +10,7 @@ board (and if it doesn't fit, the opponent has lost). The major components of th
 
 Blocks:
 There are seven types of blocks, shown below with their names and initial configurations:
-         J        L     OO
-IIII     JJJ    LLL     OO
-I-block J-block L-block O-block
- SS     ZZ      TTT
-SS       ZZ      T
-S-block Z-block T-block
+I-block J-block L-block O-block S-block Z-block T-block
 
 Blocks can be moved and rotated. When a block is rotated, it should be done such that the
 position of the lower left corner of the smallest rectangle containing the block is preserved.
@@ -24,15 +19,15 @@ filled as a result of the block having dropped are removed from the board, and t
 remaining blocks above these rows move down to fill the gap.
 
 Levels:
-Level 0: Takes its blocks in sequence from the files sequence1.txt (for player 1) and sequence2.txt 
+1. Level 0: Takes its blocks in sequence from the files sequence1.txt (for player 1) and sequence2.txt 
 (for player 2), or from other files, whose names are supplied on the command line. This level is
 non-random, and can be used to test with a predetermined set of
 blocks. 
-Level 1: The block selector will randomly choose a block with probabilities skewed such that
+2. Level 1: The block selector will randomly choose a block with probabilities skewed such that
 S and Z blocks are selected with probability 1/12 each, and the other blocks are selected with
 probability 1/6 each.
-Level 2: All blocks are selected with equal probability.
-Level 3: The block selector will randomly choose a block with probabilities skewed such that
+3. Level 2: All blocks are selected with equal probability.
+4. Level 3: The block selector will randomly choose a block with probabilities skewed such that
 S and Z blocks are selected with probability 2/9 each, and the other blocks are selected with
 probability 1/9 each. Moreover, blocks generated in level 3 are 'heavy', every command to
 move or rotate the block will be followed immediately and automatically by a downward move
