@@ -176,7 +176,7 @@ int main (int argc, char* argv[]) {
                     // generates next block for the new player based on level of player
                     if(b->getCurrPlayer()->getLevel() == 0) {
                         if(b->getCurrPlayer()->getPlayer() == 1) aNewLevelZeroBlock(b, listOne, locOne, listLengthOne);
-                   else {aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);}
+                        else {aNewLevelZeroBlock(b, listTwo, locTwo, listLengthTwo);}
                     }
                     else if(b->getCurrPlayer()->getLevel() == 1) b->getCurrPlayer()->createBlock("n");
                     else if(b->getCurrPlayer()->getLevel() == 2) b->getCurrPlayer()->createBlock("n");
@@ -257,8 +257,9 @@ int main (int argc, char* argv[]) {
            else { 
                 if(random)
                     b->getCurrPlayer()->createBlock( "n" );
-                else
+                else {
                     aNewLevelZeroBlock(b, alternate,alternateindex, alternatelength);
+                }
             }
         }
 
