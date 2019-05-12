@@ -24,14 +24,14 @@ using namespace std;
 const int scale = 17;
 
 
-Board::Board( int player, int x, int y, int levelnumber ): xw{nullptr}, blocks{}, 
+Board::Board(int player, int x, int y, int levelnumber): xw{nullptr}, blocks{}, 
     player{player}, blind{false}, X{x}, Y{y}, levelnum{levelnumber},nextBlock{}, score{0} {
         // if start level is supplied as a command line arg
-        if ( levelnumber == 0 ) { level = new LevelZero(); }
-        else if ( levelnumber == 1 ) { level = new LevelOne(); }
-        else if ( levelnumber == 2 ) { level = new LevelTwo(); }
-        else if ( levelnumber == 3 ) { level = new LevelThree(); }
-        else { level = new LevelFour(); }
+        if (levelnumber == 0 ) { level = new LevelZero();}
+        else if (levelnumber == 1) {level = new LevelOne();}
+        else if (levelnumber == 2) {level = new LevelTwo();}
+        else if (levelnumber == 3) {level = new LevelThree();}
+        else {level = new LevelFour();}
 
         cells.resize(11); // 11 columns
         for(int i = 0; i < 11; ++i){
@@ -43,17 +43,17 @@ Board::Board( int player, int x, int y, int levelnumber ): xw{nullptr}, blocks{}
 }
 
  
-void Board::init( string t, Xwindow *display ) {
+void Board::init(string t, Xwindow *display) {
     xw = display;
-    Block * b = level->nextBlock( this, t );
-    blocks.emplace_back( b ); // adds the currblock
+    Block * b = level->nextBlock(this, t);
+    blocks.emplace_back(b); // adds the currblock
     b->set();
 }
 
 
 Board::~Board(){
-    for ( int i = 0; i < 11; ++i ) {
-        for ( int n = 0; n < 18; ++n ) {
+    for (int i = 0; i < 11; ++i) {
+        for (int n = 0; n < 18; ++n) {
             delete cells[i][n];
         }
         cells[i].clear();
@@ -63,28 +63,26 @@ Board::~Board(){
     cells.shrink_to_fit();
 
     int length = blocks.size();
-    for ( int i = 0; i < length; ++i ) {
+    for (int i = 0; i < length; ++i) {
         delete blocks[i];
     }
     blocks.clear();
     blocks.shrink_to_fit();
-    //if(nextBlock != nullptr){
-       //delete nextBlock;}
     delete level;
 }
  
 
 // clears the board and starts a new game
 void Board::restart( int playernum, int a, int b, int levelnumber ) {
-    for ( int i = 0; i < 11; ++i ) {
-        for ( int n = 0; n < 18; ++n ) {
+    for (int i = 0; i < 11; ++i) {
+        for (int n = 0; n < 18; ++n) {
             delete cells[i][n];
         }
         cells[i].clear();
     }
     cells.clear();
     int length = blocks.size();
-    for ( int i = 0; i < length; ++i ) {
+    for (int i = 0; i < length; ++i) {
         delete blocks[i];
     }
     blocks.clear();
@@ -105,11 +103,11 @@ void Board::restart( int playernum, int a, int b, int levelnumber ) {
     Y = b;
     levelnum = levelnumber;
     // if start level is supplied as a command line arg
-    if ( levelnumber == 0 ) { level = new LevelZero(); }
-    else if ( levelnumber == 1 ) { level = new LevelOne(); }
-    else if ( levelnumber == 2 ) { level = new LevelTwo(); }
-    else if ( levelnumber == 3 ) { level = new LevelThree(); }
-    else { level = new LevelFour; }
+    if (levelnumber == 0) {level = new LevelZero();}
+    else if (levelnumber == 1) {level = new LevelOne();}
+    else if (levelnumber == 2) {level = new LevelTwo();}
+    else if (levelnumber == 3) {level = new LevelThree();}
+    else {level = new LevelFour;}
 
 }
 
@@ -118,8 +116,8 @@ void Board::print() {
     std::cout << "Level:    " << getLevel() << std::endl;
     std::cout << "Score:    " << getScore() << std::endl;
     std::cout << "-----------"  << std::endl;
-    for ( int i = 0; i < 18; ++i ) {
-        for ( int n = 0; n < 11; ++n ) {
+    for (int i = 0; i < 18; ++i) {
+        for (int n = 0; n < 11; ++n) {
             getCell(n,i)->print();
         }
     std::cout << '\n';
@@ -177,29 +175,28 @@ bool Board::changeCurrBlock(string t) {
     blocks.back()->clearBlock();
     delete blocks.back();
     Level * levelzero = new LevelZero();
-    Block * b = levelzero->nextBlock( this, t );
-    blocks.emplace_back( b );
+    Block * b = levelzero->nextBlock(this, t);
+    blocks.emplace_back(b);
     delete levelzero;
     bool retval = b->set();
-    if ( retval == false ) { delete blocks.back(); }
+    if (retval == false) {delete blocks.back();}
     return retval;
 } 
 
 
 // creates a new block based on the level of the player
-void Board::createBlock(string t ){
-    nextBlock = level->nextBlock( this, t ); // creates a new block
+void Board::createBlock(string t){
+    nextBlock = level->nextBlock(this, t); // creates a new block
 }
 
 
 // sets the next block to current and creates a new next block
 bool Board::setNewBlock(){ // if it returns false the game is over
     Block * curr = nextBlock;
-    blocks.emplace_back( curr );
-    if ( xw ) { xw->fillRectangle( (0 + X)*scale, (21 + Y)*scale, scale*29, scale*2, 0 ); }
+    blocks.emplace_back(curr);
+    if (xw) {xw->fillRectangle((0 + X)*scale, (21 + Y)*scale, scale*29, scale*2, 0);}
     bool retval = curr->set(); // sets the curr block to the top of the board    
     if (retval == false) { 
-       // int index = blocks.size()-1;
         blocks.pop_back();
         delete curr;
         curr = nullptr;
@@ -213,14 +210,14 @@ bool Board::setNewBlock(){ // if it returns false the game is over
 void Board::addScorefromBlock(int l){
     int s = (l+1)*(l+1);
     score += s;
-    if ( xw ) {
-        if ( player == 1 ) { 
-            xw->fillRectangle( 170, 34, scale, scale, 0 );
-            xw->drawString( 170, 34, to_string(score) );
+    if (xw) {
+        if (player == 1) { 
+            xw->fillRectangle(170, 34, scale, scale, 0);
+            xw->drawString(170, 34, to_string(score));
         }
         else {
-            xw->fillRectangle( 476, 34, scale, scale, 0 );
-            xw->drawString( 476, 34, to_string(score) );
+            xw->fillRectangle(476, 34, scale, scale, 0);
+            xw->drawString(476, 34, to_string(score));
         }
     }
 }
@@ -269,14 +266,14 @@ void Board::setLevel(int l){
       level = new LevelFour();
     }
 
-    if ( xw ) {
-        if ( player == 1 ) {
-            xw->fillRectangle( 166, 6, scale, scale, 0 );
-            xw->drawString( 170, 17, to_string(levelnum) );
+    if (xw) {
+        if (player == 1) {
+            xw->fillRectangle(166, 6, scale, scale, 0);
+            xw->drawString(170, 17, to_string(levelnum));
         }
         else {
-            xw->fillRectangle( 470, 6, scale, scale, 0 );
-            xw->drawString( 476, 17, to_string(levelnum) );
+            xw->fillRectangle(470, 6, scale, scale, 0);
+            xw->drawString(476, 17, to_string(levelnum));
         }
     }
 }
@@ -299,14 +296,13 @@ int Board::clearBoard(){
           i ++;
       }
    }
-   for ( std::vector < Block * >::iterator it = blocks.begin() ; it < blocks.end(); ++it ) {
-       if ( (*it)->getRemoved() == 4 ) {
+   for (std::vector <Block *>::iterator it = blocks.begin() ; it < blocks.end(); ++it) {
+       if ((*it)->getRemoved() == 4) {
            delete *it;
            blocks.erase( it );
        }
    }
-   return lines;     
-
+   return lines; 
 }
 
 
@@ -314,14 +310,14 @@ int Board::clearBoard(){
 void Board::updateScore(int lines){
     int s = (levelnum + lines)*(levelnum + lines);
     score += s;
-    if ( xw ) {
-        if ( player == 1 ) {
-            xw->fillRectangle( 166, 23, scale, scale, 0 );
-            xw->drawString( 170, 34, to_string(score) );
+    if (xw) {
+        if (player == 1) {
+            xw->fillRectangle(166, 23, scale, scale, 0);
+            xw->drawString(170, 34, to_string(score));
         }
         else {
-            xw->fillRectangle( 470, 23, scale, scale, 0 );
-            xw->drawString( 476, 34, to_string(score) );
+            xw->fillRectangle(470, 23, scale, scale, 0);
+            xw->drawString(476, 34, to_string(score));
         }
     }
 }
