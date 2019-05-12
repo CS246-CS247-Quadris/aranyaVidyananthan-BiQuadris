@@ -59,8 +59,9 @@ bool end(Biquadris * b, bool & heavy) {
             check = b->getCurrPlayer()->changeCurrBlock(chosenBlockType);
             if (!check) {return false;} // other player won
         }
-        else  //heavy
+        else {  //heavy
             heavy = true;
+        }
     }
     return true;
 }
