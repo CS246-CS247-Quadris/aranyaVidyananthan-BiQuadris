@@ -1,6 +1,6 @@
 # CS246
 
-A game of Biquadris consists of two boards, each 11 columns wide and 15 rows high. Blocks
+A game of BiQuadris consists of two boards, each 11 columns wide and 15 rows high. Blocks
 consisting of four cells (tetrominoes) appear at the top of each board, and are dropped
 onto their respective boards so as not to leave any gaps. Once an entire row has been filled, it
 disappears, and the blocks above move down by one unit.
